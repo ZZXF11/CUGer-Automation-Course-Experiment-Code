@@ -1,0 +1,61 @@
+C51 COMPILER V9.57.0.0   H7                                                                07/15/2021 10:46:22 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H7
+OBJECT MODULE PLACED IN .\Objects\H7.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H7.C OPTIMIZE(8,SPEE
+                    -D) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H7.lst) TABS(2) OBJECT(.\Objects\H7.obj)
+
+line level    source
+
+   1          
+   2          #define mode 0x82   // 方式0，PA，PC输出，PB输入
+   3          
+   4          xdata unsigned char PortA _at_ 0x8000 ; // Port A
+   5          xdata unsigned char PortB _at_ 0x8001 ; // Port B
+   6          xdata unsigned char PortC _at_ 0x8002 ; // Port C
+   7          xdata unsigned char CAddr _at_ 0x8003 ; // 控制字地址
+   8          
+   9          void delay(unsigned char CNT)
+  10          {
+  11   1        unsigned int i;
+  12   1      
+  13   1        while (CNT-- !=0)
+  14   1          for (i=20000; i !=0; i--);
+  15   1      }
+  16          
+  17          void main()
+  18          {
+  19   1        register unsigned char i, dd;
+  20   1      
+  21   1        CAddr = mode;     // 方式0, PA,PC输出, PB输入
+  22   1        while(1){
+  23   2      //    dd = 0x80;
+  24   2      //    for(i = 0; i<8; i++)
+  25   2      //    {
+  26   2      //      PortA = dd;   // 输出到PA
+  27   2      //      dd >>= 1;     // 移位
+  28   2      //      delay(1);     // 延时
+  29   2      //    };
+  30   2      
+  31   2          dd = PortB;     // PB输入
+  32   2          PortA = dd;     // 再输出到PA
+  33   2          delay(2);
+  34   2        }
+  35   1      }
+*** WARNING C280 IN LINE 19 OF ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H7.C: 'i': unreferenced local variabl
+             -e
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     44    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

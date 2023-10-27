@@ -1,0 +1,102 @@
+C51 COMPILER V9.57.0.0   H39                                                               07/14/2021 09:57:50 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H39
+OBJECT MODULE PLACED IN .\Objects\H39.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H39.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H39.lst) TABS(2) OBJECT(.\Objects\H39.obj)
+
+line level    source
+
+   1          // 硬件实验三十九  压力(温度)传感器实验
+   2          
+   3          xdata unsigned char CS0809 _at_ 0xa000;
+   4          
+   5          #define LEDLen 6
+   6          
+   7          xdata unsigned char OUTBIT _at_ 0x9002;   // 位控制口
+   8          xdata unsigned char OUTSEG _at_ 0x9004;   // 段控制口
+   9          xdata unsigned char IN     _at_ 0x9001;   // 键盘读入口
+  10          
+  11          unsigned char LEDBuf[LEDLen];  // 显示缓冲
+  12          
+  13          code unsigned char LEDMAP[] = {  // 八段管显示码
+  14            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  15            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  16          };
+  17          
+  18          
+  19          
+  20          unsigned char Read0809()
+  21          {
+  22   1        unsigned char i;
+  23   1      
+  24   1        CS0809 = 0;                // 起动 A/D
+  25   1        for (i=0; i<0x20; i++) ;   // 延时 > 100us
+  26   1        return(CS0809);            // 读入结果
+  27   1      }
+  28          
+  29          
+  30          
+  31          void Delay(unsigned char CNT)
+  32          {
+  33   1        unsigned char i;
+  34   1      
+  35   1        while (CNT-- !=0)
+  36   1          for (i=100; i !=0; i--);
+  37   1      }
+  38          
+  39          void DisplayLED()
+  40          {
+  41   1        unsigned char i, j;
+  42   1        unsigned char Pos;
+  43   1        unsigned char LED;
+  44   1      
+  45   1        Pos = 0x20;      // 从左边开始显示
+  46   1        for (i = 0; i < LEDLen; i++) {
+  47   2          OUTBIT = 0;    // 关所有八段管
+  48   2          LED = LEDBuf[i];
+  49   2          OUTSEG = LED;
+  50   2          OUTBIT = Pos;  // 显示一位八段管
+  51   2          Delay(1);
+  52   2          Pos >>= 1;     // 显示下一位
+  53   2        }
+  54   1        OUTBIT = 0;      // 关所有八段管
+C51 COMPILER V9.57.0.0   H39                                                               07/14/2021 09:57:50 PAGE 2   
+
+  55   1      }
+*** WARNING C280 IN LINE 41 OF ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H39.C: 'j': unreferenced local variab
+             -le
+  56          
+  57          void main()
+  58          {
+  59   1         unsigned char i = 0;
+  60   1         unsigned char j, ADResult;
+  61   1      
+  62   1         while(1) {
+  63   2           ADResult =  Read0809();
+  64   2           LEDBuf[0] = 0x40;
+  65   2           LEDBuf[1] = 0x40;
+  66   2           LEDBuf[2] = 0x40;
+  67   2           LEDBuf[3] = 0x40;
+  68   2           LEDBuf[4] = LEDMAP[(ADResult>>4) & 0x0f];
+  69   2           LEDBuf[5] = LEDMAP[ADResult & 0x0f];
+  70   2      
+  71   2           for(j=0; j<30; j++)
+  72   2             DisplayLED();   // 延时
+  73   2         }
+  74   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    133    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

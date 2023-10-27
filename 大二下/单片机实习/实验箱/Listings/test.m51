@@ -1,0 +1,407 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/20/2021  09:44:55  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\testl.obj TO .\Objects\test PRINT (.\Listings\test.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\testl.obj (TESTL)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLCMP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\test (TESTL)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?TESTL
+            DATA    0012H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+                    0000H     5CFFH                  *** GAP ***
+            XDATA   5CFFH     0001H     ABSOLUTE     
+                    5D00H     0300H                  *** GAP ***
+            XDATA   6000H     0001H     ABSOLUTE     
+            XDATA   6001H     0001H     ABSOLUTE     
+            XDATA   6002H     0001H     ABSOLUTE     
+* OVERLAP * XDATA   6002H     0001H     ABSOLUTE     
+* OVERLAP * XDATA   6002H     0001H     ABSOLUTE     
+            XDATA   6003H     0001H     ABSOLUTE     
+                    6004H     7FFCH                  *** GAP ***
+            XDATA   E000H     0001H     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    009AH     006AH     UNIT         ?PR?MAIN?TESTL
+            CODE    0104H     004EH     UNIT         ?PR?KEYSCAN?TESTL
+            CODE    0152H     002CH     UNIT         ?PR?_WACTH?TESTL
+            CODE    017EH     0023H     UNIT         ?PR?TIMER0?TESTL
+            CODE    01A1H     0022H     UNIT         ?PR?DISPLAYLED?TESTL
+            CODE    01C3H     0020H     UNIT         ?PR?_DELAY_XMS?TESTL
+            CODE    01E3H     0020H     UNIT         ?CO?TESTL
+            CODE    0203H     001CH     UNIT         ?PR?_ALARM?TESTL
+            CODE    021FH     001BH     UNIT         ?PR?_DELAYT?TESTL
+            CODE    023AH     0016H     UNIT         ?C?LIB_CODE
+            CODE    0250H     0010H     UNIT         ?PR?INIT_PARAMETER?TESTL
+            CODE    0260H     000FH     UNIT         ?PR?_DELAY?TESTL
+            CODE    026FH     000EH     UNIT         ?PR?INIT_MCU?TESTL
+            CODE    027DH     000DH     UNIT         ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 2
+
+
+            CODE    028AH     000CH     UNIT         ?PR?TRIG_SUPERSONIC?TESTL
+            CODE    0296H     000CH     UNIT         ?PR?TESTKEY?TESTL
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\test (TESTL)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?TESTL
+  +--> ?C_INITSEG
+
+?PR?MAIN?TESTL                    -----    -----
+  +--> ?PR?INIT_PARAMETER?TESTL
+  +--> ?PR?_ALARM?TESTL
+  +--> ?PR?_DELAY_XMS?TESTL
+  +--> ?PR?TRIG_SUPERSONIC?TESTL
+  +--> ?PR?TESTKEY?TESTL
+  +--> ?PR?KEYSCAN?TESTL
+  +--> ?CO?TESTL
+  +--> ?PR?_DELAYT?TESTL
+  +--> ?PR?DISPLAYLED?TESTL
+
+?PR?_ALARM?TESTL                  0012H    0001H
+  +--> ?PR?_DELAY_XMS?TESTL
+
+?PR?TRIG_SUPERSONIC?TESTL         -----    -----
+  +--> ?PR?_DELAYT?TESTL
+
+?PR?KEYSCAN?TESTL                 -----    -----
+  +--> ?PR?_DELAY?TESTL
+  +--> ?PR?TESTKEY?TESTL
+  +--> ?CO?TESTL
+
+?PR?DISPLAYLED?TESTL              0012H    0001H
+  +--> ?PR?_DELAY?TESTL
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   MEASURE_DISTANCE
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\test (TESTL)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TESTL
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 3
+
+
+  B:00A8H.7       PUBLIC        EA
+  C:021FH         PUBLIC        _delayt
+  D:0008H         PUBLIC        DD
+  C:028AH         PUBLIC        Trig_SuperSonic
+  C:01C3H         PUBLIC        _Delay_xMs
+  D:00A8H         PUBLIC        IE
+  B:00B0H.6       PUBLIC        INPUT
+  C:01E3H         PUBLIC        KeyTable
+  X:6002H         PUBLIC        IN
+  D:00B8H         PUBLIC        IP
+  C:0250H         PUBLIC        Init_Parameter
+  C:009AH         PUBLIC        main
+  D:0009H         PUBLIC        count
+  C:01A1H         PUBLIC        DisplayLED
+  C:0104H         PUBLIC        KeyScan
+  D:0098H         PUBLIC        SCON
+  C:01F3H         PUBLIC        LEDMAP
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  X:E000H         PUBLIC        LED_Y0
+  X:6003H         PUBLIC        CAddr
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  C:0296H         PUBLIC        TestKey
+  D:000AH         PUBLIC        distance
+  D:008AH         PUBLIC        TL0
+  C:017EH         PUBLIC        timer0
+  X:5CFFH         PUBLIC        LED
+  B:0088H.4       PUBLIC        TR0
+  X:6002H         PUBLIC        INC
+  C:026FH         PUBLIC        Init_MCU
+  D:00C8H         PUBLIC        T2CON
+  X:6000H         PUBLIC        PortA
+  X:6001H         PUBLIC        PortB
+  X:6002H         PUBLIC        PortC
+  C:0203H         PUBLIC        _Alarm
+  C:0260H         PUBLIC        _Delay
+  B:00B0H.0       PUBLIC        OUTPUT
+  D:000EH         PUBLIC        LEDBuf
+  C:0152H         PUBLIC        _Wacth
+  D:00D0H         PUBLIC        PSW
+  B:00B0H.5       PUBLIC        Beep
+  -------         PROC          _DELAY_XMS
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:01C3H         LINE#         42
+  C:01C3H         LINE#         43
+  C:01C3H         LINE#         45
+  C:01CDH         LINE#         46
+  C:01CDH         LINE#         47
+  C:01D0H         LINE#         48
+  C:01D0H         LINE#         50
+  C:01DBH         LINE#         51
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 4
+
+
+  C:01E2H         LINE#         52
+  -------         ENDPROC       _DELAY_XMS
+  -------         PROC          _ALARM
+  D:0012H         SYMBOL        t
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:0203H         LINE#         54
+  C:0205H         LINE#         55
+  C:0205H         LINE#         57
+  C:020DH         LINE#         58
+  C:020DH         LINE#         59
+  C:020FH         LINE#         60
+  C:0216H         LINE#         61
+  C:0218H         LINE#         62
+  C:021BH         LINE#         63
+  C:021EH         LINE#         64
+  -------         ENDPROC       _ALARM
+  -------         PROC          _DELAYT
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0005H         SYMBOL        j
+  -------         ENDDO         
+  C:021FH         LINE#         66
+  C:021FH         LINE#         67
+  C:021FH         LINE#         69
+  C:022EH         LINE#         70
+  C:022EH         LINE#         71
+  C:0236H         LINE#         72
+  C:0236H         LINE#         74
+  C:0239H         LINE#         75
+  C:0239H         LINE#         76
+  -------         ENDPROC       _DELAYT
+  -------         PROC          INIT_MCU
+  C:026FH         LINE#         78
+  C:026FH         LINE#         79
+  C:026FH         LINE#         80
+  C:0272H         LINE#         81
+  C:0275H         LINE#         82
+  C:0278H         LINE#         83
+  C:027AH         LINE#         84
+  C:027CH         LINE#         85
+  -------         ENDPROC       INIT_MCU
+  -------         PROC          INIT_PARAMETER
+  C:0250H         LINE#         87
+  C:0250H         LINE#         88
+  C:0250H         LINE#         89
+  C:0252H         LINE#         90
+  C:0254H         LINE#         91
+  C:0257H         LINE#         92
+  C:025FH         LINE#         93
+  -------         ENDPROC       INIT_PARAMETER
+  -------         PROC          TRIG_SUPERSONIC
+  C:028AH         LINE#         95
+  C:028AH         LINE#         96
+  C:028AH         LINE#         97
+  C:028CH         LINE#         98
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 5
+
+
+  C:0293H         LINE#         99
+  C:0295H         LINE#         100
+  -------         ENDPROC       TRIG_SUPERSONIC
+  -------         PROC          _DELAY
+  D:0007H         SYMBOL        CNT
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0260H         LINE#         102
+  C:0260H         LINE#         103
+  C:0260H         LINE#         106
+  C:0266H         LINE#         107
+  C:026EH         LINE#         108
+  -------         ENDPROC       _DELAY
+  -------         PROC          DISPLAYLED
+  -------         DO            
+  D:0003H         SYMBOL        i
+  D:0004H         SYMBOL        Pos
+  D:0012H         SYMBOL        LED
+  -------         ENDDO         
+  C:01A1H         LINE#         110
+  C:01A1H         LINE#         111
+  C:01A1H         LINE#         116
+  C:01A5H         LINE#         117
+  C:01A6H         LINE#         119
+  C:01ADH         LINE#         121
+  C:01AFH         LINE#         122
+  C:01B5H         LINE#         123
+  C:01BAH         LINE#         125
+  C:01BEH         LINE#         127
+  C:01C2H         LINE#         128
+  C:01C2H         LINE#         129
+  -------         ENDPROC       DISPLAYLED
+  -------         PROC          TESTKEY
+  C:0296H         LINE#         149
+  C:0296H         LINE#         150
+  C:0296H         LINE#         151
+  C:029CH         LINE#         152
+  C:02A1H         LINE#         153
+  -------         ENDPROC       TESTKEY
+  -------         PROC          KEYSCAN
+  -------         DO            
+  D:0007H         SYMBOL        Pos
+  D:0004H         SYMBOL        i
+  D:0006H         SYMBOL        k
+  -------         ENDDO         
+  C:0104H         LINE#         188
+  C:0104H         LINE#         189
+  C:0104H         LINE#         194
+  C:0106H         LINE#         195
+  C:0108H         LINE#         196
+  C:0108H         LINE#         197
+  C:010EH         LINE#         198
+  C:0112H         LINE#         199
+  C:0117H         LINE#         200
+  C:011EH         LINE#         203
+  C:0121H         LINE#         204
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 6
+
+
+  C:0127H         LINE#         205
+  C:012BH         LINE#         206
+  C:012EH         LINE#         207
+  C:0132H         LINE#         208
+  C:0136H         LINE#         209
+  C:013AH         LINE#         210
+  C:013DH         LINE#         213
+  C:0142H         LINE#         214
+  C:0148H         LINE#         216
+  C:014FH         LINE#         217
+  C:0151H         LINE#         218
+  -------         ENDPROC       KEYSCAN
+  -------         PROC          _WACTH
+  D:0006H         SYMBOL        k
+  D:0005H         SYMBOL        w
+  C:0152H         LINE#         220
+  C:0152H         LINE#         221
+  C:0163H         LINE#         222
+  C:0163H         LINE#         223
+  C:0168H         LINE#         224
+  C:016DH         LINE#         225
+  C:0172H         LINE#         226
+  C:017DH         LINE#         227
+  C:017DH         LINE#         228
+  -------         ENDPROC       _WACTH
+  -------         PROC          MAIN
+  C:009AH         LINE#         231
+  C:009AH         LINE#         232
+  C:00A0H         LINE#         233
+  C:00A3H         LINE#         234
+  C:00A6H         LINE#         235
+  C:00A9H         LINE#         236
+  C:00ABH         LINE#         237
+  C:00ADH         LINE#         238
+  C:00B0H         LINE#         239
+  C:00B5H         LINE#         240
+  C:00BCH         LINE#         242
+  C:00BCH         LINE#         243
+  C:00BFH         LINE#         244
+  C:00C2H         LINE#         245
+  C:00C2H         LINE#         247
+  C:00C2H         LINE#         248
+  C:00C5H         LINE#         250
+  C:00D9H         LINE#         251
+  C:00DEH         LINE#         252
+  C:00DEH         LINE#         254
+  C:00E4H         LINE#         255
+  C:00E9H         LINE#         256
+  C:00F5H         LINE#         257
+  C:00F5H         LINE#         258
+  C:00F8H         LINE#         259
+  C:00FFH         LINE#         260
+  C:0102H         LINE#         261
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER0
+  C:017EH         LINE#         263
+  C:0182H         LINE#         265
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  09:44:55  PAGE 7
+
+
+  C:0184H         LINE#         266
+  C:0187H         LINE#         267
+  C:018AH         LINE#         268
+  C:018CH         LINE#         269
+  C:0191H         LINE#         270
+  C:0191H         LINE#         271
+  C:0193H         LINE#         272
+  C:0196H         LINE#         273
+  C:0199H         LINE#         274
+  C:019CH         LINE#         275
+  C:019CH         LINE#         276
+  -------         ENDPROC       TIMER0
+  -------         ENDMOD        TESTL
+
+  -------         MODULE        ?C?SLCMP
+  C:023AH         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_MCU?TESTL
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WACTH?TESTL
+
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  MEASURE_DISTANCE
+    MODULE:  .\Objects\testl.obj (TESTL)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  MEASURE_DISTANCE
+    MODULE:  .\Objects\testl.obj (TESTL)
+    ADDRESS: 00C3H
+
+Program Size: data=20.0 xdata=8 code=666
+LINK/LOCATE RUN COMPLETE.  6 WARNING(S),  0 ERROR(S)

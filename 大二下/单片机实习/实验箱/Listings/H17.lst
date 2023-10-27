@@ -1,0 +1,125 @@
+C51 COMPILER V9.57.0.0   H17                                                               07/18/2021 15:25:03 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H17
+OBJECT MODULE PLACED IN .\Objects\H17.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H17.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H17.lst) TABS(2) OBJECT(.\Objects\H17.obj)
+
+line level    source
+
+   1          
+   2          #define LEDLen 6
+   3          
+   4          xdata unsigned char OUTBIT _at_ 0x8002;   // 位控制口
+   5          xdata unsigned char OUTSEG _at_ 0x8004;   // 段控制口
+   6          xdata unsigned char IN     _at_ 0x8001;   // 键盘读入口
+   7          
+   8          unsigned char LEDBuf[LEDLen];    // 显示缓冲
+   9          code unsigned char LEDMAP[] = {  // 八段管显示码
+  10            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  11            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  12          };
+  13          
+  14          void Delay(unsigned char CNT)
+  15          {
+  16   1        unsigned char i;
+  17   1      
+  18   1        while (CNT-- !=0)
+  19   1          for (i=100; i !=0; i--);
+  20   1      }
+  21          
+  22          void DisplayLED()
+  23          {
+  24   1        unsigned char i;
+  25   1        unsigned char Pos;
+  26   1        unsigned char LED;
+  27   1      
+  28   1        Pos = 0x20;       // 从左边开始显示
+  29   1        for (i = 0; i < LEDLen; i++) {
+  30   2          OUTBIT = 0;     // 关所有八段管
+  31   2          LED = LEDBuf[i];
+  32   2          OUTSEG = LED;
+  33   2          OUTBIT = Pos;   // 显示一位八段管
+  34   2          Delay(1);
+  35   2          Pos >>= 1;      // 显示下一位
+  36   2        }
+  37   1      }
+  38          
+  39          code unsigned char KeyTable[] = {   // 键码定义
+  40            0x16, 0x15, 0x14, 0xff,
+  41            0x13, 0x12, 0x11, 0x10,
+  42            0x0d, 0x0c, 0x0b, 0x0a,
+  43            0x0e, 0x03, 0x06, 0x09,
+  44            0x0f, 0x02, 0x05, 0x08,
+  45            0x00, 0x01, 0x04, 0x07
+  46          };
+  47          
+  48          unsigned char TestKey()
+  49          {
+  50   1         OUTBIT = 0;            // 输出线置为0
+  51   1         return (~IN & 0x0f);   // 读入键状态(高四位不用)
+  52   1      }
+  53          
+  54          unsigned char GetKey()
+C51 COMPILER V9.57.0.0   H17                                                               07/18/2021 15:25:03 PAGE 2   
+
+  55          {
+  56   1        unsigned char Pos;
+  57   1        unsigned char i;
+  58   1        unsigned char k;
+  59   1      
+  60   1        i = 6;
+  61   1        Pos = 0x20;     // 找出键所在列
+  62   1        do {
+  63   2          OUTBIT = ~ Pos;
+  64   2          Pos >>= 1;
+  65   2          k = ~IN & 0x0f;
+  66   2        } while ((--i != 0) && (k == 0));
+  67   1      
+  68   1        // 键值 = 列 x 4 + 行
+  69   1        if (k != 0) {
+  70   2          i *= 4;
+  71   2          if (k & 2)
+  72   2            i += 1;
+  73   2          else if (k & 4)
+  74   2            i += 2;
+  75   2          else if (k & 8)
+  76   2            i += 3;
+  77   2      
+  78   2          OUTBIT = 0;
+  79   2          do Delay(10); while (TestKey());  // 等键释放
+  80   2      
+  81   2          return(KeyTable[i]);  // 取出键码
+  82   2        } else return(0xff);
+  83   1      }
+  84          
+  85          void main()
+  86          {
+  87   1         LEDBuf[0] = 0xff;
+  88   1         LEDBuf[1] = 0xff;
+  89   1         LEDBuf[2] = 0xff;
+  90   1         LEDBuf[3] = 0xff;
+  91   1         LEDBuf[4] = 0x00;
+  92   1         LEDBuf[5] = 0x00;
+  93   1      
+  94   1         while (1) {
+  95   2           DisplayLED();
+  96   2           if (TestKey()) LEDBuf[5] = LEDMAP[GetKey() & 0x0f];
+  97   2         }
+  98   1      }
+  99          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    202    ----
+   CONSTANT SIZE    =     40    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

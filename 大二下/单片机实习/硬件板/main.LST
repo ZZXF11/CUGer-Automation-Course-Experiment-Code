@@ -1,0 +1,145 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              07/20/2021 11:52:00 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "DIANZHEN.c"
+   3          #include "lcd.c"
+   4          #include "Keyled.c"
+   5           
+   6          #define uchar unsigned char
+   7          //****矩阵键盘：列扫描，行读回****
+   8          unsigned int  count=0;      //计时
+   9          unsigned char flag_dot=0;   //点阵刷新标志，速度慢于蜂鸣器10倍
+  10          unsigned int  delay_time=0; //延时的时间
+  11          unsigned char disp[4]=0;    //锁存数码管数据
+  12          unsigned char flag_miao=0;  //秒标志，为10时表示1秒
+  13          unsigned char flag_tube=0;  //晶码管刷新标志，每2ms扫描一次
+  14          unsigned char Time=0;       //定时器2，每1ms加一
+  15          unsigned char flag_key=0;   //按键刷新标志，每10ms扫描一次
+  16          unsigned char i=0;          //数码管，指在当前位
+  17          unsigned char flag_key2=0;  //按键按下标志，跳出歌曲播放
+  18          unsigned char flag_pause=0; //暂停标志
+  19          uchar code table[17]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71,0x00
+             -};
+  20          
+  21          void delay_ms(int i)
+  22          {
+  23   1        uchar j;
+  24   1        while(i--)
+  25   1        {
+  26   2          for(j=0;j<200;j++);
+  27   2          j=0;
+  28   2        }
+  29   1      }
+  30          void Caozuokey()//设置模式：道路、标载、开启温度
+  31          {       
+  32   1        if(TestKey()){
+  33   2          keynum=KeyScan() & 0x0f;  //keynum就是按键对应的值
+  34   2                switch (keynum)  //keynum就等于按键的数值
+  35   2                {
+  36   3                     case 0:  {initMotor=0x00;DisplayLcd();break;} //可容许右起1档,按1
+  37   3                     case 1:  {initMotor=0x01;DisplayLcd();break;} //可容许右起2档,按2
+  38   3                     case 2:  {initMotor=0x02;DisplayLcd();break;} //可容许所有档,按3 
+  39   3                     case 0x04:  {initYALI=0x0a;DisplayLcd();break;}//载重5人,按a 
+  40   3                     case 0x08:  {initYALI=0x0b;DisplayLcd();break;}//载重7人,按b 
+  41   3                     case 0x0c:  {initYALI=0x0c;DisplayLcd();break;}//载重9人,按c  
+  42   3                     case 0x0b:  {--initTEMP;DisplayLcd();break;}   //下调空调开启温度,按3(左上第2)
+  43   3                     case 0x0f:  {++initTEMP;DisplayLcd();break;}   //上调空调开启温度,按F（左上第1）           
+             -     
+  44   3                     case 0x07:   DisplayDZtemp();break;  //按键左上第3代表实际温度超过阈值，进入温度报警
+  45   3                     case 0x03:   DisplayDZdistance();break; //按键左下角代表距离过近
+  46   3                 
+  47   3                 }            
+  48   2           }                     
+  49   1      }
+  50          unsigned int dou=0;
+  51          uchar j=0;
+  52          uchar flag_i=0;
+  53          void timer2() interrupt 5 
+C51 COMPILER V9.57.0.0   MAIN                                                              07/20/2021 11:52:00 PAGE 2   
+
+  54          {  
+  55   1        TF2=0; //定时器2必须由软件对溢出标志位清零    
+  56   1        Time++;//用于计时
+  57   1        if(Time==100) {Time=0;flag_miao++;}
+  58   1        if(!(Time%10)&&!flag_key2)  if(++flag_key>3) flag_key=0;//
+  59   1        if(!(Time%2)) flag_tube=1;
+  60   1        if(flag_miao==10)//整秒标志
+  61   1        {
+  62   2      //显示播放时间
+  63   2          flag_miao=0;
+  64   2          disp[3]=count%10;
+  65   2          disp[2]=count/10%10;
+  66   2          disp[1]=count/100;
+  67   2          if(!flag_pause)//暂停不加
+  68   2            count++;
+  69   2      //系统工作时流水灯控制
+  70   2          P2=0x4f;//每秒都进行一次流水
+  71   2          if(flag_i<8)
+  72   2            P0=~(1<<flag_i),flag_i++;
+  73   2          else if(flag_i<14)
+  74   2            P0=~(0x80>>(flag_i-7)),flag_i++;
+  75   2          else flag_i=0,P0=~(1<<flag_i),flag_i++;
+  76   2          P2=0x6f;
+  77   2        }
+  78   1        if(delay_time)delay_time--;
+  79   1      
+  80   1      //数码管扫描
+  81   1        if(flag_tube)
+  82   1        {
+  83   2          flag_tube=0;
+  84   2          P2&=0xe3;
+  85   2          P2|=i<<2;
+  86   2          PortB=table[disp[i]];
+  87   2          i++;
+  88   2          if(i>3) i=0;
+  89   2        }
+  90   1      } 
+  91          
+  92          void main(void)
+  93          { 
+  94   1          RCAP2H=(0xFFFF-917)/256; 
+  95   1          RCAP2L=(0xFFFF-917)%256;  //12MHz晶振下定时1ms，自动重装 
+  96   1          TH2=RCAP2H; 
+  97   1          TL2=RCAP2L;         //定时器2赋初值
+  98   1          EA=1; 
+  99   1          ET2=1; 
+ 100   1          TR2=1;              //启动定时器2 
+ 101   1        CAddr=mode;//设置8255工作方式,mode=0x81
+ 102   1        LED=0x00;
+ 103   1        ShowXiangmu();
+ 104   1        delay_ms(4000);
+ 105   1        ShowZuozhe();
+ 106   1        delay_ms(5400);
+ 107   1        DisplayLcd();
+ 108   1      
+ 109   1        while(1){
+ 110   2                               //***点阵放主程序里会拖慢循环时间，使按键扫描不及时**
+ 111   2                Caozuokey();
+ 112   2      
+ 113   2      
+ 114   2        }
+ 115   1      
+C51 COMPILER V9.57.0.0   MAIN                                                              07/20/2021 11:52:00 PAGE 3   
+
+ 116   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1934    ----
+   CONSTANT SIZE    =   1409    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     38       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

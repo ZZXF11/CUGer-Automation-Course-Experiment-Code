@@ -1,0 +1,108 @@
+C51 COMPILER V9.57.0.0   TEMP                                                              07/14/2021 19:26:07 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE TEMP
+OBJECT MODULE PLACED IN .\Objects\temp.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE temp.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\temp
+                    -.lst) TABS(2) OBJECT(.\Objects\temp.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"8255.h"
+   3          #include"KEYLED.h"
+   4          #include"YALI.h"
+   5          #include"BEEP.h"
+   6          #include"temp.h"
+   7          #include"motor.h"
+   8          
+   9          #define LowTemp   (-99)   // A/D 0
+  10          #define HighTemp  99      // A/D 255
+  11          #define LEDLen 6
+  12          
+  13          xdata unsigned char TEMP _at_ 0xa001;
+  14          unsigned char LEDBuf[LEDLen];    // 显示缓冲
+  15          code unsigned char LEDMAP[] = {  // 八段管显示码
+  16            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  17            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  18          };
+  19          
+  20          signed char CurTemp;
+  21          
+  22          void DisplayT()
+  23          {
+  24   1        signed char T;
+  25   1      
+  26   1        T = CurTemp;
+  27   1        if (T < 0) {
+  28   2          //如果温度低于零度,显示'-'号
+  29   2          LEDBuf[0] = 0x40;
+  30   2          T = - T;
+  31   2        } else LEDBuf[0] = 0;
+  32   1        //显示温度十位数
+  33   1        LEDBuf[1] = LEDMAP[T / 10];
+  34   1        //显示温度个位数
+  35   1        LEDBuf[2] = LEDMAP[T % 10];
+  36   1      
+  37   1        LEDBuf[3] = 0;
+  38   1      }
+  39          
+  40          unsigned char ReadAD()
+  41          {
+  42   1        unsigned int i;
+  43   1      
+  44   1        // 启动A/D变换
+  45   1        TEMP = 0;
+  46   1        //延时100us,
+  47   1        for (i=0; i<20; i++);
+  48   1        //得到A/D采样值
+  49   1        return (0xff - TEMP);
+  50   1      }
+  51          
+  52          signed char ReadTemp()
+  53          {
+  54   1        unsigned char i;
+C51 COMPILER V9.57.0.0   TEMP                                                              07/14/2021 19:26:07 PAGE 2   
+
+  55   1        signed int Temp;
+  56   1      
+  57   1        Temp = 0;
+  58   1        //采样16次,取平均数
+  59   1        for (i=0; i<16; i++) {
+  60   2          Temp += ReadAD();
+  61   2        };
+  62   1        //AD采样值转换为实际温度
+  63   1        CurTemp = (Temp >> 4) * (HighTemp-LowTemp) / 256 + LowTemp;
+  64   1        return CurTemp;
+  65   1      }
+  66          
+  67          
+  68          //void main()
+  69          //{
+  70          //  unsigned char dtimer;
+  71          
+  72          //  while (1) {
+  73          //    for(dtimer=15; dtimer>0; dtimer--){
+  74          //      // 当前温度和设定温度送显示缓冲
+  75          //      DisplayT();
+  76          //      // 显示当前温度和设定温度
+  77          //      DisplayLED();
+  78          //    };
+  79          //    // 读入当前温度
+  80          //    ReadTemp();
+  81          //  }
+  82          //}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    160    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

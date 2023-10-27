@@ -1,0 +1,95 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/20/2021  10:32:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\lsd.obj TO .\Objects\csb PRINT (.\Listings\csb.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\lsd.obj (LSD)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\csb (LSD)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?LSD
+            IDATA   0019H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0020H     UNIT         ?PR?MAIN?LSD
+            CODE    00AFH     0015H     UNIT         ?C_INITSEG
+            CODE    00C4H     0013H     UNIT         ?PR?_DELAY?LSD
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\csb (LSD)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?LSD
+  +--> ?C_INITSEG
+
+?PR?MAIN?LSD
+  +--> ?PR?_DELAY?LSD
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\csb (LSD)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LSD
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:00C4H         PUBLIC        _delay
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/20/2021  10:32:00  PAGE 2
+
+
+  C:008FH         PUBLIC        main
+  D:0008H         PUBLIC        LEDMAP
+  D:0010H         PUBLIC        LEDMAP_1
+  D:0018H         PUBLIC        i
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        CNT
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:00C4H         LINE#         13
+  C:00C4H         LINE#         14
+  C:00C4H         LINE#         17
+  C:00CEH         LINE#         18
+  C:00D6H         LINE#         20
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:008FH         LINE#         22
+  C:008FH         LINE#         23
+  C:008FH         LINE#         24
+  C:0092H         LINE#         25
+  C:0092H         LINE#         26
+  C:0092H         LINE#         27
+  C:0095H         LINE#         28
+  C:0095H         LINE#         29
+  C:009DH         LINE#         30
+  C:00A4H         LINE#         31
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LSD
+
+Program Size: data=26.0 xdata=0 code=215
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

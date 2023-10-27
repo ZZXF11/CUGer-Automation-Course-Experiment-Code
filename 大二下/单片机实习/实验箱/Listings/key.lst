@@ -1,0 +1,66 @@
+C51 COMPILER V9.57.0.0   KEY                                                               07/19/2021 23:48:41 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\key.l
+                    -st) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <reg52.h>//°üº¬Í·ÎÄ¼þ
+   2          #include <absacc.h>
+   3          
+   4          #define mode8255 0x81  //·½Ê½0£¬A¿Ú¡¢B¿Ú¼°ÉÏC¿Ú×÷ÎªÊä³ö¿Ú£¬ÏÂC¿Ú×÷ÎªÊäÈë¿Ú
+   5          #define PA8255 XBYTE[0x7ffc]
+   6          #define PB8255 XBYTE[0x7ffd]
+   7          #define PC8255 XBYTE[0x7ffe]
+   8          #define COM8255 XBYTE[0x7fff]
+   9          
+  10          #define uchar unsigned char
+  11          #define uint  unsigned int
+  12          
+  13          uchar dofly[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};//0-F¶ÎÑ¡µ
+             -ØÖ·
+  14          uchar bitmap[]={0x00,0x04,0x08,0x0c,0x10,0x14,0x18,0x1c};//Î»Ñ¡µØÖ·
+  15          void delay(uint z)
+  16          {
+  17   1        uint x,y;
+  18   1        for(x=z;x>0;x--)
+  19   1          for(y=50;y>0;y--);
+  20   1      }
+  21          
+  22          void main()
+  23          {
+  24   1        uint i,j,k;
+  25   1        COM8255=mode8255; //8255µÄ¿ØÖÆ·½Ê½
+  26   1        while(1)
+  27   1        {
+  28   2          for(j=0;j<16;j++)
+  29   2          {
+  30   3            k=50;
+  31   3            while(k--)
+  32   3            for(i=0;i<8;i++)
+  33   3            {
+  34   4              P2=bitmap[i];
+  35   4              PB8255=dofly[(i+j)%16];
+  36   4              delay(5);
+  37   4            }
+  38   3          }
+  39   2        }
+  40   1          
+  41   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    127    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

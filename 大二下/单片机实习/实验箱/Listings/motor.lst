@@ -1,0 +1,66 @@
+C51 COMPILER V9.57.0.0   MOTOR                                                             07/14/2021 19:26:07 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MOTOR
+OBJECT MODULE PLACED IN .\Objects\motor.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE motor.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\mot
+                    -or.lst) TABS(2) OBJECT(.\Objects\motor.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"8255.h"
+   3          #include"KEYLED.h"
+   4          #include"YALI.h"
+   5          #include"BEEP.h"
+   6          #include"temp.h"
+   7          #include"motor.h"
+   8          
+   9          #define DC_P 1
+  10          
+  11          xdata unsigned char PortA _at_ 0x8000 ; // Port A
+  12          xdata unsigned char PortB _at_ 0x8001 ; // Port B
+  13          xdata unsigned char PortC _at_ 0x8002 ; // Port C
+  14          xdata unsigned char CAddr _at_ 0x8003 ; // 控制字地址
+  15          xdata unsigned char MOTOR _at_ 0xd000;
+  16          
+  17          unsigned int count;
+  18          
+  19          
+  20          void delaymotor()
+  21          {
+  22   1        unsigned int ddd;
+  23   1      
+  24   1        ddd = 50000;            // 在6MHz约延时1秒
+  25   1        while(ddd--);
+  26   1      }
+  27          
+  28          unsigned int read()
+  29          {
+  30   1        TMOD = 1;                // 16位计时
+  31   1        TR0  = 0;
+  32   1        TH0  = 0;
+  33   1        TL0  = 0;
+  34   1        while(!(PortB & DC_P)); // 等待低电平完
+  35   1        while(PortB & DC_P);    // 等待高电平完
+  36   1        TR0  = 1;
+  37   1        while(!(PortB & DC_P)); // 等待低电平完
+  38   1        while(PortB & DC_P);    // 等待高电平完
+  39   1        TR0  = 0;
+  40   1      
+  41   1        return (TH0*0x100+TL0);
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     72    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

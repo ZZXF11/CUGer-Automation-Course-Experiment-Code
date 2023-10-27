@@ -1,0 +1,83 @@
+C51 COMPILER V9.57.0.0   H21                                                               07/18/2021 11:31:51 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H21
+OBJECT MODULE PLACED IN .\Objects\H21.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H21.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H21.lst) TABS(2) OBJECT(.\Objects\H21.obj)
+
+line level    source
+
+   1          // DC motor
+   2          // C for MCS51
+   3          #include <reg52.h>
+   4          #define mode 0x82
+   5          xdata unsigned char CTL    _at_ 0x8003;
+   6          xdata unsigned char status _at_ 0x8001;
+   7          xdata unsigned char CS0832 _at_ 0xd000;
+   8          unsigned int count;
+   9          
+  10          #define DC_P 1
+  11          
+  12          void delay()
+  13          {
+  14   1        unsigned int ddd;
+  15   1      
+  16   1        ddd = 50000;            // 在6MHz约延时1秒
+  17   1        while(ddd--);
+  18   1      }
+  19          
+  20          unsigned int read()
+  21          {
+  22   1        TMOD = 1;                // 16位计时
+  23   1        TR0  = 0;
+  24   1        TH0  = 0;
+  25   1        TL0  = 0;
+  26   1        while(!(status & DC_P)); // 等待低电平完
+  27   1        while(status & DC_P);    // 等待高电平完
+  28   1        TR0  = 1;
+  29   1        while(!(status & DC_P)); // 等待低电平完
+  30   1        while(status & DC_P);    // 等待高电平完
+  31   1        TR0  = 0;
+  32   1      
+  33   1        return (TH0*0x100+TL0);
+  34   1      }
+  35          
+  36          void main()
+  37          {
+  38   1        CTL = mode;
+  39   1        while(1) {
+  40   2          CS0832 = 0xff;          // 产生电压控制电机
+  41   2          delay();                // 等待电机运转稳定
+  42   2          count = read();         // 读取时间
+  43   2      
+  44   2          CS0832 = 0xc0;          // 产生电压控制电机
+  45   2          delay();                // 等待电机运转稳定
+  46   2          count = read();         // 读取时间
+  47   2      
+  48   2          CS0832 = 0x40;          // 产生电压控制电机
+  49   2          delay();                // 等待电机运转稳定
+  50   2          count = read();         // 读取时间
+  51   2      
+  52   2          CS0832 = 0x00;          // 产生电压控制电机
+  53   2          delay();                // 等待电机运转稳定
+  54   2          count = read();         // 读取时间
+C51 COMPILER V9.57.0.0   H21                                                               07/18/2021 11:31:51 PAGE 2   
+
+  55   2        }
+  56   1      }
+  57          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    125    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

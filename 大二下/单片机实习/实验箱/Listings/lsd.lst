@@ -1,0 +1,57 @@
+C51 COMPILER V9.57.0.0   LSD                                                               07/20/2021 10:32:00 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LSD
+OBJECT MODULE PLACED IN .\Objects\lsd.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE lsd.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\lsd.l
+                    -st) TABS(2) OBJECT(.\Objects\lsd.obj)
+
+line level    source
+
+   1          #include "reg51.h"
+   2          
+   3          unsigned char i;
+   4          unsigned char LEDMAP[8] = //一个暗，其余亮
+   5          {
+   6            0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80
+   7          };
+   8          
+   9          unsigned char LEDMAP_1[8] =    //一个亮，其余暗
+  10          {
+  11            0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f
+  12          };
+  13          void delay( unsigned int CNT )
+  14          {
+  15   1         unsigned char i;
+  16   1      
+  17   1         while ( CNT-- != 0)
+  18   1          for( i=100; i != 0; --i)
+  19   1            ;
+  20   1      }
+  21          
+  22          void main()
+  23          { 
+  24   1        P2=0x5f;
+  25   1        while(1)
+  26   1        {
+  27   2          for(i=0; i<8; ++i)
+  28   2          {
+  29   3            P0 =  LEDMAP_1[i];
+  30   3            delay(200);
+  31   3          }
+  32   2        }
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     51    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

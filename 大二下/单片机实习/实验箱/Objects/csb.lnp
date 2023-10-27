@@ -1,0 +1,3 @@
+".\Objects\lsd.obj" 
+TO ".\Objects\csb" 
+PRINT(".\Listings\csb.m51") RAMSIZE(256) 

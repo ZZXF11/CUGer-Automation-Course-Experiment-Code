@@ -1,0 +1,121 @@
+C51 COMPILER V9.57.0.0   H22                                                               07/16/2021 16:55:30 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H22
+OBJECT MODULE PLACED IN .\Objects\H22.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H22.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H22.lst) TABS(2) OBJECT(.\Objects\H22.obj)
+
+line level    source
+
+   1          // step motor control
+   2          // C for MCS51
+   3          #define mode8255 0x82
+   4          
+   5          xdata unsigned char control _at_ 0x8003;
+   6          xdata unsigned char ctl _at_ 0x8002;
+   7          
+   8          #define Astep 0x01
+   9          #define Bstep 0x02
+  10          #define Cstep 0x04
+  11          #define Dstep 0x08
+  12          
+  13          unsigned char dly_c;
+  14          
+  15          void delay()
+  16          {
+  17   1         unsigned char tt,cc,yy;
+  18   1      
+  19   1         cc = dly_c;
+  20   1         tt = 0x0;
+  21   1         do{
+  22   2           do {
+  23   3             yy = 1;
+  24   3             while(yy--);
+  25   3           }while(--tt);
+  26   2         }while(--cc);
+  27   1      }
+  28          
+  29          void main()
+  30          {
+  31   1         unsigned char mode;
+  32   1      
+  33   1         control = mode8255;
+  34   1         mode = 2;
+  35   1         ctl = 0;
+  36   1         dly_c = 0x10;
+  37   1      
+  38   1      //   // 单/双八拍工作方式
+  39   1      //   if(mode ==1)
+  40   1      //   while(1)
+  41   1      //   {
+  42   1      //     ctl = Astep;
+  43   1      //     delay();
+  44   1      //     ctl = Astep+Bstep;
+  45   1      //     delay();
+  46   1      //     ctl = Bstep;
+  47   1      //     delay();
+  48   1      //     ctl = Bstep+Cstep;
+  49   1      //     delay();
+  50   1      //     ctl = Cstep;
+  51   1      //     delay();
+  52   1      //     ctl = Cstep+Dstep;
+  53   1      //     delay();
+  54   1      //     ctl = Dstep;
+C51 COMPILER V9.57.0.0   H22                                                               07/16/2021 16:55:30 PAGE 2   
+
+  55   1      //     delay();
+  56   1      //     ctl = Dstep+Astep;
+  57   1      //     delay();
+  58   1      
+  59   1      //     if(dly_c>2) dly_c --;
+  60   1      //   };
+  61   1      
+  62   1         // 双四拍工作方式
+  63   1         if(mode == 2)
+  64   1         while(1)
+  65   1         {
+  66   2            ctl = Astep+Bstep;
+  67   2            delay();
+  68   2            ctl = Bstep+Cstep;
+  69   2            delay();
+  70   2            ctl = Cstep+Dstep;
+  71   2            delay();
+  72   2            ctl = Dstep+Astep;
+  73   2            delay();
+  74   2      
+  75   2            if(dly_c>3) dly_c --;
+  76   2         };
+  77   1      
+  78   1      //// 单四拍工作方式
+  79   1      //   if(mode ==3)
+  80   1      //   while(1)
+  81   1      //   {
+  82   1      //      ctl = Dstep;
+  83   1      //      delay();
+  84   1      //      ctl = Cstep;
+  85   1      //      delay();
+  86   1      //      ctl = Bstep;
+  87   1      //      delay();
+  88   1      //      ctl = Astep;
+  89   1      //      delay();
+  90   1      
+  91   1      //      if(dly_c>4) dly_c --;
+  92   1      //   }
+  93   1      
+  94   1         while(1);
+  95   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     69    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

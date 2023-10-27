@@ -1,0 +1,309 @@
+C51 COMPILER V9.57.0.0   TESTL                                                             07/20/2021 09:44:55 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE TESTL
+OBJECT MODULE PLACED IN .\Objects\testl.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE testl.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\tes
+                    -tl.lst) TABS(2) OBJECT(.\Objects\testl.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define mode 0x81   
+   4          #define uchar unsigned char
+   5          #define uint  unsigned int
+   6          #define LEDLen 4
+   7          unsigned char LEDBuf[LEDLen]={
+   8            0x0000,0x0400,0x0800,0x0c00
+   9            //0x1000,0x1400,0x1800,0x1c00
+  10          };  
+  11          
+  12          #define VELOCITY_30C  3495       //30摄氏度时的声速，声速V= 331.5 + 0.6*温度； 
+  13          #define VELOCITY_23C  3453       //23摄氏度时的声速，声速V= 331.5 + 0.6*温度； 
+  14          
+  15          sbit INPUT  = P3^6;                //回声接收端口
+  16          sbit OUTPUT = P3^0;                //超声触发端口
+  17          sbit Beep   = P3^5 ;         // 蜂鸣器　
+  18          
+  19          long int distance=0;               //距离变量
+  20          uchar count;
+  21          xdata unsigned char PortA _at_ 0x6000 ; // Port A
+  22          xdata unsigned char PortB _at_ 0x6001 ; // Port B
+  23          xdata unsigned char PortC _at_ 0x6002 ; // Port C
+  24          xdata unsigned char INC _at_ 0x6002 ; 
+  25          xdata unsigned char IN _at_ 0x6002 ;
+  26          xdata unsigned char CAddr _at_ 0x6003 ; // 控制字地址
+  27          xdata unsigned char LED _at_ 0x5cff;
+  28          xdata unsigned char LED_Y0 _at_ 0xe000;
+  29          
+  30          code unsigned char KeyTable[] = {
+  31            0x0c,0x08,0x04,0x00,
+  32            0x0d,0x09,0x05,0x01,
+  33            0x0e,0x0a,0x06,0x02,
+  34            0x0f,0x0b,0x07,0x03
+  35          };
+  36          
+  37          code unsigned char LEDMAP[] = {  // 八段管显示码
+  38            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  39            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  40          };
+  41          
+  42          void Delay_xMs(unsigned int x)
+  43          {
+  44   1          unsigned int i,j;
+  45   1          for(i = 0;i < x;i++ )
+  46   1          {
+  47   2              for(j = 0;j < 3;j++ )
+  48   2              {
+  49   3                  ;
+  50   3              }
+  51   2          }
+  52   1      }
+  53          //蜂鸣器发声函数                                                 */
+  54          void Alarm(uchar t)
+C51 COMPILER V9.57.0.0   TESTL                                                             07/20/2021 09:44:55 PAGE 2   
+
+  55          {
+  56   1        uchar i;
+  57   1        for(i = 0;i < t;i++)
+  58   1        {
+  59   2          Beep = 0;
+  60   2          Delay_xMs(10);
+  61   2          Beep = 1;
+  62   2          Delay_xMs(10);
+  63   2        }
+  64   1      }   
+  65          
+  66          void delayt(uint x)
+  67          {
+  68   1          uchar j;
+  69   1          while(x-- > 0)
+  70   1          {
+  71   2              for(j = 0;j < 125;j++)
+  72   2              {
+  73   3                  ;
+  74   3              }
+  75   2          }
+  76   1      }
+  77          
+  78          void Init_MCU(void)//初始化单片机函数
+  79          {
+  80   1        TMOD = 0x01;    //定时器2初始化,设置为16位自动重装模式
+  81   1        TL0 = 0x66;
+  82   1        TH0 = 0xfc;       //1ms
+  83   1        ET0 = 1;        //开定时器2
+  84   1        EA = 1;         //总中断使能
+  85   1      }
+  86          
+  87          void Init_Parameter(void)//初始化参数和IO口函数
+  88          {
+  89   1         OUTPUT =1;
+  90   1         INPUT = 1;
+  91   1         count = 0;
+  92   1         distance = 0;
+  93   1      }
+  94          
+  95          void Trig_SuperSonic(void)//出发声波
+  96          {
+  97   1         OUTPUT = 1;
+  98   1         delayt(1);
+  99   1         OUTPUT = 0;
+ 100   1      }
+ 101          
+ 102          void Delay(unsigned char CNT)
+ 103          {
+ 104   1        unsigned char i;
+ 105   1      
+ 106   1        while (CNT-- !=0)
+ 107   1          for (i=100; i !=0; i--);
+ 108   1      }
+ 109          
+ 110          void DisplayLED()
+ 111          {
+ 112   1        unsigned char i;
+ 113   1        unsigned char Pos;
+ 114   1        unsigned char LED;
+ 115   1      
+ 116   1        Pos = 0x00;  P2=0x00;     // ???????
+C51 COMPILER V9.57.0.0   TESTL                                                             07/20/2021 09:44:55 PAGE 3   
+
+ 117   1        for (i = 0; i < 4; i++) {
+ 118   2          //OUTBIT = 0;     // ??????
+ 119   2          LED = LEDBuf[i];
+ 120   2          //OUTSEG = LED;
+ 121   2          P2=Pos;
+ 122   2          PortC = P2;   // ???????
+ 123   2          Delay(1);
+ 124   2          //Pos >>= 1;      // ?????
+ 125   2          Pos += 4;
+ 126   2          
+ 127   2        }
+ 128   1        Pos = 0x00; 
+ 129   1      }
+ 130          
+ 131          
+ 132          //void DisplayLED()
+ 133          //{
+ 134          //  unsigned char i;
+ 135          //  unsigned char Pos;
+ 136          //  unsigned char LED;
+ 137          
+ 138          //  Pos = 0x80;       // 从左边开始显示
+ 139          //  for (i = 0; i < 4; i++) {
+ 140          //    PortC = 0x00;     // 关所有八段管
+ 141          //    LED = LEDBuf[i];
+ 142          //    P0 = LED;
+ 143          //    OUTBIT = Pos;   // 显示一位八段管
+ 144          //    Delay(1);
+ 145          //    Pos >>= 1;      // 显示下一位
+ 146          //  }
+ 147          //}
+ 148          
+ 149          unsigned char TestKey()
+ 150          {
+ 151   1         PortC = 0x0f;            // 输出线置为0
+ 152   1         return (~INC & 0x0f);   // 读入键状态(高四位不用)
+ 153   1      }
+ 154          
+ 155          //unsigned char KeyScan() //带返回值的子函数
+ 156          //{
+ 157          //  unsigned char Pos;
+ 158          //  unsigned char i;
+ 159          //  unsigned char b;
+ 160          
+ 161          //  i=4;
+ 162          //  Pos = 0x80;
+ 163          //      do{
+ 164          //        INC= ~ Pos;
+ 165          //        Pos >>= 1;
+ 166          //        b= ~INC & 0x0f;
+ 167          //      }while ((--i != 0) && (b == 0));
+ 168          //      
+ 169          //      if (b != 0) {
+ 170          //           i *= 4;
+ 171          //      if (b & 2)
+ 172          //           i += 1;
+ 173          //      else if (b & 4)
+ 174          //           i += 2;
+ 175          //      else if (b & 8)
+ 176          //            i += 3;
+ 177          //      //PortC = 0x00;
+ 178          //      do Delay(10); 
+C51 COMPILER V9.57.0.0   TESTL                                                             07/20/2021 09:44:55 PAGE 4   
+
+ 179          //      while (TestKey());  // 等键释放
+ 180          //      return(KeyTable[i]);
+ 181          //      
+ 182          //    } else return(0xff);
+ 183          //  
+ 184          //}
+ 185          
+ 186          
+ 187          
+ 188          unsigned char KeyScan()
+ 189          {
+ 190   1        unsigned char Pos;
+ 191   1        unsigned char i;
+ 192   1        unsigned char k;
+ 193   1      
+ 194   1        i = 4;
+ 195   1        Pos = 0x80;     // ??????
+ 196   1        do {
+ 197   2          PortC = ~ Pos;
+ 198   2          Pos >>= 1;
+ 199   2          k = ~IN & 0x0f;
+ 200   2        } while ((--i != 0) && (k == 0));
+ 201   1      
+ 202   1        // ?? = ? x 4 + ?
+ 203   1        if (k != 0) {
+ 204   2          i *= 4;
+ 205   2          if (k & 2)
+ 206   2            i += 1;
+ 207   2          else if (k & 4)
+ 208   2            i += 2;
+ 209   2          else if (k & 8)
+ 210   2            i += 3;
+ 211   2      
+ 212   2          //OUTBIT = 0;
+ 213   2          do Delay(10); 
+ 214   2          while (TestKey());  // ????
+ 215   2      
+ 216   2          return(KeyTable[i]);  // ????
+ 217   2        } else return(0xff);
+ 218   1      }
+ 219          
+ 220          void Wacth(int k,uchar w){
+ 221   1        switch (k) 
+ 222   1                 {
+ 223   2                     case 0:  {P2=LEDBuf[0];PortB=w;DisplayLED();break;} //可容许右起1档,按1
+ 224   2                     case 1:  {P2=LEDBuf[1];PortB=w;DisplayLED();break;} //可容许右起2档,按2
+ 225   2                     case 2:  {P2=LEDBuf[2];PortB=w;DisplayLED();break;} //可容许所有档,按3 
+ 226   2                     case 3:  {P2=LEDBuf[3];PortB=w;DisplayLED();break;}//载重5人,按a 
+ 227   2                 }
+ 228   1      }
+ 229          
+ 230          uchar DD;
+ 231          void main(){
+ 232   1        CAddr=mode;
+ 233   1        TMOD = 0x01;    //定时器2初始化,设置为16位自动重装模式
+ 234   1        TL0 = 0x66;
+ 235   1        TH0 = 0xfc;       //1ms
+ 236   1        ET0 = 1;        //开定时器2
+ 237   1        EA = 1;         //总中断使能
+ 238   1        Init_Parameter();
+ 239   1        Alarm(200);
+ 240   1        Delay_xMs(30000);
+C51 COMPILER V9.57.0.0   TESTL                                                             07/20/2021 09:44:55 PAGE 5   
+
+ 241   1        
+ 242   1        while(1){
+ 243   2          Trig_SuperSonic();         //触发超声波发射
+ 244   2           while(INPUT == 0)          //等待回声
+ 245   2               {
+ 246   3                   ;
+ 247   3               }
+ 248   2           Measure_Distance();        //计算脉宽并转换为距离
+*** WARNING C206 IN LINE 248 OF testl.c: 'Measure_Distance': missing function-prototype
+ 249   2      
+ 250   2           if(distance<=50){
+ 251   3             Alarm(50);
+ 252   3           }
+ 253   2           //PortB = LEDMAP[distance/10];
+ 254   2          if(TestKey()){
+ 255   3            DD=KeyScan();
+ 256   3          PortB = LEDMAP[DD & 0x0f];
+ 257   3          }
+ 258   2           Init_Parameter();          // 参数重新初始化
+ 259   2           delayt(100);  //延时，两次发射之间要至少有10ms间隔
+ 260   2           DisplayLED();
+ 261   2        }
+ 262   1      }
+ 263          void timer0 (void) interrupt 1
+ 264          {
+ 265   1        TF0 = 0;
+ 266   1        TL0 = 0x66;
+ 267   1        TH0 = 0xfc;
+ 268   1        count++;
+ 269   1        if(count == 18)//超声波回声脉宽最多18ms
+ 270   1        {
+ 271   2          TR0 =0;
+ 272   2          TL0 = 0x66;
+ 273   2          TH0 = 0xfc;
+ 274   2          count = 0;
+ 275   2        }
+ 276   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    453    ----
+   CONSTANT SIZE    =     32    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

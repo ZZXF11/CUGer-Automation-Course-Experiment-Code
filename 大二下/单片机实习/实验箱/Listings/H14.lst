@@ -1,0 +1,48 @@
+C51 COMPILER V9.57.0.0   H14                                                               07/11/2021 11:51:44 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H14
+OBJECT MODULE PLACED IN .\Objects\H14.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H14.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H14.lst) TABS(2) OBJECT(.\Objects\H14.obj)
+
+line level    source
+
+   1          
+   2          #define mode 0x82
+   3          xdata unsigned char CTL    _at_ 0x9003;
+   4          xdata unsigned char PA     _at_ 0x9000;
+   5          xdata unsigned char CS0809 _at_ 0x8001;
+   6          
+   7          unsigned char Read0809()
+   8          {
+   9   1        unsigned char i;
+  10   1      
+  11   1        CS0809 = 0;                // 起动 A/D
+  12   1        for (i=0; i<0x20; i++) ;   // 延时 > 100us
+  13   1        return(CS0809);            // 读入结果
+  14   1      }
+  15          
+  16          main()
+  17          {
+  18   1        unsigned char b;
+  19   1        CTL = mode;
+  20   1        while(1){
+  21   2          b = Read0809();
+  22   2          PA = b;
+  23   2        }
+  24   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     32    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,1452 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\QQ½ÓÊÕµÄÎÄ¼þ\×ö¸öÊ²Ã´µçÂ·ÊµÏ°\×öµÄÐ¡³µ¼à¿Ø_mimi_1\³µÁ¾×´¿ö¼à²â_mini.uvproj
+Project File Date:  07/19/2021
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=5 code=32
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=9.0 xdata=5 code=32
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=5 code=32
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=5 code=32
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+DIANZHEN.C(30): error C202: 'uint': undefined identifier
+DIANZHEN.C(30): error C141: syntax error near 'bitmask'
+DIANZHEN.C(33): error C202: 'PortA': undefined identifier
+DIANZHEN.C(40): error C202: 'bitmask': undefined identifier
+DIANZHEN.C(43): error C202: 'PortA': undefined identifier
+DIANZHEN.C(50): error C202: 'PortA': undefined identifier
+DIANZHEN.C(52): error C202: 'bitmask': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+DIANZHEN.C(34): error C202: 'PortA': undefined identifier
+DIANZHEN.C(44): error C202: 'PortA': undefined identifier
+DIANZHEN.C(51): error C202: 'PortA': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+Program Size: data=11.0 xdata=5 code=141
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+DIANZHEN.C(24): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+Program Size: data=10.0 xdata=5 code=131
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=10.0 xdata=5 code=134
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYLCD?MAIN
+Program Size: data=17.0 xdata=13 code=1627
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1630
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1646
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(4): warning C318: can't open file 'keyled.c'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1646
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(13): error C231: 'P0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(14): error C231: 'P1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(15): error C231: 'P2': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(16): error C231: 'P3': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(17): error C231: 'PSW': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(18): error C231: 'ACC': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(19): error C231: 'B': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(20): error C231: 'SP': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(21): error C231: 'DPL': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(22): error C231: 'DPH': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(23): error C231: 'PCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(24): error C231: 'TCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(25): error C231: 'TMOD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(26): error C231: 'TL0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(27): error C231: 'TL1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(28): error C231: 'TH0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(29): error C231: 'TH1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(30): error C231: 'IE': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(31): error C231: 'IP': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(32): error C231: 'SCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(33): error C231: 'SBUF': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(38): error C231: 'CY': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(39): error C231: 'AC': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(40): error C231: 'F0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(41): error C231: 'RS1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(42): error C231: 'RS0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(43): error C231: 'OV': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(44): error C231: 'P': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(47): error C231: 'TF1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(48): error C231: 'TR1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(49): error C231: 'TF0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(50): error C231: 'TR0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(51): error C231: 'IE1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(52): error C231: 'IT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(53): error C231: 'IE0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(54): error C231: 'IT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(57): error C231: 'EA': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(58): error C231: 'ES': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(59): error C231: 'ET1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(60): error C231: 'EX1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(61): error C231: 'ET0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(62): error C231: 'EX0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(65): error C231: 'PS': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(66): error C231: 'PT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(67): error C231: 'PX1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(68): error C231: 'PT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(69): error C231: 'PX0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(72): error C231: 'RD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(73): error C231: 'WR': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(74): error C231: 'T1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(75): error C231: 'T0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(76): error C231: 'INT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(77): error C231: 'INT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(78): error C231: 'TXD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(79): error C231: 'RXD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(82): error C231: 'SM0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(83): error C231: 'SM1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(84): error C231: 'SM2': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(85): error C231: 'REN': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(86): error C231: 'TB8': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(87): error C231: 'RB8': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(88): error C231: 'TI': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(89): error C231: 'RI': redefinition
+Target not created
+Build target 'Target 1'
+compiling main.c...
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(13): error C231: 'P0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(14): error C231: 'P1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(15): error C231: 'P2': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(16): error C231: 'P3': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(17): error C231: 'PSW': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(18): error C231: 'ACC': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(19): error C231: 'B': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(20): error C231: 'SP': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(21): error C231: 'DPL': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(22): error C231: 'DPH': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(23): error C231: 'PCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(24): error C231: 'TCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(25): error C231: 'TMOD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(26): error C231: 'TL0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(27): error C231: 'TL1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(28): error C231: 'TH0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(29): error C231: 'TH1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(30): error C231: 'IE': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(31): error C231: 'IP': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(32): error C231: 'SCON': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(33): error C231: 'SBUF': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(38): error C231: 'CY': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(39): error C231: 'AC': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(40): error C231: 'F0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(41): error C231: 'RS1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(42): error C231: 'RS0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(43): error C231: 'OV': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(44): error C231: 'P': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(47): error C231: 'TF1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(48): error C231: 'TR1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(49): error C231: 'TF0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(50): error C231: 'TR0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(51): error C231: 'IE1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(52): error C231: 'IT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(53): error C231: 'IE0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(54): error C231: 'IT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(57): error C231: 'EA': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(58): error C231: 'ES': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(59): error C231: 'ET1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(60): error C231: 'EX1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(61): error C231: 'ET0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(62): error C231: 'EX0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(65): error C231: 'PS': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(66): error C231: 'PT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(67): error C231: 'PX1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(68): error C231: 'PT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(69): error C231: 'PX0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(72): error C231: 'RD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(73): error C231: 'WR': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(74): error C231: 'T1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(75): error C231: 'T0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(76): error C231: 'INT1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(77): error C231: 'INT0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(78): error C231: 'TXD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(79): error C231: 'RXD': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(82): error C231: 'SM0': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(83): error C231: 'SM1': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(84): error C231: 'SM2': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(85): error C231: 'REN': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(86): error C231: 'TB8': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(87): error C231: 'RB8': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(88): error C231: 'TI': redefinition
+E:\KEIL_4\C51\INC\ATMEL\REG51.H(89): error C231: 'RI': redefinition
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1646
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1646
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(7): error C231: 'PortA': redefinition
+KEY-LED.C(56): error C237: '_delay': function already has a body
+KEY-LED.C(134): error C202: 'mode': undefined identifier
+MAIN.C(12): error C231: 'PortB': redefinition
+MAIN.C(13): error C231: 'PortC': redefinition
+MAIN.C(14): error C231: 'CAddr': redefinition
+MAIN.C(37): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(35): error C202: 'PortC': undefined identifier
+KEY-LED.C(36): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(36): error C202: 'PortC': undefined identifier
+KEY-LED.C(37): error C202: 'PortC': undefined identifier
+KEY-LED.C(40): error C202: 'PortC': undefined identifier
+KEY-LED.C(66): error C202: 'PortC': undefined identifier
+KEY-LED.C(67): error C202: 'PortC': undefined identifier
+KEY-LED.C(69): error C202: 'PortC': undefined identifier
+KEY-LED.C(93): error C202: 'PortC': undefined identifier
+KEY-LED.C(98): error C202: 'PortB': undefined identifier
+KEY-LED.C(99): error C202: 'PortB': undefined identifier
+KEY-LED.C(100): error C202: 'PortB': undefined identifier
+KEY-LED.C(101): error C202: 'PortB': undefined identifier
+KEY-LED.C(104): error C202: 'PortB': undefined identifier
+KEY-LED.C(105): error C202: 'PortB': undefined identifier
+KEY-LED.C(106): error C202: 'PortB': undefined identifier
+KEY-LED.C(107): error C202: 'PortB': undefined identifier
+KEY-LED.C(110): error C202: 'PortB': undefined identifier
+KEY-LED.C(111): error C202: 'PortB': undefined identifier
+KEY-LED.C(112): error C202: 'PortB': undefined identifier
+KEY-LED.C(113): error C202: 'PortB': undefined identifier
+KEY-LED.C(116): error C202: 'PortB': undefined identifier
+KEY-LED.C(117): error C202: 'PortB': undefined identifier
+KEY-LED.C(118): error C202: 'PortB': undefined identifier
+KEY-LED.C(119): error C202: 'PortB': undefined identifier
+KEY-LED.C(121): error C202: 'PortB': undefined identifier
+KEY-LED.C(122): error C202: 'PortB': undefined identifier
+KEY-LED.C(123): error C202: 'PortB': undefined identifier
+KEY-LED.C(124): error C202: 'PortB': undefined identifier
+KEY-LED.C(129): error C202: 'CAddr': undefined identifier
+KEY-LED.C(130): error C202: 'PortB': undefined identifier
+MAIN.C(26): error C141: syntax error near 'void'
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(36): error C202: 'PortC': undefined identifier
+KEY-LED.C(37): error C202: 'PortC': undefined identifier
+KEY-LED.C(40): error C202: 'PortC': undefined identifier
+KEY-LED.C(66): error C202: 'PortC': undefined identifier
+KEY-LED.C(67): error C202: 'PortC': undefined identifier
+KEY-LED.C(69): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(80): warning C206: 'Delay': missing function-prototype
+KEY-LED.C(80): error C267: 'Delay': requires ANSI-style prototype
+KEY-LED.C(102): error C202: 'PortB': undefined identifier
+KEY-LED.C(103): error C202: 'PortB': undefined identifier
+KEY-LED.C(104): error C202: 'PortB': undefined identifier
+KEY-LED.C(105): error C202: 'PortB': undefined identifier
+KEY-LED.C(108): error C202: 'PortB': undefined identifier
+KEY-LED.C(109): error C202: 'PortB': undefined identifier
+KEY-LED.C(110): error C202: 'PortB': undefined identifier
+KEY-LED.C(111): error C202: 'PortB': undefined identifier
+KEY-LED.C(114): error C202: 'PortB': undefined identifier
+KEY-LED.C(115): error C202: 'PortB': undefined identifier
+KEY-LED.C(116): error C202: 'PortB': undefined identifier
+KEY-LED.C(117): error C202: 'PortB': undefined identifier
+KEY-LED.C(120): error C202: 'PortB': undefined identifier
+KEY-LED.C(121): error C202: 'PortB': undefined identifier
+KEY-LED.C(122): error C202: 'PortB': undefined identifier
+KEY-LED.C(123): error C202: 'PortB': undefined identifier
+KEY-LED.C(125): error C202: 'PortB': undefined identifier
+KEY-LED.C(126): error C202: 'PortB': undefined identifier
+KEY-LED.C(127): error C202: 'PortB': undefined identifier
+KEY-LED.C(128): error C202: 'PortB': undefined identifier
+KEY-LED.C(133): error C202: 'CAddr': undefined identifier
+KEY-LED.C(134): error C202: 'PortB': undefined identifier
+MAIN.C(26): error C141: syntax error near 'void'
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(102): error C202: 'PortB': undefined identifier
+KEY-LED.C(103): error C202: 'PortB': undefined identifier
+KEY-LED.C(104): error C202: 'PortB': undefined identifier
+KEY-LED.C(105): error C202: 'PortB': undefined identifier
+KEY-LED.C(108): error C202: 'PortB': undefined identifier
+KEY-LED.C(109): error C202: 'PortB': undefined identifier
+KEY-LED.C(110): error C202: 'PortB': undefined identifier
+KEY-LED.C(111): error C202: 'PortB': undefined identifier
+KEY-LED.C(114): error C202: 'PortB': undefined identifier
+KEY-LED.C(115): error C202: 'PortB': undefined identifier
+KEY-LED.C(116): error C202: 'PortB': undefined identifier
+KEY-LED.C(117): error C202: 'PortB': undefined identifier
+KEY-LED.C(120): error C202: 'PortB': undefined identifier
+KEY-LED.C(121): error C202: 'PortB': undefined identifier
+KEY-LED.C(122): error C202: 'PortB': undefined identifier
+KEY-LED.C(123): error C202: 'PortB': undefined identifier
+KEY-LED.C(125): error C202: 'PortB': undefined identifier
+KEY-LED.C(126): error C202: 'PortB': undefined identifier
+KEY-LED.C(127): error C202: 'PortB': undefined identifier
+KEY-LED.C(128): error C202: 'PortB': undefined identifier
+KEY-LED.C(133): error C202: 'CAddr': undefined identifier
+KEY-LED.C(134): error C202: 'PortB': undefined identifier
+MAIN.C(26): error C141: syntax error near 'void'
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(134): error C202: 'CAddr': undefined identifier
+MAIN.C(26): error C141: syntax error near 'void'
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(135): error C202: 'mode': undefined identifier
+MAIN.C(26): error C141: syntax error near 'void'
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(135): error C202: 'mode': undefined identifier
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(135): error C202: 'mode': undefined identifier
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(135): error C202: 'mode': undefined identifier
+MAIN.C(44): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(135): error C202: 'mode': undefined identifier
+MAIN.C(43): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+Program Size: data=18.0 xdata=13 code=2081
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+LCD.C(428): error C202: 'keynum': undefined identifier
+KEY-LED.C(7): error C279: 'KeyTable': multiple initialization
+KEY-LED.C(17): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(27): error C237: '_delay': function already has a body
+KEY-LED.C(93): error C237: 'GetKey': function already has a body
+KEY-LED.C(132): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(428): error C202: 'keynum': undefined identifier
+KEY-LED.C(7): error C279: 'KeyTable': multiple initialization
+KEY-LED.C(17): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(27): error C237: '_delay': function already has a body
+KEY-LED.C(93): error C237: 'GetKey': function already has a body
+KEY-LED.C(132): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.C(33): error C202: 'keynum': undefined identifier
+KEY-LED.C(81): error C202: 'keynum': undefined identifier
+KEY-LED.C(85): error C202: 'keynum': undefined identifier
+LCD.C(428): error C202: 'keynum': undefined identifier
+KEY-LED.C(7): error C279: 'KeyTable': multiple initialization
+KEY-LED.C(17): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(27): error C237: '_delay': function already has a body
+KEY-LED.C(33): error C202: 'keynum': undefined identifier
+KEY-LED.C(81): error C202: 'keynum': undefined identifier
+KEY-LED.C(85): error C202: 'keynum': undefined identifier
+KEY-LED.C(94): error C237: 'GetKey': function already has a body
+KEY-LED.C(133): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.H(1): warning C323: newline expected, extra characters found
+KEY-LED.H(1): warning C323: newline expected, extra characters found
+KEY-LED.C(8): error C279: 'KeyTable': multiple initialization
+KEY-LED.C(18): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(28): error C237: '_delay': function already has a body
+KEY-LED.C(95): error C237: 'GetKey': function already has a body
+KEY-LED.C(134): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.C(8): error C279: 'KeyTable': multiple initialization
+KEY-LED.C(18): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(28): error C237: '_delay': function already has a body
+KEY-LED.C(95): error C237: 'GetKey': function already has a body
+KEY-LED.C(134): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.C(18): error C279: 'LEDMAP': multiple initialization
+KEY-LED.C(28): error C237: '_delay': function already has a body
+KEY-LED.C(95): error C237: 'GetKey': function already has a body
+KEY-LED.C(134): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.C(106): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(107): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(108): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(109): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(112): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(113): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(114): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(115): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(118): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(119): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(120): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(121): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(124): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(125): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(126): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(127): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(129): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(130): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(131): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(132): error C202: 'LEDMAP': undefined identifier
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.C(28): error C237: '_delay': function already has a body
+KEY-LED.C(95): error C237: 'GetKey': function already has a body
+KEY-LED.C(106): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(107): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(108): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(109): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(112): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(113): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(114): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(115): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(118): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(119): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(120): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(121): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(124): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(125): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(126): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(127): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(129): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(130): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(131): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(132): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(134): error C237: 'KeyPro': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+key-led.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+KEY-LED.C(106): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(107): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(108): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(109): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(112): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(113): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(114): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(115): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(118): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(119): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(120): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(121): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(124): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(125): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(126): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(127): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(129): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(130): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(131): error C202: 'LEDMAP': undefined identifier
+KEY-LED.C(132): error C202: 'LEDMAP': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+key-led.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+Program Size: data=19.0 xdata=13 code=2108
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+key-led.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+Program Size: data=19.0 xdata=13 code=2108
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+key-led.h(1): warning C323: newline expected, extra characters found
+KEY-LED.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+Program Size: data=19.0 xdata=13 code=2108
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+LCD.C(422): error C202: 'initYALI': undefined identifier
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(422): error C202: 'initYALI': undefined identifier
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(422): error C202: 'initYALI': undefined identifier
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(422): error C202: 'initYALI': undefined identifier
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(422): error C202: 'initYALI': undefined identifier
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(24): error C202: 'CAddr': undefined identifier
+MAIN.C(40): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1693
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1693
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1693
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1693
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=16.0 xdata=13 code=1693
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+compiling main.c...
+MAIN.C(47): error C237: 'main': function already has a body
+main.c - 1 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(47): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+Program Size: data=36.0 xdata=13 code=2278
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+KEYLED.C(22): error C202: 'PortC': undefined identifier
+KEYLED.C(23): error C202: 'PortC': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+KEYLED.C(31): warning C206: 'delayKeyled': missing function-prototype
+KEYLED.C(31): error C267: 'delayKeyled': requires ANSI-style prototype
+KEYLED.C(146): error C231: 'delayKeyled': redefinition
+KEYLED.C(150): error C231: 'delayKeyled': redefinition
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+Program Size: data=36.0 xdata=13 code=2275
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETKEY?MAIN
+Program Size: data=36.0 xdata=13 code=2270
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=35.0 xdata=13 code=2275
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+Program Size: data=35.0 xdata=13 code=2275
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+KEYLED.C(122): error C202: 'DD': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(26): warning C206: 'GetKey': missing function-prototype
+MAIN.C(28): error C202: 'initMotor': undefined identifier
+MAIN.C(29): error C202: 'initMotor': undefined identifier
+MAIN.C(30): error C202: 'initMotor': undefined identifier
+MAIN.C(31): error C202: 'initYALI': undefined identifier
+MAIN.C(32): error C202: 'initYALI': undefined identifier
+MAIN.C(33): error C202: 'initYALI': undefined identifier
+MAIN.C(34): error C202: 'initTEMP': undefined identifier
+MAIN.C(35): error C202: 'initTEMP': undefined identifier
+MAIN.C(66): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+LCD.C(389): error C202: 'initMotor': undefined identifier
+LCD.C(400): error C202: 'initMotor': undefined identifier
+LCD.C(422): error C202: 'initYALI': undefined identifier
+LCD.C(440): error C202: 'initTEMP': undefined identifier
+LCD.C(445): error C202: 'initTEMP': undefined identifier
+MAIN.C(57): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(34): error C175: 0x3: duplicate case value
+MAIN.C(53): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(53): error C237: 'main': function already has a body
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2356
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2366
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2380
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2386
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2379
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2340
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYLCD?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2359
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYLCD?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2353
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYLCD?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2350
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYLCD?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2344
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2405
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2408
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2410
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2411
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2411
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2410
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2419
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2416
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2419
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2416
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(83): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2424
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SETMOSHI?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2427
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(29): error C175: 0x4: duplicate case value
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(45): warning C206: 'DisplayDZ': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZDISTANCE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DISPLAYDZ
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DISPLAYDZ
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0947H
+Program Size: data=22.0 xdata=16 code=2462
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZDISTANCE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2459
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZDISTANCE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2459
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAYDZDISTANCE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=22.0 xdata=16 code=2459
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2465
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2465
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE1?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READDATAE2?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYPRO?MAIN
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+*** WARNING L6: XDATA SPACE MEMORY OVERLAP
+    FROM:    6002H
+    TO:      6002H
+Program Size: data=21.0 xdata=16 code=2465
+creating hex file from "³µÁ¾×´¿ö¼à²â_mini"...
+"³µÁ¾×´¿ö¼à²â_mini" - 0 Error(s), 5 Warning(s).

@@ -1,0 +1,270 @@
+C51 COMPILER V9.57.0.0   H24                                                               07/18/2021 18:32:51 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H24
+OBJECT MODULE PLACED IN .\Objects\H24.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H24.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H24.lst) TABS(2) OBJECT(.\Objects\H24.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          #define PD1  61        //  122/2 分成左右两半屏(122x32)
+   4          
+   5          unsigned char Column;
+   6          unsigned char Page_ ;  // 页地址寄存器 D1,DO:页地址
+   7          unsigned char Code_ ;  // 字符代码寄存器
+   8          
+   9          unsigned char Command; // 指令寄存器
+  10          unsigned char LCDData; // 数据寄存器
+  11          sbit BEEP=P3^5;
+  12          
+  13          xdata unsigned char CWADD1 _at_ 0x1cff;   // 写指令代码地址(E1)
+  14          xdata unsigned char DWADD1 _at_ 0x1eff;   // 写显示数据地址(E1)
+  15          xdata unsigned char CRADD1 _at_ 0x1dff;   // 读状态字地址(E1)
+  16          xdata unsigned char DRADD1 _at_ 0x1fff;   // 读显示数据地址(E1)
+  17          
+  18          xdata unsigned char CWADD2 _at_ 0x3cff;   // 写指令代码地址(E2)
+  19          xdata unsigned char DWADD2 _at_ 0x3eff;   // 写显示数进地址(E2)
+  20          xdata unsigned char CRADD2 _at_ 0x3dff;   // 读状态字地址(E2)
+  21          xdata unsigned char DRADD2 _at_ 0x3fff;   // 读显示数据地址(E2)
+  22          
+  23          void Delay1()//蜂鸣器专用延时
+  24          {
+  25   1        unsigned char i;
+  26   1        for (i=0; i<50; i++);
+  27   1      }
+  28          
+  29          void BEE(){
+  30   1        int i;
+  31   1        for(i=10000;i!=0;--i){//LED闪烁、蜂鸣器bee
+  32   2          BEEP=0;
+  33   2          Delay1();
+  34   2          BEEP=1;
+  35   2          Delay1();
+  36   2       }
+  37   1      }
+  38          
+  39          //英文字模库    8x8 点阵
+  40          code unsigned char EETAB[][8]={
+  41                  {0x38,0x44,0x44,0x44,0x44,0x44,0x38,0x00},  // 0
+  42                  {0x10,0x30,0x50,0x10,0x10,0x10,0x7c,0x00},  // 1
+  43                  {0x38,0x44,0x04,0x08,0x10,0x20,0x7c,0x00},  // 2
+  44                  {0x78,0x84,0x04,0x38,0x04,0x84,0x78,0x00}}; // 3
+  45          
+  46          // 中文字模库   16x16点阵
+  47          code unsigned char CCTAB[][32] ={
+  48                  {0x00,0x04,0xe4,0x24,0x24,0x64,0xb4,0x2f, // 南
+  49                   0x24,0xa4,0x64,0x24,0x24,0xe6,0x04,0x00,
+  50                   0x00,0x00,0x7f,0x04,0x05,0x05,0x05,0x7f,
+  51                   0x05,0x05,0x05,0x25,0x44,0x3f,0x00,0x00},
+  52          
+  53                  {0x00,0x04,0x04,0xe4,0x24,0x24,0x25,0x26, // 京
+  54                   0x24,0x24,0x24,0xe4,0x06,0x04,0x00,0x00,
+C51 COMPILER V9.57.0.0   H24                                                               07/18/2021 18:32:51 PAGE 2   
+
+  55                   0x00,0x20,0x10,0x19,0x0D,0x41,0x81,0x7f,
+  56                   0x01,0x01,0x05,0x0d,0x38,0x10,0x00,0x00},
+  57          
+  58                  {0x00,0x80,0x60,0xf8,0x07,0x0a,0x28,0x28, // 伟
+  59                   0x28,0xff,0x28,0x28,0x28,0x28,0x00,0x00,
+  60                   0x01,0x00,0x00,0xfF,0x00,0x01,0x01,0x01,
+  61                   0x01,0xff,0x01,0x21,0x41,0x3f,0x00,0x00},
+  62          
+  63                  {0x08,0x08,0x89,0xce,0x28,0x18,0x02,0x7a, // 福
+  64                   0x4a,0x4a,0x4a,0x4a,0x4a,0x7a,0x02,0x00,
+  65                   0x02,0x01,0x00,0xff,0x01,0x02,0xff,0x49,
+  66                   0x49,0x49,0x7f,0x49,0x49,0x49,0xff,0x00}};
+  67          
+  68          // 1.写指令代码子程序(E1)
+  69          void WriteCommandE1()
+  70          {
+  71   1        while(CRADD1 & 0x80);
+  72   1        CWADD1 = Command;
+  73   1      }
+  74          
+  75          // 2.写显示数据子程序(E1)
+  76          void WriteDataE1()
+  77          {
+  78   1        while(CRADD1 & 0x80);
+  79   1        DWADD1 = LCDData;
+  80   1      }
+  81          
+  82          // 3.读显示数据子程序(E1)
+  83          void ReadDataE1()
+  84          {
+  85   1        while(CRADD1 & 0x80);
+  86   1        LCDData = DRADD1;
+  87   1      }
+  88          
+  89          // 4.写指令代码子程序(E2)
+  90          void WriteCommandE2()
+  91          {
+  92   1        while(CRADD2 & 0x80);
+  93   1        CWADD2 = Command;
+  94   1      }
+  95          
+  96          // 5.写显示数据子程序(E2)
+  97          void WriteDataE2()
+  98          {
+  99   1        while(CRADD2 & 0x80);
+ 100   1        DWADD2 = LCDData;
+ 101   1      }
+ 102          
+ 103          // 6.读显示数据子程序(E2)
+ 104          void ReadDataE2()
+ 105          {
+ 106   1        while(CRADD2 & 0x80);
+ 107   1        LCDData = DRADD2;
+ 108   1      }
+ 109          
+ 110          // 初始化程序
+ 111          void Init()
+ 112          {
+ 113   1        Command = 0xe2;
+ 114   1        WriteCommandE1();
+ 115   1        WriteCommandE2();
+ 116   1      
+C51 COMPILER V9.57.0.0   H24                                                               07/18/2021 18:32:51 PAGE 3   
+
+ 117   1        Command = 0xa4;
+ 118   1        WriteCommandE1();
+ 119   1        WriteCommandE2();
+ 120   1      
+ 121   1        Command = 0xa9;
+ 122   1        WriteCommandE1();
+ 123   1        WriteCommandE2();
+ 124   1      
+ 125   1        Command = 0xa0;
+ 126   1        WriteCommandE1();
+ 127   1        WriteCommandE2();
+ 128   1      
+ 129   1        Command = 0xc0;
+ 130   1        WriteCommandE1();
+ 131   1        WriteCommandE2();
+ 132   1      
+ 133   1        Command = 0xaf;
+ 134   1        WriteCommandE1();
+ 135   1        WriteCommandE2();
+ 136   1      }
+ 137          
+ 138          // 清屏
+ 139          void Clear()
+ 140          {
+ 141   1        unsigned char i,j;
+ 142   1      
+ 143   1        i = 0;
+ 144   1        do {
+ 145   2      
+ 146   2          Command = (i + 0xb8); // 页地址设置
+ 147   2          WriteCommandE1();
+ 148   2          WriteCommandE2();
+ 149   2      
+ 150   2          Command = 0x00;      // 列地址设置为"0"
+ 151   2          WriteCommandE1();
+ 152   2          WriteCommandE2();
+ 153   2      
+ 154   2          j = 0x50;            // 一页清 80个字节
+ 155   2          do {
+ 156   3            LCDData = 0x00;    // 显示数据为"0"
+ 157   3            WriteDataE1();
+ 158   3            WriteDataE2();
+ 159   3          }while(--j !=0);     // 页内字节清零循环
+ 160   2      
+ 161   2        }while(++i !=4);       // 页地址暂存器加一
+ 162   1                               // 显示区清零循环
+ 163   1      }
+ 164          
+ 165          // 延时程序
+ 166          void Delay()
+ 167          {
+ 168   1        unsigned char i,j;
+ 169   1        i = 20;
+ 170   1        j = 0;
+ 171   1        do{
+ 172   2          do{
+ 173   3          }while(--j !=0);
+ 174   2        }while( --i != 0 );
+ 175   1      }
+ 176          
+ 177          // 中文显示子程序
+ 178          void WriteCHN16x16()
+C51 COMPILER V9.57.0.0   H24                                                               07/18/2021 18:32:51 PAGE 4   
+
+ 179          {
+ 180   1        unsigned char i,j,k;
+ 181   1      
+ 182   1        i = 0;
+ 183   1        j = 0;
+ 184   1        while(j<2) {
+ 185   2          Command = ((Page_ + j) & 0x03) | 0xb8;   // 设置页地址
+ 186   2          WriteCommandE1();
+ 187   2          WriteCommandE2();
+ 188   2          k = Column;                   // 列地址值
+ 189   2          while(k < Column + 16){
+ 190   3            if (k < PD1) {              // 为左半屏显示区域(E1)
+ 191   4              Command = k;
+ 192   4              WriteCommandE1();         // 设置列地址值
+ 193   4              LCDData = CCTAB[Code_][i]; // 取汉字字模数据
+ 194   4              WriteDataE1();            // 写字模数据
+ 195   4            } else{                     // 为右半屏显示区域(E2)
+ 196   4              Command = k-PD1;
+ 197   4              WriteCommandE2();         // 设置列地址值
+ 198   4              LCDData = CCTAB[Code_][i]; // 取汉字字模数据
+ 199   4              WriteDataE2();            // 写字模数据
+ 200   4            };
+ 201   3      
+ 202   3            i++;
+ 203   3            if( ++k >= PD1 * 2) break;  // 列地址是否超出显示范围
+ 204   3          } ;
+ 205   2          j++;
+ 206   2        };
+ 207   1      }
+ 208          
+ 209          //  中文显示程序
+ 210          void main()
+ 211          {
+ 212   1        Init();
+ 213   1        Clear();
+ 214   1        BEE();
+ 215   1        Page_ = 0x02;
+ 216   1        Column = 0x00;
+ 217   1        Code_ = 0x00;
+ 218   1        WriteCHN16x16();
+ 219   1      
+ 220   1        Page_ = 0x02;
+ 221   1        Column = 0x10;
+ 222   1        Code_ = 0x01;
+ 223   1        WriteCHN16x16();
+ 224   1      
+ 225   1        Page_ = 0x02;
+ 226   1        Column = 0x20;
+ 227   1        Code_ = 0x02;
+ 228   1        WriteCHN16x16();
+ 229   1      
+ 230   1      
+ 231   1        Page_ = 0x02;
+ 232   1        Column = 0x30;
+ 233   1        Code_ = 0x03;
+ 234   1        WriteCHN16x16();
+ 235   1      
+ 236   1        while(1);
+ 237   1      
+ 238   1      }
+
+
+C51 COMPILER V9.57.0.0   H24                                                               07/18/2021 18:32:51 PAGE 5   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    410    ----
+   CONSTANT SIZE    =    160    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

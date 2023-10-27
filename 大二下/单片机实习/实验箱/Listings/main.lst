@@ -1,0 +1,238 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              07/02/2022 19:43:00 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\C51\BIN\C51.EXE main.c COMPACT BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) OBJECT(.\Obj
+                    -ects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "8255.c"
+   3          #include "KEYLED.c"
+   4          #include "YALI.c"
+   5          #include "BEEP.c"
+   6          #include "temp.c"
+   7          #include "motor.c"
+   8          #include "dianzhen.c"
+   9          #include "Bmotor.c"
+  10          #include "LCD.c"
+  11          
+  12          
+  13          
+  14          sbit P1_0 = P1^0;
+  15          sbit P1_1 = P1^1;
+  16          
+  17          
+  18          
+  19          unsigned char speed;//用于读取当前速度
+  20          int TT=60;//循环定时
+  21          int overspeed;
+  22          unsigned char ADResult0,ADResult1;//压力读数和温度读数
+  23          
+  24          //void Setmoshi()//设置模式：道路、标载、开启温度
+  25          //{       
+  26          //        if(TestKey())
+  27          //        {            
+  28          //           switch (GetKey()& 0x0f)  // (GetKey()& 0x0f)的值就等于按键的数值
+  29          //           {
+  30          //               case 1:  initMotor=0x45;break; //可容许右起2档
+  31          //               case 2:  initMotor=0x54;break; //可容许右起3档
+  32          //               case 3:  initMotor=0x59;break; //可容许所有档                 
+  33          //           }               
+  34          //        }          
+  35          //}
+  36          
+  37          void Setmoshi()//设置模式：道路、标载、开启温度
+  38          {       
+  39   1              if(TestKey())
+  40   1              {            
+  41   2                 switch (GetKey()& 0x0f)  // (GetKey()& 0x0f)的值就等于按键的数值
+  42   2                 {
+  43   3                     case 1:  {initMotor=0x45;DisplayLcd();break;} //可容许右起1档,按1
+  44   3                     case 2:  {initMotor=0x54;DisplayLcd();break;} //可容许右起2档,按2
+  45   3                     case 3:  {initMotor=0x59;DisplayLcd();break;} //可容许所有档,按3 
+  46   3                     case 0x0a:  {initYALI=0x07;DisplayLcd();break;}//载重5人,按a 
+  47   3                     case 0x0b:  {initYALI=0x15;DisplayLcd();break;}//载重7人,按b 
+  48   3                     case 0x0c:  {initYALI=0x25;DisplayLcd();break;}//载重9人,按c  
+  49   3                     case 0x00:  {--initTEMP;DisplayLcd();break;}   //下调空调开启温度,按0
+  50   3                     case 0x0f:  {++initTEMP;DisplayLcd();break;}   //上调空调开启温度,按F                
+  51   3                 }    //****暻的箱子：1档40，2档55，3档75***           
+  52   2              }          
+  53   1      }
+  54          
+C51 COMPILER V9.57.0.0   MAIN                                                              07/02/2022 19:43:00 PAGE 2   
+
+  55          void DisplayS()//速度显示函数
+  56          {
+  57   1              unsigned int i=0,sum=0;
+  58   1              i=(speed>>4) & 0x0f;
+  59   1              if(i>9) sum=16*(i-0x0a+10);
+  60   1              else sum=16*i;
+  61   1              i=speed & 0x0f;
+  62   1              if(i>9) sum+=i-0x0a+10;
+  63   1              else sum+=i;
+  64   1              LEDBuf[4] = LEDMAP[sum/10];
+  65   1              LEDBuf[5] = LEDMAP[sum%10];
+  66   1      //  LEDBuf[4] = LEDMAP[(speed>>4) & 0x0f];
+  67   1      //  LEDBuf[5] = LEDMAP[speed & 0x0f];
+  68   1      }
+  69          
+  70          unsigned char SetSpeed(){
+  71   1              unsigned char S,R;
+  72   1              S=PortB;//开关的高4位设置速度
+  73   1              if(S>=0x00&&S<=0x0f)R=0xc5;
+  74   1              if(S>=0x10&&S<=0x1f)R=0xcf;
+  75   1              if(S>=0x20&&S<=0x3f)R=0xdf;
+  76   1              if(S>=0x40&&S<=0x7f)R=0xef;
+  77   1              if(S>=0x80&&S<=0xff)R=0xff;
+  78   1              return R;
+  79   1      }
+  80          
+  81          int oil(){
+  82   1              unsigned char S,Z;
+  83   1              int R;
+  84   1              Z=PortB;
+  85   1              S = (Z & 0x0f);
+  86   1              if(S==0x01){
+  87   2                      R=0;//油量低
+  88   2              }
+  89   1              else if(S==0x00){
+  90   2                      R=2;//没油
+  91   2              }
+  92   1              else R=1;
+  93   1              return R;
+  94   1      }
+  95          
+  96          void INTT0() interrupt 0 //外部中断0
+  97          {
+  98   1              //需要关闭定时和计数、并将speed置0
+  99   1              TR0  = 0;//关闭T0
+ 100   1        TH0  = 0x3c;//设置初值，50000次溢出
+ 101   1        TL0  = 0xb0;
+ 102   1              TR1  = 0;//设置计数器T1
+ 103   1        TH1  = 0;
+ 104   1        TL1  = 0;
+ 105   1              speed=TL1;
+ 106   1              TT=60;
+ 107   1        //以上为关闭定时器和计数器
+ 108   1              MOTOR=0xc5;
+ 109   1              PortA=0xff;
+ 110   1              if(oil()==0){//显示油量低
+ 111   2                      DZO();
+ 112   2              }
+ 113   1              if(ADResult0>initYALI){//显示已超载
+ 114   2                      DZZ();
+ 115   2              }
+ 116   1              PortA=0x00;//PA口置0
+C51 COMPILER V9.57.0.0   MAIN                                                              07/02/2022 19:43:00 PAGE 3   
+
+ 117   1              P1_0=1;//关闭中断
+ 118   1              //重新打开定时器和计数器
+ 119   1        TR0  = 1;//打开定时器
+ 120   1              TR1  = 1;//打开计数器
+ 121   1      }
+ 122          
+ 123          void TT0() interrupt 1 //定时器T0中断
+ 124          {
+ 125   1              if(TT!=0){
+ 126   2              TH0  = 0x3c;//设置初值，50000次溢出
+ 127   2        TL0  = 0xb0;
+ 128   2                      TR0=1;
+ 129   2                      --TT;
+ 130   2              }
+ 131   1              if(TT==0){
+ 132   2              TT=60;
+ 133   2              TH0  = 0x3c;//设置初值，50000次溢出
+ 134   2        TL0  = 0xb0;
+ 135   2              speed=TL1;
+ 136   2        TH1  = 0;
+ 137   2        TL1  = 0;
+ 138   2              TR0=1;
+ 139   2              TR1=1;
+ 140   2              }
+ 141   1              
+ 142   1      }
+ 143          
+ 144          void INTT1() interrupt 2 //外部中断1
+ 145          {
+ 146   1              //需要关闭定时和计数、并将speed置0
+ 147   1              TR0  = 0;//关闭T0
+ 148   1        TH0  = 0x3c;//设置初值，50000次溢出
+ 149   1        TL0  = 0xb0;
+ 150   1              TR1  = 0;//设置计数器T1
+ 151   1        TH1  = 0;
+ 152   1        TL1  = 0;
+ 153   1              speed=TL1;
+ 154   1              TT=60;
+ 155   1        //以上为关闭定时器和计数器
+ 156   1              MOTOR=0x80;
+ 157   1              if(oil()==2){//显示请加油
+ 158   2                               DZOO();
+ 159   2                       }
+ 160   1              if(overspeed==1){//当速度超过设定值，进入中断0
+ 161   2                               DZS();
+ 162   2                         overspeed=0;
+ 163   2                       }
+ 164   1              PortA=0x00;//PA口置0
+ 165   1              MOTOR=SetSpeed();
+ 166   1              P1_1=1;//关闭中断
+ 167   1        //重新打开定时器和计数器
+ 168   1        TR0  = 1;//打开定时器
+ 169   1              TR1  = 1;//打开计数器
+ 170   1      }
+ 171          
+ 172          void main()  //主函数
+ 173          {
+ 174   1         unsigned char i = 0;
+ 175   1               register unsigned char dd;//档位、油量显示
+ 176   1         unsigned char j,OIL;
+ 177   1               CAddr=mode; // 方式0，PA，PC输出，PB输入
+ 178   1               IE=0x87;//中断初始化
+C51 COMPILER V9.57.0.0   MAIN                                                              07/02/2022 19:43:00 PAGE 4   
+
+ 179   1               TCON=0x05;//外部中断0、1均为低电平触发
+ 180   1               P1=0xff;
+ 181   1               readSpeed();
+ 182   1         DisplayLcd();
+ 183   1         while(1) {
+ 184   2                       Setmoshi();//设置模式
+ 185   2                       MOTOR=SetSpeed();//设置电机转速
+ 186   2           ADResult0 =  ReadYALI();//压力读数
+ 187   2                       ADResult1 =  ReadTemp();//温度读数
+ 188   2                       PortC = 0x00;
+ 189   2                       dd = PortB;     //档位、油量显示
+ 190   2           PortA = dd;
+ 191   2                       if(ADResult0>initYALI){//当压力超过设定值，进入中断0
+ 192   3                               P1_0=0;}
+ 193   2                       if(ADResult1>initTEMP&&ADResult1<0x80){//当压温度超过设定值，步进电机转动
+ 194   3                                PortC = 0x01;}
+ 195   2                       if(oil()==0){//油量低则进入中断0
+ 196   3                               P1_0=0; }
+ 197   2                       if(oil()==2){//彻底没油，进入中断1
+ 198   3                               P1_1=0;}
+ 199   2                       if(speed>initMotor&&speed<0x59){//当速度超过设定值，进入中断0
+ 200   3                               overspeed=1;
+ 201   3                               P1_1=0;}
+ 202   2                       DisplayT();//显示温度
+ 203   2                       DisplayS();//显示速度
+ 204   2           for(j=0; j<30; j++)DisplayLED();   // 延时
+ 205   2         }
+ 206   1      }
+*** WARNING C280 IN LINE 176 OF main.c: 'OIL': unreferenced local variable
+ 207          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2735    ----
+   CONSTANT SIZE    =   1256    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =     25      23
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

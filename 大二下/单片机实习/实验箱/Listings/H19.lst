@@ -1,0 +1,163 @@
+C51 COMPILER V9.57.0.0   H19                                                               07/18/2021 19:12:06 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE H19
+OBJECT MODULE PLACED IN .\Objects\H19.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H19.C OPTIMIZE(8,SPE
+                    -ED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\H19.lst) TABS(2) OBJECT(.\Objects\H19.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #define LEDLen 6
+   3          
+   4          xdata unsigned char OUTBIT _at_ 0x8002;   // 位控制口
+   5          xdata unsigned char OUTSEG _at_ 0x8004;   // 段控制口
+   6          xdata unsigned char IN     _at_ 0x8001;   // 键盘读入口
+   7          
+   8          unsigned char LEDBuf[LEDLen];  // 显示缓冲
+   9          unsigned char RcvBuf;          // 接收缓冲
+  10          bit HasRcv = 0;                // 接收标志
+  11          
+  12          code unsigned char LEDMAP[] = {  // 八段管显示码
+  13            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  14            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  15          };
+  16          
+  17          void SerialIO0() interrupt 4
+  18          {
+  19   1      
+  20   1        if(RI)
+  21   1        {
+  22   2          RI = 0;
+  23   2          RcvBuf = SBUF;
+  24   2          HasRcv = 1;
+  25   2        }else
+  26   1        {
+  27   2          TI = 0;
+  28   2        }
+  29   1      }
+  30          
+  31          void Delay(unsigned char CNT)
+  32          {
+  33   1        unsigned char i;
+  34   1      
+  35   1        while (CNT-- !=0)
+  36   1          for (i=100; i !=0; i--);
+  37   1      }
+  38          
+  39          void DisplayLED()
+  40          {
+  41   1        unsigned char i, j;
+  42   1        unsigned char Pos;
+  43   1        unsigned char LED;
+  44   1      
+  45   1        Pos = 0x20;  // 从左边开始显示
+  46   1        for (i = 0; i < LEDLen; i++) {
+  47   2          OUTBIT = 0;     // 关所有八段管
+  48   2          LED = LEDBuf[i];
+  49   2          OUTSEG = LED;
+  50   2          OUTBIT = Pos;  // 显示一位八段管
+  51   2          Delay(1);
+  52   2          Pos >>= 1;     // 显示下一位
+  53   2        }
+  54   1      }
+C51 COMPILER V9.57.0.0   H19                                                               07/18/2021 19:12:06 PAGE 2   
+
+*** WARNING C280 IN LINE 41 OF ..\伟福KEIL 安装 含程序\伟福KEIL 安装\LAB9000\EX51C\H19.C: 'j': unreferenced local variab
+             -le
+  55          
+  56          code unsigned char KeyTable[] = {   // 键码定义
+  57            0x16, 0x15, 0x14, 0xff,
+  58            0x13, 0x12, 0x11, 0x10,
+  59            0x0d, 0x0c, 0x0b, 0x0a,
+  60            0x0e, 0x03, 0x06, 0x09,
+  61            0x0f, 0x02, 0x05, 0x08,
+  62            0x00, 0x01, 0x04, 0x07
+  63          };
+  64          
+  65          unsigned char TestKey()
+  66          {
+  67   1         OUTBIT = 0;            // 输出线置为0
+  68   1         return (~IN & 0x0f);   // 读入键状态 (高四位不用)
+  69   1      }
+  70          
+  71          unsigned char GetKey()
+  72          {
+  73   1        unsigned char Pos;
+  74   1        unsigned char i;
+  75   1        //unsigned char j;
+  76   1        unsigned char k;
+  77   1      
+  78   1        i = 6;
+  79   1        Pos = 0x20;     // 找出键所在列
+  80   1        do {
+  81   2          OUTBIT = ~ Pos;
+  82   2          Pos >>= 1;
+  83   2          k = ~IN & 0x0f;
+  84   2        } while ((--i != 0) && (k == 0));
+  85   1      
+  86   1        // 键值 = 列 X 4 + 行
+  87   1        if (k != 0) {
+  88   2          i *= 4;
+  89   2          if (k & 2)
+  90   2            i += 1;
+  91   2          else if (k & 4)
+  92   2            i += 2;
+  93   2          else if (k & 8)
+  94   2            i += 3;
+  95   2      
+  96   2          OUTBIT = 0;
+  97   2          do Delay(10); while (TestKey());  // 等键释放
+  98   2      
+  99   2          return(KeyTable[i]);  // 取出键码
+ 100   2        } else return(0xff);
+ 101   1      }
+ 102          
+ 103          void main()
+ 104          {
+ 105   1          IE =   0x00;  // DISABLE ALL INTERRUPT
+ 106   1          TMOD = 0x20;  // 定时器1工作于方式2 (8位重装)
+ 107   1          TH1  = 0xF3;  // 2400BPS @ 12MHz
+ 108   1          TL1  = 0xF3;
+ 109   1          PCON&= 0x7F;  // SMOD 位清零
+ 110   1          SCON = 0x50;  // 串行口工作方式设置
+ 111   1      
+ 112   1      
+ 113   1         LEDBuf[0] = 0xff;
+ 114   1         LEDBuf[1] = 0xff;
+C51 COMPILER V9.57.0.0   H19                                                               07/18/2021 19:12:06 PAGE 3   
+
+ 115   1         LEDBuf[2] = 0xff;
+ 116   1         LEDBuf[3] = 0xff;
+ 117   1         LEDBuf[4] = 0x00;
+ 118   1         LEDBuf[5] = 0x00;
+ 119   1      
+ 120   1         TR1 = 1;
+ 121   1         ES  = 1;
+ 122   1         EA  = 1;
+ 123   1         HasRcv = 0;
+ 124   1      
+ 125   1         while (1) {
+ 126   2           if(HasRcv){
+ 127   3             LEDBuf[5] = LEDMAP[RcvBuf & 0x0f];
+ 128   3           }
+ 129   2           DisplayLED();
+ 130   2           if (TestKey()) SBUF = GetKey();
+ 131   2         }
+ 132   1      }
+ 133          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    238    ----
+   CONSTANT SIZE    =     40    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
