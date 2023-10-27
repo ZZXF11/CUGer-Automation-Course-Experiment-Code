@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\E盘文件\学习文件\大二下\c++\code\8.2\Calculator.h(157): warning C4715: “Calculator::precedence”: 不是所有的控件路径都返回值
+D:\E盘文件\学习文件\大二下\c++\code\8.2\Calculator.h(114): warning C4715: “Calculator::precedencE”: 不是所有的控件路径都返回值
+  8.2.vcxproj -> D:\E盘文件\学习文件\大二下\c++\code\Debug\8.2.exe

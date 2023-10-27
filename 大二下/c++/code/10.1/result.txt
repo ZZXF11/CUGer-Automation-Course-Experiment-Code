@@ -1,0 +1,7 @@
+octal:0454
+decimal:300
+hex:0X12C
+precision:0X9,pi=3.141593
+precision:0X9,pi=3.14159265
+scientific:3.141592654E+00
+fixed decimal:3.141592654
