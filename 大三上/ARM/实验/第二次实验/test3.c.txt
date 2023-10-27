@@ -1,0 +1,85 @@
+#define rGPBCON		(*(volatile unsigned *)0x56000010)
+#define rGPBDAT		(*(volatile unsigned *)0x56000014)
+#define rGPBUP		(*(volatile unsigned *)0x56000018)
+#define rGPFCON		(*(volatile unsigned *)0x56000050)
+#define rGPFDAT		(*(volatile unsigned *)0x56000054)
+#define rGPFUP		(*(volatile unsigned *)0x56000058)
+
+/**GPB5--->LED1**
+***GPB6--->LED2**
+***GPB7--->LED3**
+***GPB8--->LED4**/
+#define GPB5_out (1<<(5*2))		
+#define GPB6_out (1<<(6*2))
+#define GPB7_out (1<<(7*2))
+#define GPB8_out (1<<(8*2))
+
+/**GPF0--->KEY1**
+***GPF1--->KEY2**
+***GPF2--->KEY3**
+***GPF2--->KEY3**/
+#define GPF0_in ~(3<<(0*2))
+#define GPF1_in ~(3<<(1*2))
+#define GPF2_in ~(3<<(2*2))
+#define GPF4_in ~(3<<(2*3))
+
+#define Key1 (1<<1)
+#define Key2 (1<<4)
+#define Key3 (1<<2)
+#define Key4 (1<<0)
+
+extern void delay(int);
+
+void Main(){
+
+	rGPBCON = GPB5_out|GPB6_out|GPB7_out|GPB8_out;
+	rGPBUP = 0xffff;
+	rGPFCON = GPF0_in & GPF2_in & GPF3_in & GPF1_in;
+	rGPFUP = 0xffff;
+	
+	rGPBDAT = 0xffff;
+	
+	while(1)
+	{
+	
+		int a=0;
+		if((rGPFDAT & Key1)==0){
+			delay(0x1000);
+			if((rGPFDAT & Key1)==0){
+				rGPBDAT = rGPBDAT^(1<<5);
+				while((rGPFDAT & Key1) ==0);
+			}	
+		}
+		
+		
+		if((rGPFDAT & Key2)==0){
+			delay(0x1000);
+			if((rGPFDAT & Key2)==0){
+				rGPBDAT = rGPBDAT^(1<<6);
+				while((rGPFDAT & Key2) ==0);
+			}	
+		}
+		
+		
+		if((rGPFDAT & Key3)==0){
+			delay(0x1000);
+			if((rGPFDAT & Key3)==0){
+				rGPBDAT = rGPBDAT^(1<<7);
+				while((rGPFDAT & Key3) ==0);
+			}	
+		}
+		
+		
+		if((rGPFDAT & Key4)==0){
+			delay(0x1000);
+			if((rGPFDAT & Key4)==0){
+				rGPBDAT = rGPBDAT^(1<<8);
+				while((rGPFDAT & Key4) ==0);
+			}	
+		}
+	}
+
+
+
+
+}

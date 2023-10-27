@@ -1,0 +1,21 @@
+;ª„±‡÷∏¡Ó µ—È
+	AREA Init,CODE,READONLY
+	ENTRY
+ResetEntry
+	ldr r0,=0x53000000
+	mov r1,#0x0
+	str r1,[r0]
+	
+	mov sp,#0x38000000
+	IMPORT Main
+	bl Main
+	
+	EXPORT delay
+delay
+	sub r0,r0,#1
+	cmp r0,#0x0
+	bne delay
+	
+	mov pc,lr
+	
+	END
