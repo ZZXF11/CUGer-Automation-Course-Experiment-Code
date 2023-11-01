@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/liti/xulie/simulation/modelsim
+vxulie
+Z1 !s110 1633577552
+!i10b 1
+!s100 K?]>HkRlonCVimGOeVhS73
+IQeZA=L2FhjZ_WKFbAgn?61
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1633522198
+8D:/liti/xulie/xulie.v
+FD:/liti/xulie/xulie.v
+L0 1
+Z3 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1633577552.657000
+!s107 D:/liti/xulie/xulie.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/liti/xulie|D:/liti/xulie/xulie.v|
+!i113 1
+Z4 o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+D:/liti/xulie
+vxulie_vlg_tst
+R1
+!i10b 1
+!s100 kB1QL5SES281TJQaeWFFF2
+I9TY1SVOCliPfn8D`^;[]31
+R2
+R0
+w1633577471
+8D:/liti/xulie/simulation/modelsim/xulie.vt
+FD:/liti/xulie/simulation/modelsim/xulie.vt
+L0 28
+R3
+r1
+!s85 0
+31
+!s108 1633577552.705000
+!s107 D:/liti/xulie/simulation/modelsim/xulie.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/liti/xulie/simulation/modelsim|D:/liti/xulie/simulation/modelsim/xulie.vt|
+!i113 1
+R4
+!s92 -vlog01compat -work work +incdir+D:/liti/xulie/simulation/modelsim

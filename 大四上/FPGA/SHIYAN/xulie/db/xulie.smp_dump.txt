@@ -1,0 +1,9 @@
+
+State Machine - |xulie|ds
+Name ds.S5 ds.S4 ds.S3 ds.S2 ds.S1 ds.S0 
+ds.S0 0 0 0 0 0 0 
+ds.S1 0 0 0 0 1 1 
+ds.S2 0 0 0 1 0 1 
+ds.S3 0 0 1 0 0 1 
+ds.S4 0 1 0 0 0 1 
+ds.S5 1 0 0 0 0 1 

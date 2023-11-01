@@ -1,0 +1,22 @@
+//*****************文件信息*********************************************
+//**创建日期：   2021.09.08
+//**版本号：     version 1.0
+//**功能描述：   led灯驱动实验
+//**********************************************************************/
+
+
+module led_twinkle(LEDR,CLOCK_50);
+      output [9:0] LEDR;                                          //十个LED0-9
+	input CLOCK_50;                                   //50M时钟
+	reg[9:0] LEDR;                                      // 输出端口定义为寄存器型
+	reg[24:0] counter;                                // 中间变量counter定义为寄存器型
+	always@(posedge CLOCK_50)//在时钟负延跳变
+	    begin                                              // 顺序语句，到end止
+	    counter<=counter+1;                    //<=与 =区别
+	    if(counter==25'd25000000)    
+	              begin	
+	              LEDR<=~LEDR;                   // led[0]-led[9]反转一次
+	              counter<=0;                       //重新计数
+	              end   
+	    end                      
+endmodule

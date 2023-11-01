@@ -1,0 +1,293 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'clk_50MHz'
+Slack : -2.916
+TNS   : -358.040
+
+Type  : Slow 1100mV 85C Model Setup 'time_devide_timer:u5|clk_100_r'
+Slack : -1.996
+TNS   : -43.747
+
+Type  : Slow 1100mV 85C Model Setup 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.981
+TNS   : -1.443
+
+Type  : Slow 1100mV 85C Model Setup 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.864
+TNS   : -1.330
+
+Type  : Slow 1100mV 85C Model Setup 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.828
+TNS   : -1.220
+
+Type  : Slow 1100mV 85C Model Setup 'eliminate_jitters:u1|cnt[10]'
+Slack : -0.576
+TNS   : -0.962
+
+Type  : Slow 1100mV 85C Model Hold 'clk_50MHz'
+Slack : -1.985
+TNS   : -119.547
+
+Type  : Slow 1100mV 85C Model Hold 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.332
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.448
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'time_devide_timer:u5|clk_100_r'
+Slack : 0.479
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.549
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.564
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -0.394
+TNS   : -82.854
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'time_devide_timer:u5|clk_100_r'
+Slack : -0.394
+TNS   : -15.515
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.394
+TNS   : -2.031
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u1|cnt[10]'
+Slack : -0.394
+TNS   : -1.701
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.394
+TNS   : -1.692
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.394
+TNS   : -1.530
+
+Type  : Slow 1100mV 0C Model Setup 'clk_50MHz'
+Slack : -2.960
+TNS   : -353.997
+
+Type  : Slow 1100mV 0C Model Setup 'time_devide_timer:u5|clk_100_r'
+Slack : -2.022
+TNS   : -44.459
+
+Type  : Slow 1100mV 0C Model Setup 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.978
+TNS   : -1.431
+
+Type  : Slow 1100mV 0C Model Setup 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.909
+TNS   : -1.372
+
+Type  : Slow 1100mV 0C Model Setup 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.845
+TNS   : -1.273
+
+Type  : Slow 1100mV 0C Model Setup 'eliminate_jitters:u1|cnt[10]'
+Slack : -0.575
+TNS   : -0.996
+
+Type  : Slow 1100mV 0C Model Hold 'clk_50MHz'
+Slack : -2.015
+TNS   : -126.458
+
+Type  : Slow 1100mV 0C Model Hold 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'time_devide_timer:u5|clk_100_r'
+Slack : 0.441
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.460
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.528
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.545
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -0.394
+TNS   : -90.921
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'time_devide_timer:u5|clk_100_r'
+Slack : -0.394
+TNS   : -15.849
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.394
+TNS   : -2.121
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u1|cnt[10]'
+Slack : -0.394
+TNS   : -1.742
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.394
+TNS   : -1.725
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.394
+TNS   : -1.581
+
+Type  : Fast 1100mV 85C Model Setup 'clk_50MHz'
+Slack : -1.249
+TNS   : -126.352
+
+Type  : Fast 1100mV 85C Model Setup 'time_devide_timer:u5|clk_100_r'
+Slack : -0.825
+TNS   : -15.778
+
+Type  : Fast 1100mV 85C Model Setup 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.257
+TNS   : -0.257
+
+Type  : Fast 1100mV 85C Model Setup 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.145
+TNS   : -0.145
+
+Type  : Fast 1100mV 85C Model Setup 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.143
+TNS   : -0.143
+
+Type  : Fast 1100mV 85C Model Setup 'eliminate_jitters:u1|cnt[10]'
+Slack : -0.029
+TNS   : -0.029
+
+Type  : Fast 1100mV 85C Model Hold 'clk_50MHz'
+Slack : -1.064
+TNS   : -67.925
+
+Type  : Fast 1100mV 85C Model Hold 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.149
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'time_devide_timer:u5|clk_100_r'
+Slack : 0.244
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.274
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.281
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -0.091
+TNS   : -13.773
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.005
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'time_devide_timer:u5|clk_100_r'
+Slack : 0.070
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.099
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.119
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.128
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'clk_50MHz'
+Slack : -1.101
+TNS   : -106.240
+
+Type  : Fast 1100mV 0C Model Setup 'time_devide_timer:u5|clk_100_r'
+Slack : -0.729
+TNS   : -13.610
+
+Type  : Fast 1100mV 0C Model Setup 'eliminate_jitters:u4|cnt[10]'
+Slack : -0.204
+TNS   : -0.204
+
+Type  : Fast 1100mV 0C Model Setup 'eliminate_jitters:u3|cnt[10]'
+Slack : -0.105
+TNS   : -0.105
+
+Type  : Fast 1100mV 0C Model Setup 'eliminate_jitters:u2|cnt[10]'
+Slack : -0.100
+TNS   : -0.100
+
+Type  : Fast 1100mV 0C Model Setup 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.011
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'clk_50MHz'
+Slack : -1.082
+TNS   : -71.941
+
+Type  : Fast 1100mV 0C Model Hold 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.121
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'time_devide_timer:u5|clk_100_r'
+Slack : 0.208
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.241
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.251
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk_50MHz'
+Slack : -0.090
+TNS   : -13.734
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u4|cnt[10]'
+Slack : 0.026
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'time_devide_timer:u5|clk_100_r'
+Slack : 0.083
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u3|cnt[10]'
+Slack : 0.107
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u1|cnt[10]'
+Slack : 0.119
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'eliminate_jitters:u2|cnt[10]'
+Slack : 0.130
+TNS   : 0.000
+
+------------------------------------------------------------

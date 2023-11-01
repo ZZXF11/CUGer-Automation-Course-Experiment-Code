@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/ASUS/Desktop/05_ckey_led/ckey_led.v
+source_file = 1, C:/Users/ASUS/Desktop/05_ckey_led/output_files/Chain10.cdf
+source_file = 1, C:/Users/ASUS/Desktop/05_ckey_led/db/ckey_led.cbx.xml
+design_name = ckey_led
+instance = comp, \LEDR[0]~output , LEDR[0]~output, ckey_led, 1
+instance = comp, \LEDR[1]~output , LEDR[1]~output, ckey_led, 1
+instance = comp, \LEDR[2]~output , LEDR[2]~output, ckey_led, 1
+instance = comp, \LEDR[3]~output , LEDR[3]~output, ckey_led, 1
+instance = comp, \KEY[0]~input , KEY[0]~input, ckey_led, 1
+instance = comp, \KEY[1]~input , KEY[1]~input, ckey_led, 1
+instance = comp, \KEY[2]~input , KEY[2]~input, ckey_led, 1
+instance = comp, \KEY[3]~input , KEY[3]~input, ckey_led, 1
+instance = comp, \~QUARTUS_CREATED_GND~I , ~QUARTUS_CREATED_GND~I, ckey_led, 1

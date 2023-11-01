@@ -1,0 +1,15 @@
+C:/Users/ASUS/Desktop/xulie/xulie.v {1 {vlog -work work C:/Users/ASUS/Desktop/xulie/xulie.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module xulie
+
+Top level modules:
+	xulie
+
+} {} {}} C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt {1 {vlog -work work C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module xulie_vlg_tst
+
+Top level modules:
+	xulie_vlg_tst
+
+} {} {}}

@@ -1,0 +1,145 @@
+m255
+K3
+13
+cModel Technology
+Z0 dG:\software\FPGA13.1\FPGA13.1_example\CLOCK\simulation\modelsim
+vclock
+I[NBZLZzhCM6gfNV3h?`z81
+Vgeae4YU=lR]479D:9fBGM0
+Z1 dG:\software\FPGA13.1\FPGA13.1_example\CLOCK\simulation\modelsim
+w1633680090
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/clock.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/clock.v
+L0 1
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+Z4 !s92 -vlog01compat -work work +incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK -O0
+!i10b 1
+!s100 X>3z5;jgVL:CRMP9BUh1F1
+!s85 0
+!s108 1633680224.294000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/clock.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/clock.v|
+!s101 -O0
+vclock_vlg_tst
+!i10b 1
+!s100 3>XGGcE7CJ::BkM^Be74P2
+I5FKe2z?Z=X=Z?8UkSh5>e2
+VJOA8U[_D]CLInf_[cXHnD1
+R1
+w1633680205
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim/clock.vt
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim/clock.vt
+L0 28
+R2
+r1
+!s85 0
+31
+!s108 1633680225.294000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim/clock.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim/clock.vt|
+!s101 -O0
+R3
+!s92 -vlog01compat -work work +incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK/simulation/modelsim -O0
+vdata_show
+IfNlz_Eoa5zI7S1RQQgcJO1
+VHLf?oWA:fY9ShgjWmKcW70
+R1
+w1633679981
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/data_show.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/data_show.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 G2TGa;KM_R4Bj8k@28WR11
+!s85 0
+!s108 1633680225.139000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/data_show.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/data_show.v|
+!s101 -O0
+vdigital_show
+IYOFa:4JAdmn6X]G7Xm[Kg3
+Vac7a`J7L@oB^9f38f;JMz1
+R1
+w1633678354
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/digital_show.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/digital_show.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 DhYP]h:V=?I@A71:<c`9V3
+!s85 0
+!s108 1633680224.692000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/digital_show.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/digital_show.v|
+!s101 -O0
+veliminate_jitters
+I4M1SZ?<QDjjb?M]067X4H0
+V2@T?2UFM;7Q8HYj5VZ<n_1
+R1
+w1633579091
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/eliminate_jitters.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/eliminate_jitters.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 gAA7CMl[QoW66^O^9EfCn1
+!s85 0
+!s108 1633680224.836000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/eliminate_jitters.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/eliminate_jitters.v|
+!s101 -O0
+vkey_time
+IAmd8Q:Ue4kO[k_X39PClA1
+VIY@Q?He:4lhkLXgJoDFSj0
+R1
+w1633595979
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/key_time.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/key_time.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 jimiB^BaQij_e@QARm1Mn2
+!s85 0
+!s108 1633680224.968000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/key_time.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/key_time.v|
+!s101 -O0
+vtime_devide_timer
+IoPC17jz5JCJhZZXOlVC4z1
+V3OU=ZOjCFYn0e=WjRG]OK3
+R1
+w1633631883
+8G:/software/FPGA13.1/FPGA13.1_example/CLOCK/time_devide_timer.v
+FG:/software/FPGA13.1/FPGA13.1_example/CLOCK/time_devide_timer.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 fi_63m4nA1bSAJl5^HnDJ1
+!s85 0
+!s108 1633680224.547000
+!s107 G:/software/FPGA13.1/FPGA13.1_example/CLOCK/time_devide_timer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/software/FPGA13.1/FPGA13.1_example/CLOCK|G:/software/FPGA13.1/FPGA13.1_example/CLOCK/time_devide_timer.v|
+!s101 -O0

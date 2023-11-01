@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="clock">
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_3am.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Div2" CBX_FILE_NAME="lpm_divide_2am.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_62m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_3am.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_62m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|clock|digital_show:u7|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_52m.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

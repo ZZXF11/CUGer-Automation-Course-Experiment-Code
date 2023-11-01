@@ -1,0 +1,97 @@
+module  digital_show(
+                        input  clk_refresh,	// 数码管扫描时钟信号输入
+                        input  clk_timer,		// 计数时钟信号输入			
+                        input  nRST,			// 复位信号输入
+                        output [7:0]dig,		// 位选信号输出
+								output [7:0]seg,		// 段选信号输出
+                        output reg LED			// 用于整点报警的LED信号
+                    );
+reg [4:0]hour;      	//0-23小时
+reg [5:0]minute;     	//0-59分钟
+reg [5:0]second;     	//0-59秒						
+reg [3:0]num;			// 扫描计数
+reg [3:0]disp_dat;		// 显示数值
+reg [7:0]dig_r;			// 扫描时的位选值
+reg [7:0]seg_r;			// 段码
+
+// 时钟计数
+always @(posedge clk_timer or negedge nRST)
+begin 
+	if(!nRST)					// 时分秒复位
+		begin
+			hour <= 5'd0;
+			minute <= 6'd0;
+			second <= 6'd0;
+		end
+	else
+		begin
+			second <= second + 1;	// 每个时钟信号到来时，秒+1
+            // 如果时间到达59分59秒，点亮LED，否则熄灭LED
+			if(second == 6'd59 & minute == 6'd59)	LED = 1'b0;	else LED = 1'b1;
+            // 如果秒到达59，对其清零且分钟+1
+			if(second == 6'd59)		begin second <= 6'd0; minute <= minute+1'b1; end
+            // 如果分钟到达60，对其清零且小时+1
+			if(minute == 6'd60) 	begin minute <= 6'd0; hour <= hour + 1'b1;	end
+            // 如果小时到达24，对其清零
+            if(hour == 5'd24)		begin hour <= 5'd0;	end
+		end
+end		
+    
+// 数码管循环扫描控制
+always @(posedge clk_refresh or negedge nRST)
+begin
+	if(!nRST)
+		num <= 4'd0;
+	else if(num == 4'd8)	// 如果记满8次就重置
+		num <= 4'd0;
+	else
+		num <= num + 1;		// 每个时钟信号到来时计数值+1，位选移位
+end	
+		
+// 位选信号
+always @(posedge clk_refresh)   						
+begin
+    case(num)		// 当前位对应的需显示的数值				  
+		4'd0:disp_dat = second % 10;	// 秒个位		
+		4'd1:disp_dat = second / 10;	// 秒十位
+		4'd2:disp_dat = 4'd15;			// 显示“-”			
+		4'd3:disp_dat = minute % 10;	// 分个位		
+		4'd4:disp_dat = minute / 10;	// 分十位		
+		4'd5:disp_dat = 4'd15;			// 显示“-”
+		4'd6:disp_dat = hour % 10;		// 时个位	
+		4'd7:disp_dat = hour / 10;		// 时十位
+	endcase
+    case(num)		// 位选信号				
+		4'd7:dig_r = 8'b01111111;		// 选择第一位数码管
+		4'd6:dig_r = 8'b10111111;		// 选择第二位数码管
+		4'd5:dig_r = 8'b11011111;		// 选择第三位数码管
+		4'd4:dig_r = 8'b11101111;		// 选择第四位数码管
+		4'd3:dig_r = 8'b11110111;		// 选择第五位数码管
+		4'd2:dig_r = 8'b11111011;		// 选择第六位数码管
+		4'd1:dig_r = 8'b11111101;		// 选择第七位数码管
+		4'd0:dig_r = 8'b11111110;		// 选择第八位数码管		
+	endcase	
+end
+
+// 段选信号
+always @(disp_dat)
+begin
+    case(disp_dat)		// 将显示的数值映射为对应段码			
+		4'h0:seg_r = 8'b1100_0000;	// 0		
+		4'h1:seg_r = 8'b1111_1001;	// 1		
+		4'h2:seg_r = 8'b1010_0100;	// 2		
+		4'h3:seg_r = 8'b1011_0000;	// 3		
+		4'h4:seg_r = 8'b1001_1001;	// 4		
+		4'h5:seg_r = 8'b1001_0010;	// 5		
+		4'h6:seg_r = 8'b1000_0010;	// 6		
+		4'h7:seg_r = 8'b1111_1000;	// 7		
+		4'h8:seg_r = 8'b1000_0000;	// 8		
+		4'h9:seg_r = 8'b1001_0000;	// 9
+		4'hf:seg_r = 8'b1011_1111;	// “-”对应段码
+	endcase
+end
+
+assign   dig = dig_r;	// 输出位选码
+assign   seg = seg_r;	// 输出段选码
+
+endmodule

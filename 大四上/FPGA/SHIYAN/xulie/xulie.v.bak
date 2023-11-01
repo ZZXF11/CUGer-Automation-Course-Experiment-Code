@@ -1,0 +1,19 @@
+module xulie(CLOCK_50,X,Y);
+input CLOCK_50,X;
+output Y;
+parameter S0=0,S1=1,S2=2,S3=3,S4=4,s5=5; 
+reg cs,ns;
+assign Y=((cs==S4)&& X);  
+always @(posedge CLOCK_50)      
+cs <= ns;
+always @(cs,x)              
+case (cs)
+    S0: if (x==1) ns = S1;
+    S1: if (x==0) ns = S2; else ns = S0; 
+    S2: if (x==0) ns = S3; else ns = S0; 
+    S3: if (x==1) ns = S4; else ns = S0;
+	 S4: if (x==0) ns = S5; else ns = S0;
+	 S5: if (x==1) ns = S4; else ns = S0;
+	 default: ns = S0;
+endcase 
+endmodule

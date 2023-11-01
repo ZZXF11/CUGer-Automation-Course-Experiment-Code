@@ -1,0 +1,77 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "10/07/2021 19:42:53"
+                                                                                
+// Verilog Test Bench template for design : clock
+// 
+// Simulation tool : ModelSim-Altera (Verilog)
+// 
+
+`timescale 1 ns/ 1 ps
+module clock_vlg_tst();
+// constants                                           
+// general purpose registers
+reg eachvec;
+// test vector input registers
+reg clk;
+reg nRST;
+reg switch;
+// wires                                               
+wire clk_timer;
+
+// assign statements (if any)                          
+clock i1 (
+// port map - connection between master ports and signals/registers   
+	.clk(clk),
+	.clk_timer(clk_timer),
+	.nRST(nRST),
+	.switch(switch)
+);
+initial                                                
+begin                                                  
+// code that executes only once                        
+// insert code here --> begin                          
+   nRST = 1'b1;
+	clk_refresh = 1'b0;
+	clk_timer = 1'b0;
+	counter = 4'b0000;
+	#5 nRST = 1'b0;
+  	#5 nRST = 1'b1;                                                    
+// --> end                                             
+$display("Running testbench");                       
+end                                                    
+always                                                 
+// optional sensitivity list                           
+// @(event1 or event2 or .... eventn)                  
+begin                                                  
+// code executes for every event on sensitivity list   
+// insert code here --> begin                          
+   #1  clk_refresh = ~clk_refresh; // 数码管刷新信号
+	counter = counter + 1; // 数码管每次刷新，计数值+1
+	if(counter == 8) 
+	begin
+		clk_timer = ~clk_timer; // 计数值达到8次时，计时器时钟翻转
+  		counter = 0; // 计数值清零
+end                                                      
+//@eachvec;                                              
+// --> end                                             
+end                                                    
+endmodule
+

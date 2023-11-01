@@ -1,0 +1,36 @@
+# vsim +altera -do xulie_run_msim_rtl_verilog.do -l msim_transcript -gui work.xulie_vlg_tst 
+# Loading work.xulie_vlg_tst
+# Loading work.xulie
+# ** Warning: (vsim-3017) C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt(52): [TFMPC] - Too few port connections. Expected 5, found 4.
+# 
+#         Region: /xulie_vlg_tst/i1
+# ** Warning: (vsim-3722) C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt(52): [TFMPC] - Missing connection for port 'ns'.
+# 
+# do xulie_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# ** Error: (vdel-42) Unsupported ModelSim library format for "C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work". (Format: 4)
+# 
+# ** Warning: (vdel-57) Library 'C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work' is missing or is not a valid ModelSim library.
+# 
+# ** Error: G:/software/FPGA13.1/modelsim_ase/win32aloem/vdel failed.
+# Error in macro ./xulie_run_msim_rtl_verilog.do line 4
+# G:/software/FPGA13.1/modelsim_ase/win32aloem/vdel failed.
+#     while executing
+# "vdel -lib rtl_work -all"
+#     invoked from within
+# "if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }"
+# ** Error: (vish-42) Unsupported ModelSim library format for "C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work". (Format: 4)
+add wave -position insertpoint  \
+sim:/xulie_vlg_tst/eachvec \
+sim:/xulie_vlg_tst/CLOCK_50 \
+sim:/xulie_vlg_tst/rst \
+sim:/xulie_vlg_tst/x \
+sim:/xulie_vlg_tst/z \
+sim:/xulie_vlg_tst/cs \
+sim:/xulie_vlg_tst/ns
+run -all
+# Break in Module xulie_vlg_tst at C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt line 60

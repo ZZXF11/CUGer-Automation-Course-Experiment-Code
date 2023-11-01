@@ -1,0 +1,50 @@
+module  time_devide_timer(
+					input clk,          		//50MHz时钟
+					input nRST,
+					input switch,				// 切换频率
+					output clk_timer  	
+					);
+
+reg [30:0]cnt;							//定义一个21位宽的计数器
+reg [30:0]speed;
+reg [1:0] count;
+
+parameter speed_1s = 50000000;			// 分频得到1Hz时钟
+parameter speed_10Hz = 5000000;			// 分频得到10Hz时钟
+parameter speed_100Hz = 500000;			// 分频得到100Hz时钟
+// 速率选择模块
+always @(negedge switch or negedge nRST)
+begin
+	if(!nRST)
+		begin
+			speed <= speed_1s;	// 复位时默认选择1Hz时钟分频
+			count <= 0;
+		end
+	else
+		begin
+			count <= count + 1;		// 每次按键计数值+1
+            case(count)				// 每每个计数值对应选择不同的输出频率
+					2'b01:speed = speed_1s;
+					2'b10:speed = speed_10Hz;
+					2'b11:speed = speed_100Hz;
+				default:speed = speed_1s;
+			endcase					// 按键计数值每3次一循环
+            if(cout == 2'b11) begin cout <= 2'b00; end
+		end	
+end
+// 时钟分频模块
+always @(posedge clk or negedge nRST)
+begin
+	if(!nRST)
+		cnt <= 30'd0;
+	else
+		begin
+			if(cnt< (speed-1'b1))							
+				cnt <= cnt + 1'b1; 
+			else
+				cnt <= 30'd0;	
+		end
+end
+    assign  clk_timer = (cnt<3)? 1'b1:1'b0;   // 脉冲宽度为3个原始输入时钟周期
+
+endmodule

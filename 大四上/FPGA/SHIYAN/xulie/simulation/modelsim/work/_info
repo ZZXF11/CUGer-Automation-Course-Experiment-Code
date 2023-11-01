@@ -1,0 +1,43 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\ASUS\Desktop\xulie\simulation\modelsim
+vxulie
+!i10b 1
+!s100 9[alHTYb@H1MNnQFE:zKW0
+IT=D^Nh@Pk5ZS6[U1Cd[9X1
+VBVCC=J=7EN=^j<V4_nFaf0
+Z1 dC:\Users\ASUS\Desktop\xulie\simulation\modelsim
+w1633522198
+8C:/Users/ASUS/Desktop/xulie/xulie.v
+FC:/Users/ASUS/Desktop/xulie/xulie.v
+L0 1
+Z2 OV;L;10.1d;51
+r1
+!s85 0
+31
+!s108 1665459820.946000
+!s107 C:/Users/ASUS/Desktop/xulie/xulie.v|
+!s90 -reportprogress|300|-work|work|C:/Users/ASUS/Desktop/xulie/xulie.v|
+!s101 -O0
+Z3 o-work work -O0
+vxulie_vlg_tst
+Z4 I=m_LP44]]TiTiZjIOAG2n1
+Z5 VZR[?Q^>Wbk2Qj;MNg<;4n2
+R1
+Z6 w1633577471
+Z7 8C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt
+Z8 FC:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt
+L0 28
+R2
+r1
+31
+R3
+!i10b 1
+Z9 !s100 YO4RShPBjB]@BVag?WAJ42
+!s85 0
+Z10 !s108 1665459820.856000
+Z11 !s107 C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt|
+Z12 !s90 -reportprogress|300|-work|work|C:/Users/ASUS/Desktop/xulie/simulation/modelsim/xulie.vt|
+!s101 -O0

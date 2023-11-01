@@ -1,0 +1,21 @@
+|xulie
+CLOCK_50 => ns[0]~reg0.CLK
+CLOCK_50 => ns[1]~reg0.CLK
+CLOCK_50 => ns[2]~reg0.CLK
+x => Mux2.IN6
+x => Mux2.IN7
+x => Mux0.IN7
+x => z.IN1
+x => Mux0.IN6
+x => Mux1.IN5
+x => Mux1.IN6
+x => Mux1.IN7
+z << z.DB_MAX_OUTPUT_PORT_TYPE
+rst => ns.OUTPUTSELECT
+rst => ns.OUTPUTSELECT
+rst => ns.OUTPUTSELECT
+ns[0] << ns[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ns[1] << ns[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ns[2] << ns[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

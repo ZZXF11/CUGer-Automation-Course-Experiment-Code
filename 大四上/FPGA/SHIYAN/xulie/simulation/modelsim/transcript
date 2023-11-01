@@ -1,0 +1,7 @@
+# ** Error: (vish-42) Unsupported ModelSim library format for "C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work". (Format: 4)
+# Compile of xulie.vt was successful.
+# Compile of xulie.v was successful.
+# 2 compiles, 0 failed with no errors. 
+# ** Error: (vish-42) Unsupported ModelSim library format for "C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work". (Format: 4)
+# ** Error: (vish-42) Unsupported ModelSim library format for "C:/Users/ASUS/Desktop/xulie/simulation/modelsim/rtl_work". (Format: 4)
+vsim +altera -do xulie_run_msim_rtl_verilog.do -l msim_transcript -gui work.xulie_vlg_tst
