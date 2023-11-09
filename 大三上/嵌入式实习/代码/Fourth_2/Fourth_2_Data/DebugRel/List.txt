@@ -1,0 +1,280 @@
+
+================================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x30000000
+
+  Load Region LR_1 (Base: 0x30000000, Size: 0x0018eac8, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Base: 0x30000000, Size: 0x00007d3c, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr  Idx  E Section Name        Object
+
+    0x30000000   0x00000544   Code   RO     1   * Init                2440init.o
+    0x30000544   0x00000284   Code   RO    10     .text               nand.o
+    0x300007c8   0x00000bf0   Code   RO    44     .text               2440lib.o
+    0x300013b8   0x00001050   Code   RO    73     .text               Main.o
+    0x30002408   0x00000b24   Code   RO   208     .text               cstmLcd.o
+    0x30002f2c   0x000008e4   Code   RO   286     .text               LCD_TFT.o
+    0x30003810   0x0000028c   Code   RO   305     .text               mmu.o
+    0x30003a9c   0x00000034   Code   RO   537     .text               atoi.o(c_a__un.l)
+    0x30003ad0   0x00000014   Code   RO   539     .text               rt_ctype_table.o(c_a__un.l)
+    0x30003ae4   0x000000d4   Code   RO   541     .text               rt_sdiv.o(c_a__un.l)
+    0x30003bb8   0x000000c0   Code   RO   543     .text               rt_udiv.o(c_a__un.l)
+    0x30003c78   0x00000068   Code   RO   545     .text               strlen.o(c_a__un.l)
+    0x30003ce0   0x00000058   Code   RO   547     .text               vsprintf.o(c_a__un.l)
+    0x30003d38   0x00000d38   Code   RO   566     .text               __vfpntf.o(c_a__un.l)
+    0x30004a70   0x0000001c   Code   RO   568     .text               _sputc.o(c_a__un.l)
+    0x30004a8c   0x0000003c   Code   RO   570     .text               lc_ctype_c.o(c_a__un.l)
+    0x30004ac8   0x0000000c   Code   RO   573     .text               libspace.o(c_a__un.l)
+    0x30004ad4   0x0000000c   Code   RO   576     .text               rt_div0.o(c_a__un.l)
+    0x30004ae0   0x0000000c   Code   RO   578     .text               rt_errno_addr.o(c_a__un.l)
+    0x30004aec   0x00000010   Code   RO   580     .text               rt_fp_status_addr.o(c_a__un.l)
+    0x30004afc   0x000000c0   Code   RO   582     .text               strtol.o(c_a__un.l)
+    0x30004bbc   0x00000924   Code   RO   600     .text               _fp_disp.o(c_a__un.l)
+    0x300054e0   0x00000060   Code   RO   602     .text               _fptrap.o(c_a__un.l)
+    0x30005540   0x00000108   Code   RO   604     .text               _strtoul.o(c_a__un.l)
+    0x30005648   0x00000098   Code   RO   606     .text               lludiv10.o(c_a__un.l)
+    0x300056e0   0x00000018   Code   RO   608     .text               rt_raise.o(c_a__un.l)
+    0x300056f8   0x0000002c   Code   RO   610     .text               rtudiv10.o(c_a__un.l)
+    0x30005724   0x000000a0   Code   RO   612     .text               strcmp.o(c_a__un.l)
+    0x300057c4   0x00000064   Code   RO   616     .text               __raise.o(c_a__un.l)
+    0x30005828   0x00000020   Code   RO   618     .text               _chval.o(c_a__un.l)
+    0x30005848   0x0000015c   Code   RO   620     .text               bigflt0.o(c_a__un.l)
+    0x300059a4   0x0000003c   Code   RO   625     .text               lc_numeric_c.o(c_a__un.l)
+    0x300059e0   0x00000040   Code   RO   628     .text               rtsdiv10.o(c_a__un.l)
+    0x30005a20   0x00000018   Code   RO   630     .text               sys_exit.o(c_a__un.l)
+    0x30005a38   0x00000048   Code   RO   634     .text               classify.o(m_a_pu.l)
+    0x30005a80   0x00000054   Code   RO   636     .text               dtoi.o(m_a_pu.l)
+    0x30005ad4   0x00000160   Code   RO   638     .text               defsig.o(c_a__un.l)
+    0x30005c34   0x00000004   Code   RO   642     .text               use_semi.o(c_a__un.l)
+    0x30005c38   0x00000018   Code   RO   644     .text               sys_wrch.o(c_a__un.l)
+    0x30005c50   0x000001b4   Code   RO     6     C$$code             2440slib.o
+    0x30005e04   0x00000898   Code   RO   623     CL$$btodstuff       btod.o(c_a__un.l)
+    0x3000669c   0x0000049c   Code   RO   551     x$fpl$dadd          daddsub.o(f_a_p.l)
+    0x30006b38   0x00000040   Code   RO   586     x$fpl$dcheck        dcheck.o(f_a_p.l)
+    0x30006b78   0x00000018   Code   RO   588     x$fpl$dcheck1       dcheck1.o(f_a_p.l)
+    0x30006b90   0x000005b0   Code   RO   553     x$fpl$ddiv          ddiv.o(f_a_p.l)
+    0x30007140   0x000000a4   Code   RO   555     x$fpl$dfix          dfix.o(f_a_p.l)
+    0x300071e4   0x00000064   Code   RO   558     x$fpl$dflt          dflt.o(f_a_p.l)
+    0x30007248   0x000002b4   Code   RO   560     x$fpl$dmul          dmul_mull.o(f_a_p.l)
+    0x300074fc   0x00000230   Code   RO   590     x$fpl$dunder        dunder.o(f_a_p.l)
+    0x3000772c   0x00000164   Code   RO   592     x$fpl$exception     except.o(f_a_p.l)
+    0x30007890   0x0000003c   Code   RO   632     x$fpl$ieeestatus    istatus.o(f_a_p.l)
+    0x300078cc   0x00000004   Code   RO   584     x$fpl$printf1       printf1.o(f_a_p.l)
+    0x300078d0   0x00000098   Code   RO   614     x$fpl$retnan        retnan.o(f_a_p.l)
+    0x30007968   0x000000a4   Code   RO   598     x$fpl$trapveneer    trapv.o(f_a_p.l)
+    0x30007a0c   0x00000044   Data   RO   210     .constdata          cstmLcd.o
+    0x30007a50   0x00000110   Data   RO   571     .constdata          lc_ctype_c.o(c_a__un.l)
+    0x30007b60   0x00000094   Data   RO   621     .constdata          bigflt0.o(c_a__un.l)
+    0x30007bf4   0x0000001c   Data   RO   626     .constdata          lc_numeric_c.o(c_a__un.l)
+    0x30007c10   0x0000012b   Data   RO   639     .constdata          defsig.o(c_a__un.l)
+
+
+    Execution Region ER_RW (Base: 0x30007d3c, Size: 0x00186d8c, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr  Idx  E Section Name        Object
+
+    0x30007d3c   0x00000004   Data   RW    45     .data               2440lib.o
+    0x30007d40   0x00000140   Data   RW   209     .data               cstmLcd.o
+    0x30007e80   0x0003fc00   Data   RW   465     .data               lanYY.o
+    0x30047a80   0x0003fc18   Data   RW   471     .data               feiYY.o
+    0x30087698   0x0003fc18   Data   RW   477     .data               manYY_2.o
+    0x300c72b0   0x0003fc18   Data   RW   483     .data               meiYY.o
+    0x30106ec8   0x0003fc18   Data   RW   489     .data               nuanYY.o
+    0x30146ae0   0x0003fc18   Data   RW   495     .data               xiYY.o
+    0x301866f8   0x000015f8   Data   RW   501     .data               feiYYmini.o
+    0x30187cf0   0x000015f8   Data   RW   507     .data               lanYYmini.o
+    0x301892e8   0x000015f8   Data   RW   513     .data               manYY_2mini.o
+    0x3018a8e0   0x000015f8   Data   RW   519     .data               meiYYmini.o
+    0x3018bed8   0x000015f8   Data   RW   525     .data               nuanYYmini.o
+    0x3018d4d0   0x000015f8   Data   RW   531     .data               xiYYmini.o
+
+
+    Execution Region ER_ZI (Base: 0x3018eac8, Size: 0x0000009c, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr  Idx  E Section Name        Object
+
+    0x3018eac8   0x00000004   Zero   RW    46     .bss                2440lib.o
+    0x3018eacc   0x00000030   Zero   RW    74     .bss                Main.o
+    0x3018eafc   0x00000008   Zero   RW   211     .bss                cstmLcd.o
+    0x3018eb04   0x00000060   Zero   RW   574     .bss                libspace.o(c_a__un.l)
+
+
+
+  Load Region LR$$Debug (Base: 0x00000000, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER$$Debug (Base: 0x00000000, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr  Idx  E Section Name        Object
+
+    0x00000000   0x00000010   Dbug   RW     5     .debug_abbrev       2440init.o
+    0x00000010   0x00000010   Dbug   RW     9     .debug_abbrev       2440slib.o
+    0x00000020   0x000003ec   Dbug   RW    19     .debug_abbrev       nand.o
+    0x00000000   0x000000b8   Dbug   RW    18     .debug_frame        nand.o
+    0x000000b8   0x000002cc   Dbug   RW    55     .debug_frame        2440lib.o
+    0x00000384   0x000001ac   Dbug   RW    94     .debug_frame        Main.o
+    0x00000530   0x000001a0   Dbug   RW   220     .debug_frame        cstmLcd.o
+    0x000006d0   0x00000130   Dbug   RW   295     .debug_frame        LCD_TFT.o
+    0x00000800   0x00000098   Dbug   RW   314     .debug_frame        mmu.o
+    0x00000898   0x00000050   Dbug   RW   538     .debug_frame        atoi.o(c_a__un.l)
+    0x000008e8   0x0000004c   Dbug   RW   540     .debug_frame        rt_ctype_table.o(c_a__un.l)
+    0x00000934   0x00000044   Dbug   RW   542     .debug_frame        rt_sdiv.o(c_a__un.l)
+    0x00000978   0x00000044   Dbug   RW   544     .debug_frame        rt_udiv.o(c_a__un.l)
+    0x000009bc   0x0000003c   Dbug   RW   546     .debug_frame        strlen.o(c_a__un.l)
+    0x000009f8   0x00000054   Dbug   RW   548     .debug_frame        vsprintf.o(c_a__un.l)
+    0x00000a4c   0x00000160   Dbug   RW   552     .debug_frame        daddsub.o(f_a_p.l)
+    0x00000bac   0x000000f0   Dbug   RW   554     .debug_frame        ddiv.o(f_a_p.l)
+    0x00000c9c   0x00000074   Dbug   RW   557     .debug_frame        dfix.o(f_a_p.l)
+    0x00000d10   0x00000058   Dbug   RW   559     .debug_frame        dflt.o(f_a_p.l)
+    0x00000d68   0x00000078   Dbug   RW   561     .debug_frame        dmul_mull.o(f_a_p.l)
+    0x00000de0   0x000000b0   Dbug   RW   567     .debug_frame        __vfpntf.o(c_a__un.l)
+    0x00000e90   0x0000004c   Dbug   RW   569     .debug_frame        _sputc.o(c_a__un.l)
+    0x00000edc   0x0000004c   Dbug   RW   572     .debug_frame        lc_ctype_c.o(c_a__un.l)
+    0x00000f28   0x00000044   Dbug   RW   575     .debug_frame        libspace.o(c_a__un.l)
+    0x00000f6c   0x0000003c   Dbug   RW   577     .debug_frame        rt_div0.o(c_a__un.l)
+    0x00000fa8   0x0000004c   Dbug   RW   579     .debug_frame        rt_errno_addr.o(c_a__un.l)
+    0x00000ff4   0x0000004c   Dbug   RW   581     .debug_frame        rt_fp_status_addr.o(c_a__un.l)
+    0x00001040   0x00000068   Dbug   RW   583     .debug_frame        strtol.o(c_a__un.l)
+    0x000010a8   0x0000003c   Dbug   RW   585     .debug_frame        printf1.o(f_a_p.l)
+    0x000010e4   0x00000054   Dbug   RW   587     .debug_frame        dcheck.o(f_a_p.l)
+    0x00001138   0x0000003c   Dbug   RW   589     .debug_frame        dcheck1.o(f_a_p.l)
+    0x00001174   0x000000a8   Dbug   RW   591     .debug_frame        dunder.o(f_a_p.l)
+    0x0000121c   0x00000078   Dbug   RW   593     .debug_frame        except.o(f_a_p.l)
+    0x00001294   0x00000084   Dbug   RW   599     .debug_frame        trapv.o(f_a_p.l)
+    0x00001318   0x00000134   Dbug   RW   601     .debug_frame        _fp_disp.o(c_a__un.l)
+    0x0000144c   0x00000064   Dbug   RW   603     .debug_frame        _fptrap.o(c_a__un.l)
+    0x000014b0   0x00000080   Dbug   RW   605     .debug_frame        _strtoul.o(c_a__un.l)
+    0x00001530   0x00000058   Dbug   RW   607     .debug_frame        lludiv10.o(c_a__un.l)
+    0x00001588   0x00000050   Dbug   RW   609     .debug_frame        rt_raise.o(c_a__un.l)
+    0x000015d8   0x00000044   Dbug   RW   611     .debug_frame        rtudiv10.o(c_a__un.l)
+    0x0000161c   0x00000054   Dbug   RW   613     .debug_frame        strcmp.o(c_a__un.l)
+    0x00001670   0x0000005c   Dbug   RW   615     .debug_frame        retnan.o(f_a_p.l)
+    0x000016cc   0x0000005c   Dbug   RW   617     .debug_frame        __raise.o(c_a__un.l)
+    0x00001728   0x0000003c   Dbug   RW   619     .debug_frame        _chval.o(c_a__un.l)
+    0x00001764   0x00000080   Dbug   RW   622     .debug_frame        bigflt0.o(c_a__un.l)
+    0x000017e4   0x00000218   Dbug   RW   624     .debug_frame        btod.o(c_a__un.l)
+    0x000019fc   0x0000004c   Dbug   RW   627     .debug_frame        lc_numeric_c.o(c_a__un.l)
+    0x00001a48   0x00000044   Dbug   RW   629     .debug_frame        rtsdiv10.o(c_a__un.l)
+    0x00001a8c   0x00000044   Dbug   RW   631     .debug_frame        sys_exit.o(c_a__un.l)
+    0x00001ad0   0x00000050   Dbug   RW   633     .debug_frame        istatus.o(f_a_p.l)
+    0x00001b20   0x0000003c   Dbug   RW   635     .debug_frame        classify.o(m_a_pu.l)
+    0x00001b5c   0x0000004c   Dbug   RW   637     .debug_frame        dtoi.o(m_a_pu.l)
+    0x00001ba8   0x0000004c   Dbug   RW   640     .debug_frame        defsig.o(c_a__un.l)
+    0x00001bf4   0x00000044   Dbug   RW   643     .debug_frame        use_semi.o(c_a__un.l)
+    0x00001c38   0x00000048   Dbug   RW   645     .debug_frame        sys_wrch.o(c_a__un.l)
+    0x00000000   0x000000c0   Dbug   RW     3     .debug_info         2440init.o
+    0x000000c0   0x000000c0   Dbug   RW     7     .debug_info         2440slib.o
+    0x00000180   0x000000b8   Dbug   RW    12     .debug_info         nand.o
+    0x00000238   0x00000340   Dbug   RW    15     .debug_info         nand.o
+    0x00000578   0x00000114   Dbug   RW    48     .debug_info         2440lib.o
+    0x0000068c   0x00000090   Dbug   RW    59     .debug_info         2440lib.o
+    0x0000071c   0x00000110   Dbug   RW    67     .debug_info         2440lib.o
+    0x0000082c   0x00000c80   Dbug   RW    52     .debug_info         2440lib.o
+    0x000014ac   0x00000420   Dbug   RW    87     .debug_info         Main.o
+    0x000018cc   0x000000d8   Dbug   RW   115     .debug_info         Main.o
+    0x000019a4   0x00000d84   Dbug   RW    91     .debug_info         Main.o
+    0x00002728   0x000000f8   Dbug   RW    95     .debug_info         Main.o
+    0x00002820   0x00000204   Dbug   RW   111     .debug_info         Main.o
+    0x00002a24   0x0000012c   Dbug   RW   213     .debug_info         cstmLcd.o
+    0x00002b50   0x00000748   Dbug   RW   217     .debug_info         cstmLcd.o
+    0x00003298   0x00000834   Dbug   RW   292     .debug_info         LCD_TFT.o
+    0x00003acc   0x0000021c   Dbug   RW   311     .debug_info         mmu.o
+    0x00003ce8   0x000001f8   Dbug   RW   469     .debug_info         lanYY.o
+    0x00003ee0   0x000001f8   Dbug   RW   475     .debug_info         feiYY.o
+    0x000040d8   0x000001f8   Dbug   RW   481     .debug_info         manYY_2.o
+    0x000042d0   0x000001f8   Dbug   RW   487     .debug_info         meiYY.o
+    0x000044c8   0x000001f8   Dbug   RW   493     .debug_info         nuanYY.o
+    0x000046c0   0x000001f8   Dbug   RW   499     .debug_info         xiYY.o
+    0x000048b8   0x000001f8   Dbug   RW   505     .debug_info         feiYYmini.o
+    0x00004ab0   0x000001f8   Dbug   RW   511     .debug_info         lanYYmini.o
+    0x00004ca8   0x000001f8   Dbug   RW   517     .debug_info         manYY_2mini.o
+    0x00004ea0   0x000001f8   Dbug   RW   523     .debug_info         meiYYmini.o
+    0x00005098   0x000001f8   Dbug   RW   529     .debug_info         nuanYYmini.o
+    0x00005290   0x000001f8   Dbug   RW   535     .debug_info         xiYYmini.o
+    0x00000000   0x0000023c   Dbug   RW     4     .debug_line         2440init.o
+    0x0000023c   0x0000013c   Dbug   RW     8     .debug_line         2440slib.o
+    0x00000378   0x00000174   Dbug   RW    11     .debug_line         nand.o
+    0x000004ec   0x000001e0   Dbug   RW    14     .debug_line         nand.o
+    0x000006cc   0x00000094   Dbug   RW    28     .debug_line         nand.o
+    0x00000760   0x000001a8   Dbug   RW    47     .debug_line         2440lib.o
+    0x00000908   0x000003bc   Dbug   RW    51     .debug_line         2440lib.o
+    0x00000cc4   0x00000058   Dbug   RW    58     .debug_line         2440lib.o
+    0x00000d1c   0x00000058   Dbug   RW    66     .debug_line         2440lib.o
+    0x00000d74   0x000001c0   Dbug   RW    86     .debug_line         Main.o
+    0x00000f34   0x000003bc   Dbug   RW    90     .debug_line         Main.o
+    0x000012f0   0x00000094   Dbug   RW   106     .debug_line         Main.o
+    0x00001384   0x00000094   Dbug   RW   110     .debug_line         Main.o
+    0x00001418   0x00000194   Dbug   RW   212     .debug_line         cstmLcd.o
+    0x000015ac   0x000002b0   Dbug   RW   216     .debug_line         cstmLcd.o
+    0x0000185c   0x000002ac   Dbug   RW   291     .debug_line         LCD_TFT.o
+    0x00001b08   0x00000198   Dbug   RW   310     .debug_line         mmu.o
+    0x00000000   0x0000019c   Dbug   RW    17     .debug_loc          nand.o
+    0x0000019c   0x00000850   Dbug   RW    54     .debug_loc          2440lib.o
+    0x000009ec   0x000006c0   Dbug   RW    93     .debug_loc          Main.o
+    0x000010ac   0x00000608   Dbug   RW   219     .debug_loc          cstmLcd.o
+    0x000016b4   0x0000058c   Dbug   RW   294     .debug_loc          LCD_TFT.o
+    0x00001c40   0x00000194   Dbug   RW   313     .debug_loc          mmu.o
+    0x00000000   0x00000180   Dbug   RW    13     .debug_macinfo      nand.o
+    0x00000180   0x00000138   Dbug   RW    31     .debug_macinfo      nand.o
+    0x000002b8   0x00000190   Dbug   RW    50     .debug_macinfo      2440lib.o
+    0x00000448   0x000000e8   Dbug   RW    61     .debug_macinfo      2440lib.o
+    0x00000530   0x000001f0   Dbug   RW    69     .debug_macinfo      2440lib.o
+    0x00000720   0x000001c8   Dbug   RW    89     .debug_macinfo      Main.o
+    0x000008e8   0x000001e0   Dbug   RW   109     .debug_macinfo      Main.o
+    0x00000ac8   0x0000003c   Dbug   RW   113     .debug_macinfo      Main.o
+    0x00000b04   0x0000025c   Dbug   RW   215     .debug_macinfo      cstmLcd.o
+    0x00000000   0x00000070   Dbug   RW    16     .debug_pubnames     nand.o
+    0x00000070   0x00000044   Dbug   RW    49     .debug_pubnames     2440lib.o
+    0x000000b4   0x000001bc   Dbug   RW    53     .debug_pubnames     2440lib.o
+    0x00000270   0x00000020   Dbug   RW    60     .debug_pubnames     2440lib.o
+    0x00000290   0x00000084   Dbug   RW    68     .debug_pubnames     2440lib.o
+    0x00000314   0x000001fc   Dbug   RW    88     .debug_pubnames     Main.o
+    0x00000510   0x000000e8   Dbug   RW    92     .debug_pubnames     Main.o
+    0x000005f8   0x00000038   Dbug   RW    96     .debug_pubnames     Main.o
+    0x00000630   0x00000028   Dbug   RW   112     .debug_pubnames     Main.o
+    0x00000658   0x00000024   Dbug   RW   116     .debug_pubnames     Main.o
+    0x0000067c   0x00000038   Dbug   RW   214     .debug_pubnames     cstmLcd.o
+    0x000006b4   0x000000b0   Dbug   RW   218     .debug_pubnames     cstmLcd.o
+    0x00000764   0x000000a4   Dbug   RW   293     .debug_pubnames     LCD_TFT.o
+    0x00000808   0x00000048   Dbug   RW   312     .debug_pubnames     mmu.o
+    0x00000850   0x000000bc   Dbug   RW   470     .debug_pubnames     lanYY.o
+    0x0000090c   0x000000bc   Dbug   RW   476     .debug_pubnames     feiYY.o
+    0x000009c8   0x000000bc   Dbug   RW   482     .debug_pubnames     manYY_2.o
+    0x00000a84   0x000000bc   Dbug   RW   488     .debug_pubnames     meiYY.o
+    0x00000b40   0x000000bc   Dbug   RW   494     .debug_pubnames     nuanYY.o
+    0x00000bfc   0x000000bc   Dbug   RW   500     .debug_pubnames     xiYY.o
+    0x00000cb8   0x000000bc   Dbug   RW   506     .debug_pubnames     feiYYmini.o
+    0x00000d74   0x000000bc   Dbug   RW   512     .debug_pubnames     lanYYmini.o
+    0x00000e30   0x000000bc   Dbug   RW   518     .debug_pubnames     manYY_2mini.o
+    0x00000eec   0x000000bc   Dbug   RW   524     .debug_pubnames     meiYYmini.o
+    0x00000fa8   0x000000bc   Dbug   RW   530     .debug_pubnames     nuanYYmini.o
+    0x00001064   0x000000bc   Dbug   RW   536     .debug_pubnames     xiYYmini.o
+
+
+================================================================================
+
+Image component sizes
+
+
+      Code    RO Data    RW Data    ZI Data      Debug   
+
+     15440         68    1600908         60      47648   Object Totals
+     15804        747          0         96       5096   Library Totals
+
+================================================================================
+
+
+      Code    RO Data    RW Data    ZI Data      Debug   
+
+     31244        815    1600908        156      52744   Grand Totals
+
+================================================================================
+
+    Total RO  Size(Code + RO Data)                32059 (  31.31kB)
+    Total RW  Size(RW Data + ZI Data)           1601064 (1563.54kB)
+    Total ROM Size(Code + RO Data + RW Data)    1632967 (1594.69kB)
+
+================================================================================
+
