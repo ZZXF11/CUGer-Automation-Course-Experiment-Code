@@ -1,0 +1,87 @@
+C51 COMPILER V9.57.0.0   MOVE                                                              12/12/2021 17:30:28 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MOVE
+OBJECT MODULE PLACED IN .\Objects\move.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE move.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\motor_move) DEBUG OBJECTEXTEND
+                    - PRINT(.\Listings\move.lst) TABS(2) OBJECT(.\Objects\move.obj)
+
+line level    source
+
+   1          #include <move.h>
+   2          #include <key.h>
+   3          int speed_time=2000;
+   4          int speed=1;
+   5          
+   6          void delay_ms(int i)
+   7          {
+   8   1        int j;
+   9   1        while(i--)
+  10   1        {
+  11   2          for(j=0;j<8;j++);
+  12   2          j=0;
+  13   2        }
+  14   1      }
+  15          
+  16          
+  17          //定义高电平为正转 使用P60~3 
+  18          //P60为x脉冲 P61为x方向
+  19          //P62为y脉冲 P63为y方向
+  20          
+  21          void xzz(){
+  22   1        int i;
+  23   1        for(i=0;i<speed_time;i++){
+  24   2          PortA=0x02;
+  25   2          delay_ms(speed);
+  26   2          PortA=0x03;
+  27   2          delay_ms(speed);
+  28   2        }
+  29   1      }
+  30          
+  31          
+  32          void xfz(){
+  33   1        int i;
+  34   1        for(i=0;i<speed_time;i++){
+  35   2          PortA=0x00;
+  36   2          delay_ms(speed);
+  37   2          PortA=0x01;
+  38   2          delay_ms(speed);
+  39   2        }
+  40   1      }
+  41          
+  42          void yzz(){
+  43   1        int i;
+  44   1        for(i=0;i<speed_time;i++){
+  45   2          PortA=0x08;
+  46   2          delay_ms(speed);
+  47   2          PortA=0x0c;
+  48   2          delay_ms(speed);
+  49   2        }
+  50   1      }
+  51          
+  52          void yfz(){
+  53   1        int i;
+  54   1        for(i=0;i<speed_time;i++){
+C51 COMPILER V9.57.0.0   MOVE                                                              12/12/2021 17:30:28 PAGE 2   
+
+  55   2          PortA=0x00;
+  56   2          delay_ms(speed);
+  57   2          PortA=0x04;
+  58   2          delay_ms(speed);
+  59   2        }
+  60   1      }
+  61          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    213    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

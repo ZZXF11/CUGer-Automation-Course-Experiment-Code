@@ -1,0 +1,33 @@
+..\obj\openmv.o: openmv.c
+..\obj\openmv.o: stm32f10x.h
+..\obj\openmv.o: ..\CORE\core_cm3.h
+..\obj\openmv.o: C:\Program Files\INCLUDE\stdint.h
+..\obj\openmv.o: system_stm32f10x.h
+..\obj\openmv.o: stm32f10x_conf.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
+..\obj\openmv.o: ..\USER\stm32f10x.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_bkp.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_can.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_cec.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_crc.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_dac.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_fsmc.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_i2c.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_iwdg.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_pwr.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_rtc.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_sdio.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_spi.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
+..\obj\openmv.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\openmv.o: openmv.h
+..\obj\openmv.o: ..\SYSTEM\sys\sys.h
+..\obj\openmv.o: C:\Program Files\INCLUDE\string.h

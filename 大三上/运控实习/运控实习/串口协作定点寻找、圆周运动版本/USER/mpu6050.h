@@ -1,0 +1,7 @@
+#ifndef __MPU_6050_H
+#define __MPU_6050_H
+#include "sys.h"
+void MPU6050_UART2(unsigned long baudrate);
+void MPU6050_Data_Get(void);
+u8 OpenMV_Data_Get(void);
+#endif
