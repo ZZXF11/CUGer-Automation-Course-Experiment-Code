@@ -1,0 +1,117 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              12/12/2021 17:30:28 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\motor_move) DEBUG OBJECTEXTEND
+                    - PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <key.h>
+   3          #include <lcd.h>
+   4          #include <move.h>
+   5          #include <init.h>
+   6          
+   7          unsigned char keynum;
+   8          unsigned char code table[17]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0
+             -x71,0x00};
+   9          void move_select_head(){
+  10   1        while(1){
+  11   2        if(TestKey()){
+  12   3          keynum=KeyScan_1() & 0x0f;  //keynum就是按键对应的值
+*** WARNING C206 IN LINE 12 OF main.c: 'KeyScan_1': missing function-prototype
+  13   3          switch (keynum)  //keynum就等于按键的数值
+  14   3                {
+  15   4                    case 0x0a:  {xzz();break;}   //s7
+  16   4                    case 0x02:  {xfz();break;}   //s15
+  17   4                    case 0x07:  {yzz();break;}   //s12 手动控制 上下左右            
+  18   4                    case 0x05:  {yfz();break;}  //s10
+  19   4                    case 0x0c:  {break;}
+  20   4                 }      
+  21   3          }
+  22   2        if(keynum==0x0c){
+  23   3          Show_select();
+  24   3          break;}
+  25   2        }
+  26   1      }
+  27          
+  28          void input_num(){
+  29   1        while(1){
+  30   2        if(TestKey()){
+  31   3          keynum=KeyScan() & 0x0f;  //keynum就是按键对应的值
+  32   3          switch (keynum)  //keynum就等于按键的数值
+  33   3                {
+  34   4                    case 0x0f:  {xzz();break;}   //s14 0
+  35   4                    case 0x0a:  {xzz();break;}   //s7 1
+  36   4                    case 0x09:  {xzz();break;}   //s8 2
+  37   4                    case 0x08:  {xzz();break;}   //s9 3
+  38   4                    case 0x06:  {xzz();break;}   //s11 4
+  39   4                    case 0x05:  {xzz();break;}   //s12 5
+  40   4                    case 0x04:  {xzz();break;}   //s13 6
+  41   4                    case 0x02:  {xfz();break;}   //s15 7
+  42   4                    case 0x01:  {yzz();break;}   //s16 8   
+  43   4                    case 0x00:  {yzz();break;}   //s17 9   
+  44   4                    case 0x0b:  {xzz();break;}   //s6 确认
+  45   4                    case 0x07:  {yfz();break;}  //s10 清除
+  46   4                    case 0x0c:  {break;}
+  47   4                 }      
+  48   3          }
+  49   2        if(keynum==0x0c){
+  50   3          Show_select();
+  51   3          break;}
+  52   2        }
+C51 COMPILER V9.57.0.0   MAIN                                                              12/12/2021 17:30:28 PAGE 2   
+
+  53   1      }
+  54          
+  55          void Caozuokey()//设置模式：道路、标载、开启温度
+  56          {       
+  57   1        if(TestKey()){
+  58   2      
+  59   2          keynum=KeyScan() & 0x0f;  //keynum就是按键对应的值
+  60   2                switch (keynum)  //keynum就等于按键的数值
+  61   2                {
+  62   3                     case 0x0f:  {Show_head();move_select_head();break;}//s2
+  63   3                     case 0x0b:  {Show_str();break;}//s6 
+  64   3                     case 0x07:  {Show_yh();break;}//s10
+  65   3                     case 0x03:   break; //s14
+  66   3                 
+  67   3                 }            
+  68   2           }                     
+  69   1      }
+  70          
+  71          
+  72          
+  73          void main(void)
+  74          { 
+  75   1        int i=0;
+  76   1        delay_ms(500);
+  77   1        CAddr=0x81;//设置8255工作方式,A口输出
+  78   1        LED=0x00;
+  79   1        ShowXiangmu();
+  80   1        delay_ms(5000);
+  81   1        Show_select();
+  82   1      
+  83   1        while(1){
+  84   2      
+  85   2          Caozuokey();
+  86   2      
+  87   2        }
+  88   1      
+  89   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    241    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

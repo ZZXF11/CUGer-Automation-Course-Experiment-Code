@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\move.obj",
+".\Objects\key.obj",
+".\Objects\lcd.obj" 
+TO ".\Objects\moter_move" 
+PRINT(".\Listings\moter_move.m51")
