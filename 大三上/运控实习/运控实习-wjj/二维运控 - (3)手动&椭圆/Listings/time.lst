@@ -1,0 +1,76 @@
+C51 COMPILER V9.59.0.0   TIME                                                              01/09/2022 19:20:26 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE TIME
+OBJECT MODULE PLACED IN .\Objects\time.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE time.c LARGE ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE DEBUG OBJ
+                    -ECTEXTEND PRINT(.\Listings\time.lst) TABS(2) OBJECT(.\Objects\time.obj)
+
+line level    source
+
+   1          #include "time.h"
+   2          
+   3          // 函数作用：毫秒延时函数
+   4          // 参数：延时的毫秒数
+   5          void delayms(unsigned int tms)
+   6          {
+   7   1        unsigned int i,j;   
+   8   1        for(i=tms;i>0;i--)
+   9   1          for(j=110;j>0;j--); 
+  10   1      }
+  11          
+  12          // 函数作用：微秒延时函数
+  13          // 参数：延时的微秒数
+  14          void delayus(unsigned int tus)
+  15          {
+  16   1        unsigned int i;   
+  17   1        for(i=tus;i>0;i--)
+  18   1          _nop_();  // 延时一个机器周期，当晶振频率为12MHz时，延时1us   
+  19   1      }
+  20          
+  21          //初始化中断
+  22          void inter_init()
+  23          {
+  24   1        
+  25   1        TMOD |= 0x02;  //定时器16为计数工作模式
+  26   1        TH0 =0x00;
+  27   1        TL0 =0x00; //5ms
+  28   1      //  TH0 =0xED;
+  29   1      //  TL0 =0xFF; //5ms
+  30   1        ET0 = 1; //开定时器0中断
+  31   1        TR0 = 1;//启动定时器0
+  32   1        EA = 1; //开总中断
+  33   1      }
+  34          
+  35          void TIM1init(void)//定时器0初始化
+  36          {
+  37   1        TMOD|=0x20;//定时器1工作方式2，TH1是重装值，TL1是初值
+  38   1        TH1=0x00; //重载值
+  39   1        TL1=0x00; //初始化值
+  40   1        ET1=0;    //开中断
+  41   1        TR1=1;
+  42   1      }
+  43          
+  44          //外部中断初始化
+  45          void EX0init(void)
+  46          {
+  47   1       IT0 = 1;   //指定外部中断0下降沿触发，INT0 (P3.2)
+  48   1       EX0 = 1;   //使能外部中断
+  49   1       EA = 1;    //开总中断
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     83    ----
+C51 COMPILER V9.59.0.0   TIME                                                              01/09/2022 19:20:26 PAGE 2   
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

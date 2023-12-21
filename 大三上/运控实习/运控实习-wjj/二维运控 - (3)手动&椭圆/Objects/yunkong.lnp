@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\move.obj",
+".\Objects\IOport.obj",
+".\Objects\time.obj" 
+TO ".\Objects\yunkong" 
+PRINT(".\Listings\yunkong.m51") RAMSIZE(256) 
