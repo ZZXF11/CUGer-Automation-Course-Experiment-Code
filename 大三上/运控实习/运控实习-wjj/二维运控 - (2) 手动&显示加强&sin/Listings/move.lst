@@ -1,0 +1,709 @@
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MOVE
+OBJECT MODULE PLACED IN .\Objects\move.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE move.c COMPACT ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE DEBUG O
+                    -BJECTEXTEND PRINT(.\Listings\move.lst) TABS(2) OBJECT(.\Objects\move.obj)
+
+line level    source
+
+   1          #include <math.h>
+   2          #include "move.h"
+   3          #include "support.h"
+   4          #include "lcd.h"
+   5          
+   6          #define pai 3.1415926
+   7          
+   8          xdata unsigned char PortA _at_ 0x7c00;
+   9          xdata unsigned char PortB _at_ 0x7c01;
+  10          xdata unsigned char PortC _at_ 0x7c02;   // PC硬件地址,键盘
+  11          xdata unsigned char INC _at_ 0x6002 ; //$$$$$$$$$
+  12          xdata unsigned char IN _at_ 0x6002 ;
+  13          
+  14          extern int flag;
+  15          extern int confirm_sign;//f键确定，确认键状态标志
+  16          extern int retreat_sign;
+  17          extern unsigned int SDspeed;
+  18          extern int noTuiChu;
+  19          
+  20          code unsigned char KeyTable[] = //键值表
+  21          { 
+  22            0x0c,0x08,0x04,0x00,
+  23            0x0d,0x09,0x05,0x01,
+  24            0x0e,0x0a,0x06,0x02,
+  25            0x0f,0x0b,0x07,0x03
+  26          };
+  27          
+  28          void Delaykey(int CNT)
+  29          {
+  30   1        unsigned char i;
+  31   1      
+  32   1        while (CNT-- !=0)
+  33   1          for (i=100; i !=0; i--);
+  34   1      }
+  35          
+  36          
+  37          unsigned char TestKey() //有无键按下检测，有就返回非零
+  38          {
+  39   1         PortC = 0x0f;            // 输出PC4~PC6置为0，四列一起扫描
+  40   1         return (~INC & 0x0f);   //读回四行状态（PC0~PC3），被按下的被拉成0，取反为1
+  41   1      }
+  42          
+  43          
+  44          unsigned char keyscan() //键盘扫描函数，返回键值
+  45          {
+  46   1        unsigned char Pos;
+  47   1        unsigned char i;
+  48   1        unsigned char k;
+  49   1        i = 4;
+  50   1        Pos = 0x80;     // 1000 0000，扫描用
+  51   1        do {
+  52   2          PortC = ~ Pos;
+  53   2          Pos >>= 1;
+  54   2          k = ~IN & 0x0f;
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 2   
+
+  55   2        } while ((--i != 0) && (k == 0));
+  56   1      
+  57   1        if (k != 0) {//如果有键按下
+  58   2          i *= 4;
+  59   2          if (k & 2)
+  60   2            i += 1;
+  61   2          else if (k & 4)
+  62   2            i += 2;
+  63   2          else if (k & 8)
+  64   2            i += 3;
+  65   2            do {Delaykey(10);} 
+  66   2            while (TestKey());  // deng键松开 
+  67   2          return(KeyTable[i]);  //有键按下返回键值
+  68   2        } 
+  69   1        else return(0xff);//无键按下，则返回0xff  ￥￥￥￥￥￥￥￥￥￥￥￥
+  70   1      }
+  71          
+  72          unsigned char keyscan2()  //键盘扫描函数，返回键值
+  73          {
+  74   1        unsigned char Pos;
+  75   1        unsigned char i;
+  76   1        unsigned char k;
+  77   1        i = 4;
+  78   1        Pos = 0x80;     // 1000 0000，扫描用
+  79   1        do {
+  80   2          PortC = ~ Pos;
+  81   2          Pos >>= 1;
+  82   2          k = ~IN & 0x0f;
+  83   2        } while ((--i != 0) && (k == 0));
+  84   1      
+  85   1        if (k != 0) {//如果有键按下
+  86   2          i *= 4;
+  87   2          if (k & 2)
+  88   2            i += 1;
+  89   2          else if (k & 4)
+  90   2            i += 2;
+  91   2          else if (k & 8)
+  92   2            i += 3;
+  93   2      //    if(flag!=1)//如果不处于模式1手动
+  94   2      //    {
+  95   2      //      do {Delaykey(10);} 
+  96   2      //      while (TestKey());  // deng键松开     
+  97   2      //    }
+  98   2      //      do {Delaykey(10);} 
+  99   2      //      while (TestKey());  // deng键松开 
+ 100   2          return(KeyTable[i]);  //有键按下返回键值
+ 101   2        } 
+ 102   1        else return(0xff);//无键按下，则返回0xff  ￥￥￥￥￥￥￥￥￥￥￥￥
+ 103   1      }
+ 104          
+ 105          unsigned int i;
+ 106          //蓝红绿黄
+ 107          //PortA前四位控制X的方向，后四位控制X方向上的运行
+ 108          //PortB前四位控制Y的方向，后四位控制Y方向上的运行
+ 109          
+ 110          //移动一步
+ 111          void move_onestep(unsigned char coordinate, unsigned char direction, unsigned int speed)
+ 112          { 
+ 113   1        if(coordinate == 'x')
+ 114   1        {
+ 115   2          if(direction == '+'){//判断方向，给方向位赋值
+ 116   3          PortA=0xff;       //启动电机让其运动一个机器周期（即实现走一步的功能）
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 3   
+
+ 117   3          for (i =0; i < speed; i++) _nop_();
+ 118   3          PortA=0xf0;
+ 119   3          }
+ 120   2          else{ //如果-向
+ 121   3          PortA=0x0f;       //启动电机让其运动一个机器周期（即实现走一步的功能）
+ 122   3          for (i =0; i < speed; i++) _nop_();
+ 123   3          PortA=0x00;
+ 124   3          }
+ 125   2        }
+ 126   1        else if(coordinate == 'y')
+ 127   1        {
+ 128   2          if(direction == '+'){//判断方向，给方向位赋值
+ 129   3          PortB=0xff;       //启动电机让其运动一个机器周期（即实现走一步的功能）
+ 130   3          for (i =0; i < speed; i++) _nop_();
+ 131   3          PortB=0xf0;
+ 132   3          }
+ 133   2          else{ 
+ 134   3          PortB=0x0f;       //启动电机让其运动一个机器周期（即实现走一步的功能）
+ 135   3          for (i =0; i < speed; i++) _nop_();
+ 136   3          PortB=0x00;
+ 137   3          }
+ 138   2        }
+ 139   1      }
+ 140          
+ 141          
+ 142          void shoudong() //手动模式扫描按键、执行操作函数
+ 143          {
+ 144   1          unsigned char keynum;
+ 145   1          unsigned char TuiChu=0;
+ 146   1          int cishu=500;
+ 147   1          while(TestKey())
+ 148   1          {
+ 149   2            if(noTuiChu==0) break;
+ 150   2                  keynum=keyscan2() & 0x0f; 
+ 151   2                  switch (keynum)  //keynum就等于按键的数值
+ 152   2                  {
+ 153   3                       case 5:  {                
+ 154   4                          move_onestep('x','+',SDspeed);
+ 155   4                         cishu--;
+ 156   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 157   4                       break;} 
+ 158   3                       case 7:  {             
+ 159   4                         move_onestep('x','-',SDspeed);
+ 160   4                         cishu--;
+ 161   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 162   4                       break;} 
+ 163   3                       case 0x0a:  {               
+ 164   4                         move_onestep('y','+',SDspeed);
+ 165   4                         cishu--;
+ 166   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 167   4                       break;} 
+ 168   3                       case 2: {
+ 169   4                         move_onestep('y','-',SDspeed);
+ 170   4                         cishu--;
+ 171   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 172   4                       break;}
+ 173   3                       case 1: {
+ 174   4                         move_onestep('x','+',SDspeed);
+ 175   4                         move_onestep('y','-',SDspeed);
+ 176   4                         cishu--;
+ 177   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 178   4                       break;}
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 4   
+
+ 179   3                       case 3: {
+ 180   4                         move_onestep('x','-',SDspeed);
+ 181   4                         move_onestep('y','-',SDspeed);
+ 182   4                         cishu--;
+ 183   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 184   4                       break;}
+ 185   3                       case 9: {
+ 186   4                         move_onestep('x','+',SDspeed);
+ 187   4                         move_onestep('y','+',SDspeed);
+ 188   4                         cishu--;
+ 189   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 190   4                       break;}
+ 191   3                       case 0x0b: {
+ 192   4                         move_onestep('x','-',SDspeed);
+ 193   4                         move_onestep('y','+',SDspeed);
+ 194   4                         cishu--;
+ 195   4                         if(cishu<0) {cishu=500;Display_1(SDspeed,keynum);}  
+ 196   4                       break;}
+ 197   3                       case 0x0c: //c键加速
+ 198   3                          {
+ 199   4                            SDspeed-=1;
+ 200   4                            Display_1(SDspeed,keynum);
+ 201   4                            do{Delaykey(10);}while((keyscan2())==0x0c);
+ 202   4                            break;
+ 203   4                          }
+ 204   3                       case 0x08: //8键减速 
+ 205   3                          {
+ 206   4                            SDspeed+=1;
+ 207   4                            Display_1(SDspeed,keynum);
+ 208   4                            do{Delaykey(10);}while((keyscan2())==0x08);
+ 209   4                            break;
+ 210   4                          }              
+ 211   3                       case 0x00: {noTuiChu=0;do{Delaykey(10);}while((keyscan2())==0x00);break;}
+ 212   3                  }
+ 213   2              
+ 214   2         }
+ 215   1      }
+ 216          
+ 217          
+ 218          //画直线
+ 219          //void draw_line(Cdt_struct Coordinate, unsigned int speed)
+ 220          //{
+ 221          //  unsigned int all_step;//总步数
+ 222          //  unsigned char dir_x;//方向
+ 223          //  unsigned char dir_y;
+ 224          //  double f;//判别式的值
+ 225          //  
+ 226          //  //令当前坐标为起始坐标值
+ 227          //  x_now=Coordinate.x_s;
+ 228          //  y_now=Coordinate.y_s;
+ 229          //  //计算总步数
+ 230          //  all_step=abs(Coordinate.x_end-Coordinate.x_s)+abs(Coordinate.y_end-Coordinate.y_s);
+ 231          //  //判别式初始值
+ 232          //  f=(y_now-Coordinate.y_s)*(Coordinate.x_end-Coordinate.x_s)-(x_now-Coordinate.x_s)*(Coordinate.y_end-Coo
+             -rdinate.y_s);
+ 233          //  
+ 234          //  
+ 235          //  //all_step=all_step*1000;
+ 236          //  all_step=all_step*5000; 
+ 237          //  if(Coordinate.x_end-Coordinate.x_s>0) dir_x='+';
+ 238          //  else dir_x='-';
+ 239          //  if(Coordinate.y_end-Coordinate.y_s>0) dir_y='+';
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 5   
+
+ 240          //  else dir_y='-';
+ 241          
+ 242          //  while(all_step)
+ 243          //  {
+ 244          //    f=(y_now-Coordinate.y_s)*(Coordinate.x_end-Coordinate.x_s)-(x_now-Coordinate.x_s)*(Coordinate.y_end-Co
+             -ordinate.y_s);
+ 245          //    if(f>=0)
+ 246          //    {
+ 247          //      move_onestep('x',dir_x,speed);
+ 248          //      //f = f - abs(Coordinate.y_end-Coordinate.y_s);
+ 249          //      if(dir_x=='-')
+ 250          //        x_now=x_now-0.0001;
+ 251          //      else
+ 252          //        x_now=x_now+0.0001;
+ 253          //    }
+ 254          //    else
+ 255          //    {
+ 256          //      move_onestep('y',dir_y,speed);
+ 257          //      //f = f + abs(Coordinate.x_end-Coordinate.x_s);
+ 258          //      if(dir_y=='-')
+ 259          //        y_now=y_now-0.0001;
+ 260          //      else
+ 261          //        y_now=y_now+0.0001;
+ 262          //    }
+ 263          //    all_step--;
+ 264          
+ 265          //  }
+ 266          ////  beep=~beep;   //蜂鸣器提示
+ 267          ////  delayms(1000);
+ 268          ////  beep=~beep;
+ 269          ////  LED1=1;   //画图指示灯灭
+ 270          //}
+ 271          
+ 272          
+ 273          
+ 274          
+ 275          //函数功能：画一个圆
+ 276          //void draw_circle_AW(Cdt_circle circle, unsigned int speed)
+ 277          //{
+ 278          //  //Cdt_struct_now Cdt_now;//当前坐标
+ 279          //  long int count=8*circle.radius*5000;
+ 280          //  //unsigned long int count=circle.radius*8*5000;
+ 281          //  double f;//判别式
+ 282          //  double I;//x的差值 
+ 283          //  double J;//y的差值
+ 284          //  
+ 285          //  int keynum;
+ 286          //  
+ 287          //  //当前坐标等于起始点（以圆心为原点）
+ 288          //  x_now=circle.x_s-circle.x_center;
+ 289          //  y_now=circle.y_s-circle.y_center;
+ 290          //  
+ 291          //  //坐标差值，用于计算判别式
+ 292          //  I = circle.x_s;//- circle.x_center;
+ 293          //  J = circle.y_s;//- circle.y_center;
+ 294          //  
+ 295          //  //开始画圆
+ 296          //  while(count>0)
+ 297          //  {
+ 298          //    f=abs(x_now*x_now)+abs(y_now*y_now)-abs(circle.radius*circle.radius);
+ 299          //    //第一象限
+ 300          //    if(x_now>=0 && y_now>0)
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 6   
+
+ 301          //    {
+ 302          //      if(f>=0)//判别式大于零，点在圆外面，向x-运动一步
+ 303          //      {
+ 304          //        move_onestep('x','-',speed);
+ 305          //        x_now=x_now-0.0002;
+ 306          //      }
+ 307          //      else//判别式小于零，点在圆里面，向y+运动一步
+ 308          //      {
+ 309          //        move_onestep('y','+',speed);
+ 310          //        y_now=y_now+0.0002;
+ 311          //      }
+ 312          //    }
+ 313          //    //第二象限
+ 314          //    else if(x_now<0&&y_now>=0)
+ 315          //    {
+ 316          //      if(f>=0)
+ 317          //      {
+ 318          //        move_onestep('y','-',speed);
+ 319          //        y_now=y_now-0.0002;
+ 320          //      }
+ 321          //      else
+ 322          //      {
+ 323          //        move_onestep('x','-',speed);
+ 324          //        x_now=x_now-0.0002;
+ 325          //      }
+ 326          //    }
+ 327          //    //第三象限
+ 328          //    else if(x_now<=0&&y_now<0)
+ 329          //    {
+ 330          //      if(f>=0)
+ 331          //      {
+ 332          //        move_onestep('x','+',speed);
+ 333          //        x_now=x_now+0.0002;
+ 334          //      }
+ 335          //      else
+ 336          //      {
+ 337          //        move_onestep('y','-',speed);
+ 338          //        y_now=y_now-0.0002;
+ 339          //      }
+ 340          //    }
+ 341          //    // 第四象限
+ 342          //    else if(x_now>0&&y_now<=0)
+ 343          //    {
+ 344          //      if(f>=0)
+ 345          //      {
+ 346          //        move_onestep('y','+',speed);
+ 347          //        y_now=y_now+0.0002;
+ 348          //      }
+ 349          //      else
+ 350          //      {
+ 351          //        move_onestep('x','+',speed);
+ 352          //        x_now=x_now+0.0002;
+ 353          //      }
+ 354          //    }
+ 355          //    count--;
+ 356          //    if(TestKey())
+ 357          //    {
+ 358          //      keynum=keyscan() & 0x0f;  
+ 359          //      if(keynum==0x0b) { count=-1;}
+ 360          //    }
+ 361          //  }
+ 362          ////  beep=~beep;   //蜂鸣器提示
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 7   
+
+ 363          ////  delayms(1000);
+ 364          ////  beep=~beep;
+ 365          ////  LED1=1;       //画图指示灯灭
+ 366          //}
+ 367          
+ 368          //画椭圆
+ 369          //void darw_oval(Cdt_oval oval,unsigned int speed){
+ 370          //  unsigned long int count=(oval.a+oval.b)*4*5000;
+ 371          //  double f;//判别式
+ 372          //  double I;//x的差值 
+ 373          //  double J;//y的差值
+ 374          //  
+ 375          //  //当前坐标等于起始点（以圆心为原点）
+ 376          //  x_now=oval.x_s-oval.x_center;
+ 377          //  y_now=oval.y_s-oval.y_center;
+ 378          //  
+ 379          //  //坐标差值，用于计算判别式
+ 380          //  I = oval.x_s;//- circle.x_center;
+ 381          //  J = oval.y_s;//- circle.y_center;
+ 382          //  
+ 383          //  //开始画椭圆
+ 384          //  move_onestep('y','+',speed);
+ 385          //  y_now=y_now+0.0002;
+ 386          //  
+ 387          //  while(count>0)
+ 388          //  {
+ 389          //    //f=1.0-( (x_now*x_now)/(oval.a*oval.a) + (y_now*y_now)/(oval.b*oval.b) );
+ 390          //    f=(x_now*x_now*oval.b*oval.b)+(y_now*y_now*oval.a*oval.a)-(oval.a*oval.a*oval.b*oval.b);
+ 391          //    //第一象限
+ 392          //    if(x_now>=0 && y_now>0)
+ 393          //    {
+ 394          //      if(f>=0)//判别式大于零，点在圆外面，向x-运动一步
+ 395          //      {
+ 396          //        move_onestep('x','-',speed);
+ 397          //        x_now=x_now-0.0002;
+ 398          //      }
+ 399          //      else//判别式小于零，点在圆里面，向y+运动一步
+ 400          //      {
+ 401          //        move_onestep('y','+',speed);
+ 402          //        y_now=y_now+0.0002;
+ 403          //      }
+ 404          //    }
+ 405          //    //第二象限
+ 406          //    else if(x_now<0&&y_now>=0)
+ 407          //    {
+ 408          //      if(f>=0)
+ 409          //      {
+ 410          //        move_onestep('y','-',speed);
+ 411          //        y_now=y_now-0.0002;
+ 412          //      }
+ 413          //      else
+ 414          //      {
+ 415          //        move_onestep('x','-',speed);
+ 416          //        x_now=x_now-0.0002;
+ 417          //      }
+ 418          //    }
+ 419          //    //第三象限
+ 420          //    else if(x_now<=0&&y_now<0)
+ 421          //    {
+ 422          //      if(f>=0)
+ 423          //      {
+ 424          //        move_onestep('x','+',speed);
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 8   
+
+ 425          //        x_now=x_now+0.0002;
+ 426          //      }
+ 427          //      else
+ 428          //      {
+ 429          //        move_onestep('y','-',speed);
+ 430          //        y_now=y_now-0.0002;
+ 431          //      }
+ 432          //    }
+ 433          //    // 第四象限
+ 434          //    else if(x_now>0&&y_now<=0)
+ 435          //    {
+ 436          //      if(f>=0)
+ 437          //      {
+ 438          //        move_onestep('y','+',speed);
+ 439          //        y_now=y_now+0.0002;
+ 440          //      }
+ 441          //      else
+ 442          //      {
+ 443          //        move_onestep('x','+',speed);
+ 444          //        x_now=x_now+0.0002;
+ 445          //      }
+ 446          //    }
+ 447          //    count--;
+ 448          //  }
+ 449          //}
+ 450          
+ 451          //画sin曲线
+ 452          void draw_sin(double A,double w,double fai,unsigned int speed)
+ 453          {
+ 454   1        unsigned long int count=(pai/w+2*A)*2*5000;//计算总步数（总脉冲数）
+ 455   1        double f;//判别式
+ 456   1        //设置当前坐标
+ 457   1        x_now=0;
+ 458   1        y_now=A*sin(w*x_now+fai); 
+ 459   1        
+ 460   1        //开始画sin
+ 461   1        move_onestep('y','+',speed);
+ 462   1        y_now=y_now+0.0002;
+ 463   1      
+ 464   1        while(count>0)
+ 465   1        {
+ 466   2          f=y_now-A*sin(w*x_now+fai);
+ 467   2          if(x_now <= (pai/(2*w)))  //0~pai/2w
+ 468   2          {
+ 469   3            if(f>=0)  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 470   3            else  {move_onestep('y','+',speed);y_now=y_now+0.0002;}
+ 471   3          }
+ 472   2          else if(x_now <= 2*(pai/(2*w))) //pai/2w ~ pai/w
+ 473   2          {
+ 474   3            if(f>=0)  {move_onestep('y','-',speed);y_now=y_now-0.0002;}
+ 475   3            else  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 476   3          } 
+ 477   2          else if(x_now <= 3*(pai/(2*w))) //pai/w ~ 3pai/2w
+ 478   2          {
+ 479   3            if(f>=0)  {move_onestep('y','-',speed);y_now=y_now-0.0002;}
+ 480   3            else  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 481   3          }   
+ 482   2          else if(x_now <= 4*(pai/(2*w)) )  // 3pai/2w ~ 2pai/w
+ 483   2          {
+ 484   3            if(f>=0)  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 485   3            else  {move_onestep('y','+',speed);y_now=y_now+0.0002;}
+ 486   3          }
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 9   
+
+ 487   2          count--;
+ 488   2        }
+ 489   1      }
+ 490          
+ 491          //sin曲线进阶版（任意初相）
+ 492          void draw_sin2(double A,double w,double fai,unsigned int speed)
+ 493          {
+ 494   1        unsigned long int count=(pai/w+2*A)*2*5000;//计算总步数（总脉冲数）
+ 495   1        double f;//判别式
+ 496   1        //设置当前坐标
+ 497   1        x_now=0;
+ 498   1        y_now=A*sin(w*x_now+fai); 
+ 499   1        
+ 500   1        //开始画sin
+ 501   1        move_onestep('y','+',speed);
+ 502   1        y_now=y_now+0.0002;
+ 503   1      
+ 504   1        while(count>0)
+ 505   1        {
+ 506   2          f=y_now-A*sin(w*x_now+fai);
+ 507   2          
+ 508   2          if(cos(w*x_now+fai)>0)  //上升段
+ 509   2          {
+ 510   3            if(f>=0)  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 511   3            else  {move_onestep('y','+',speed);y_now=y_now+0.0002;}     
+ 512   3          }
+ 513   2          else if(cos(w*x_now+fai)<0) //下降段
+ 514   2          {
+ 515   3            if(f>=0)  {move_onestep('y','-',speed);y_now=y_now-0.0002;}
+ 516   3            else  {move_onestep('x','+',speed);x_now=x_now+0.0002;}     
+ 517   3          }
+ 518   2          else  { move_onestep('x','+',speed);x_now=x_now+0.0002;}  //波峰波谷
+ 519   2          count--;
+ 520   2        }
+ 521   1      }
+ 522          
+ 523          double myfunc(double x) //把待绘制函数封装成“函数”
+ 524          {
+ 525   1        double value=0;
+ 526   1        value=sin(x);   //待绘制的函数，以sin为例
+ 527   1        return value;
+ 528   1      }
+ 529          
+ 530          double differentiate(double x0) //求导函数
+ 531          {
+ 532   1        double dx,dd1,dd2;
+ 533   1        dx=0.01;    //设 dx 初值
+ 534   1        do{
+ 535   2            dd1=(myfunc(x0) - myfunc(x0+dx))/dx;    //计算导数dd1
+ 536   2            dx = 0.5 * dx;  // 减小步长
+ 537   2            dd2=(myfunc(x0) - myfunc(x0+dx))/dx;    //计算导数dd2
+ 538   2        }while(abs(dd1-dd2) >= 1e-06); //判断新旧导数值之差是否满足精度
+ 539   1        return dd2;
+ 540   1      }
+ 541          
+ 542          //任意函数曲线绘制
+ 543          void draw_random_func(double x1,double x2,unsigned int speed) //起点x、终点x、速度
+ 544          {
+ 545   1        //这里用当前x值x_now来判断插补终点，不再用计算总脉冲数的办法
+ 546   1        double F;//判别式
+ 547   1        //设置当前坐标
+ 548   1        x_now=x1;
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 10  
+
+ 549   1        y_now=myfunc(x_now);  
+ 550   1        
+ 551   1        //开始画绘制
+ 552   1        while(x_now<=x2)  //只要x_now还没到达终点x2便继续运动
+ 553   1        {
+ 554   2          F=y_now-myfunc(x_now);  //任意函数的判别函数F的表达式
+ 555   2          if(differentiate(x_now)>0)  //上升段
+ 556   2          {
+ 557   3            if(F>=0)  {move_onestep('x','+',speed);x_now=x_now+0.0002;}
+ 558   3            else  {move_onestep('y','+',speed);y_now=y_now+0.0002;}     
+ 559   3          }
+ 560   2          else if(differentiate(x_now)<0) //下降段
+ 561   2          {
+ 562   3            if(F>=0)  {move_onestep('y','-',speed);y_now=y_now-0.0002;}
+ 563   3            else  {move_onestep('x','+',speed);x_now=x_now+0.0002;}     
+ 564   3          }
+ 565   2          else  { move_onestep('x','+',speed);x_now=x_now+0.0002;}  //波峰波谷
+ 566   2        }
+ 567   1      }
+ 568          
+ 569          ////******************进阶版sin，任意初相**************************
+ 570          //void draw_sin(double A,double w,double fai,unsigned int speed)
+ 571          //{
+ 572          //  unsigned long int count=(3.1415926/w+2*A)*2*5000;
+ 573          //  double f;//判别式
+ 574          //  int Q,P;
+ 575          //  //设置当前坐标
+ 576          //  x_now=0;
+ 577          //  y_now=A*sin(w*x_now+fai); 
+ 578          //  
+ 579          //  Q=(2*pai/w-fai)/(pai/(2*w));
+ 580          //  
+ 581          //  //开始画sin
+ 582          ////  move_onestep('x','+',speed);
+ 583          ////  x_now=x_now+0.0002; 
+ 584          //  move_onestep('y','+',speed);
+ 585          //  y_now=y_now+0.0002;
+ 586          
+ 587          //  while(count>0)
+ 588          //  {
+ 589          //    f=y_now-A*sin(w*x_now+fai);
+ 590          //    for(P=4;P<=8;P++)
+ 591          //    {
+ 592          //      if(x_now>((pai/(2*w))*(P-Q-1)-fai) && x_now<=((pai/(2*w))*(P-Q)-fai))
+ 593          //      {
+ 594          //        switch (((P-Q)%4)+1)
+ 595          //        {
+ 596          //          case 1:
+ 597          //          {
+ 598          //              if(f>=0)//判别式大于零，点在圆外面，向x+运动一步
+ 599          //              {
+ 600          //                move_onestep('x','+',speed);
+ 601          //                x_now=x_now+0.0002;
+ 602          //              }
+ 603          //              else//判别式小于零，点在圆里面，向y+运动一步
+ 604          //              {
+ 605          //                move_onestep('y','+',speed);
+ 606          //                y_now=y_now+0.0002;
+ 607          //              }
+ 608          //            count--;
+ 609          //            break;
+ 610          //          }
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 11  
+
+ 611          //          case 2:
+ 612          //          {
+ 613          //              if(f>=0)
+ 614          //              {
+ 615          //                move_onestep('y','-',speed);
+ 616          //                y_now=y_now-0.0002;
+ 617          //              }
+ 618          //              else
+ 619          //              {
+ 620          //                move_onestep('x','+',speed);
+ 621          //                x_now=x_now+0.0002;
+ 622          //              } 
+ 623          //            count--;              
+ 624          //            break;
+ 625          //          }
+ 626          //          case 3:
+ 627          //          {
+ 628          //              if(f>=0)
+ 629          //              {
+ 630          //                move_onestep('y','-',speed);
+ 631          //                y_now=y_now-0.0002;
+ 632          //              }
+ 633          //              else
+ 634          //              {
+ 635          //                move_onestep('x','+',speed);
+ 636          //                x_now=x_now+0.0002;
+ 637          //              } 
+ 638          //            count--;              
+ 639          //            break;
+ 640          //          }
+ 641          //          case 4:
+ 642          //          {
+ 643          //              if(f>=0)
+ 644          //              {
+ 645          //                move_onestep('x','+',speed);
+ 646          //                x_now=x_now+0.0002;
+ 647          //              }
+ 648          //              else
+ 649          //              {
+ 650          //                move_onestep('y','+',speed);
+ 651          //                y_now=y_now+0.0002;
+ 652          //              }
+ 653          //            count--;              
+ 654          //            break;
+ 655          //          }         
+ 656          //        }
+ 657          //      }
+ 658          //    }
+ 659          //  }
+ 660          //}
+ 661          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3117    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =      2      83
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.59.0.0   MOVE                                                              01/21/2022 11:29:23 PAGE 12  
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

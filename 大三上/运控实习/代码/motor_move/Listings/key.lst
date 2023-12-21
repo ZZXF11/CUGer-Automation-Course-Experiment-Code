@@ -1,0 +1,168 @@
+C51 COMPILER V9.57.0.0   KEY                                                               12/12/2021 17:30:28 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\motor_move) DEBUG OBJECTEXTEND 
+                    -PRINT(.\Listings\key.lst) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <init.h>
+   2          #include <key.h>
+   3          
+   4          xdata unsigned char PortA _at_ 0x6000 ; // Port A
+   5          xdata unsigned char PortB _at_ 0x6001 ; // Port B
+   6          xdata unsigned char PortC _at_ 0x6002 ; // Port C
+   7          xdata unsigned char INC _at_ 0x6002 ; 
+   8          xdata unsigned char IN _at_ 0x6002 ;
+   9          xdata unsigned char CAddr _at_ 0x6003 ; // 控制字地址
+  10          xdata unsigned char LED _at_ 0x5cff;
+  11          xdata unsigned char LED_Y0 _at_ 0xe000;
+  12          
+  13          code unsigned char KeyTable[] = {
+  14            0x0c,0x08,0x04,0x00,
+  15            0x0d,0x09,0x05,0x01,
+  16            0x0e,0x0a,0x06,0x02,
+  17            0x0f,0x0b,0x07,0x03
+  18          };
+  19          
+  20          code unsigned char LEDMAP[] = {  // 八段管显示码
+  21            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  22            0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+  23          };
+  24          
+  25          void Delay(unsigned char CNT)
+  26          {
+  27   1        unsigned char i;
+  28   1      
+  29   1        while (CNT-- !=0)
+  30   1          for (i=100; i !=0; i--);
+  31   1      }
+  32          
+  33          unsigned char TestKey()
+  34          {
+  35   1         PortC = 0x0f;            // 输出线置为0
+  36   1         return (~INC & 0x0f);   // 读入键状态(高四位不用)
+  37   1      //     PortC = 0x0f;
+  38   1      //     if((PortC & 0x0f)!=0x0f) return 1;
+  39   1      //     else return 0x00;
+  40   1      }
+  41          
+  42          //根据伟福实验箱修改的GetKey()函数
+  43          unsigned char KeyScan()
+  44          {
+  45   1        unsigned char Pos;
+  46   1        unsigned char i;
+  47   1        unsigned char k;
+  48   1      
+  49   1        i = 4;
+  50   1        Pos = 0x80;   
+  51   1        do {
+  52   2          PortC = ~ Pos;
+  53   2          Pos >>= 1;
+  54   2          k = ~IN & 0x0f;
+C51 COMPILER V9.57.0.0   KEY                                                               12/12/2021 17:30:28 PAGE 2   
+
+  55   2        } while ((--i != 0) && (k == 0));
+  56   1      
+  57   1        if (k != 0) {
+  58   2          i *= 4;
+  59   2          if (k & 2)
+  60   2            i += 1;
+  61   2          else if (k & 4)
+  62   2            i += 2;
+  63   2          else if (k & 8)
+  64   2            i += 3;
+  65   2      
+  66   2          do Delay(10); 
+  67   2          while (TestKey());  
+  68   2      
+  69   2          return(KeyTable[i]);  
+  70   2        } else return(0xff);
+  71   1      }
+  72          
+  73          unsigned char KeyScan_1()
+  74          {
+  75   1        unsigned char Pos;
+  76   1        unsigned char i;
+  77   1        unsigned char k;
+  78   1      
+  79   1        i = 4;
+  80   1        Pos = 0x80;   
+  81   1        do {
+  82   2          PortC = ~ Pos;
+  83   2          Pos >>= 1;
+  84   2          k = ~IN & 0x0f;
+  85   2        } while ((--i != 0) && (k == 0));
+  86   1      
+  87   1        if (k != 0) {
+  88   2          i *= 4;
+  89   2          if (k & 2)
+  90   2            i += 1;
+  91   2          else if (k & 4)
+  92   2            i += 2;
+  93   2          else if (k & 8)
+  94   2            i += 3;
+  95   2      
+  96   2      //    do Delay(10); 
+  97   2      //    while (TestKey());  
+  98   2      
+  99   2          return(KeyTable[i]);  
+ 100   2        } else return(0xff);
+ 101   1      }
+ 102          unsigned char K;
+ 103          void KeyPro()
+ 104          {
+ 105   1        K=PortC&0x0f;
+ 106   1        switch( K )
+ 107   1        {
+ 108   2      
+ 109   2          //第一行键值码
+ 110   2          case 7: PortB = LEDMAP[0];    break;
+ 111   2          case 11: PortB = LEDMAP[1];   break;
+ 112   2          case 13: PortB = LEDMAP[2];   break;
+ 113   2          case 14: PortB = LEDMAP[3];   break;
+ 114   2          
+ 115   2          //第二行键值码
+ 116   2          case 0xed: PortB = LEDMAP[4];   break;
+C51 COMPILER V9.57.0.0   KEY                                                               12/12/2021 17:30:28 PAGE 3   
+
+ 117   2          case 0xdd: PortB = LEDMAP[5];   break;
+ 118   2          case 0xbd: PortB = LEDMAP[6];   break;
+ 119   2          case 0x7d: PortB = LEDMAP[7];   break;
+ 120   2      
+ 121   2          //第三行键值码
+ 122   2          case 0xeb: PortB = LEDMAP[8];   break;
+ 123   2          case 0xdb: PortB = LEDMAP[9];   break;
+ 124   2          case 0xbb: PortB = LEDMAP[10];  break;
+ 125   2          case 0x7b: PortB = LEDMAP[11];  break;
+ 126   2      
+ 127   2          //第四行键值码
+ 128   2          case 0xe7: PortB = LEDMAP[12];  break;
+ 129   2          case 0xd7: PortB = LEDMAP[13];  break;
+ 130   2          case 0xb7: PortB = LEDMAP[14];  break;
+ 131   2          case 0x77: PortB = LEDMAP[15];  break;
+ 132   2              //独立键盘
+ 133   2          case 0xfe: PortB = LEDMAP[16];  break;
+ 134   2          case 0xfd: PortB = LEDMAP[17];  break;
+ 135   2          case 0xfb: PortB = LEDMAP[18];  break;
+ 136   2          case 0xf7: PortB = LEDMAP[19];  break;
+ 137   2        } 
+ 138   1      }
+ 139          
+ 140          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    352    ----
+   CONSTANT SIZE    =     32    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,90 @@
+C51 COMPILER V9.59.0.0   SUPPORT                                                           01/08/2022 00:19:09 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE SUPPORT
+OBJECT MODULE PLACED IN .\Objects\support.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE support.c LARGE ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE DEBUG 
+                    -OBJECTEXTEND PRINT(.\Listings\support.lst) TABS(2) OBJECT(.\Objects\support.obj)
+
+line level    source
+
+   1          #include "support.h"
+   2          #include "move.h"
+   3          
+   4          
+   5          
+   6            
+   7          ////函数功能：取绝对值
+   8          //float abs(float num)
+   9          //{
+  10          //  if(num>=0) return num;
+  11          //  else return -num;
+  12          //}
+  13          
+  14          //**********手动模式执行函数**************
+  15          //void key_scan() 
+  16          //{
+  17          //  if(key_A == 0)  //按键A被按下
+  18          //  {
+  19          //    delayms(5);
+  20          //    if(key_A == 0)
+  21          //    {
+  22          //      while(!key_A)
+  23          //      {
+  24          //        move_onestep('x','-',5);
+  25          //      }
+  26          
+  27          //    }
+  28          //  }
+  29          //  if(key_B == 0)  //按键B被按下
+  30          //  {
+  31          //    delayms(5);
+  32          //    if(key_B == 0)
+  33          //    {
+  34          //      while(!key_B)
+  35          //      {
+  36          //        move_onestep('x','+',5);
+  37          //      }
+  38          //    }
+  39          //  }
+  40          //  if(key_C == 0)  //按键C被按下
+  41          //  {
+  42          //    delayms(5);
+  43          //    if(key_C == 0)
+  44          //    {
+  45          //      while(!key_C)
+  46          //      {
+  47          //        move_onestep('y','+',5);
+  48          //      }
+  49          //    
+  50          //    }
+  51          //  }
+  52          //  if(key_D == 0)  //按键D被按下
+  53          //  {
+  54          //    delayms(5);
+C51 COMPILER V9.59.0.0   SUPPORT                                                           01/08/2022 00:19:09 PAGE 2   
+
+  55          //    if(key_D == 0)
+  56          //    {
+  57          //      while(!key_D)
+  58          //      {
+  59          //        move_onestep('y','-',5);
+  60          //      }
+  61          //      
+  62          //    }
+  63          //  }
+  64          //}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

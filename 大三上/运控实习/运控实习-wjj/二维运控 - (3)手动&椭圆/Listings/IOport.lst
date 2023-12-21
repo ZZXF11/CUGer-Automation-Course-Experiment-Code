@@ -1,0 +1,35 @@
+C51 COMPILER V9.59.0.0   IOPORT                                                            01/09/2022 19:20:26 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE IOPORT
+OBJECT MODULE PLACED IN .\Objects\IOport.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE IOport.c LARGE ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE DEBUG O
+                    -BJECTEXTEND PRINT(.\Listings\IOport.lst) TABS(2) OBJECT(.\Objects\IOport.obj)
+
+line level    source
+
+   1          #ifndef __IOPORT_H
+   2          #define __IOPORT_H
+   3          
+   4          #include "IOport.h"
+   5          
+   6          unsigned int counter = 0;//步数计数器
+   7          
+   8          double x_now;   //当前x坐标
+   9          double y_now;   //当前y坐标
+  10          
+  11          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     10    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

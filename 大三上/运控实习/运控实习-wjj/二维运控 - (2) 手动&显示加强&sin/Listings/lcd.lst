@@ -1,0 +1,677 @@
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN .\Objects\lcd.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE lcd.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\lcd.lst) TABS(2) OBJECT(.\Objects\lcd.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "8x16zimo_lib.c"
+   3          #include "16x16zimo_lib.c"
+   4          //#include "directionArrows.c"
+   5          //#include "lcd_CUG_logo.c"
+   6          
+   7          #define PD1  61        //  122/2 分成左右两半屏(122x32)
+   8          
+   9          unsigned char Column;
+  10          unsigned char Page_ ;  // 页地址寄存器 D1,DO:页地址
+  11          unsigned char Code_ ;  // 字符代码寄存器
+  12          
+  13          unsigned char Command; // 指令寄存器
+  14          unsigned char LCDData; // 数据寄存器
+  15          
+  16          xdata unsigned char CWADD1 _at_ 0x1cff;   // 写指令代码地址(E1)（Y8）
+  17          xdata unsigned char DWADD1 _at_ 0x1eff;   // 写显示数据地址(E1)
+  18          xdata unsigned char CRADD1 _at_ 0x1dff;   // 读状态字地址(E1)
+  19          xdata unsigned char DRADD1 _at_ 0x1fff;   // 读显示数据地址(E1)
+  20          
+  21          xdata unsigned char CWADD2 _at_ 0x3cff;   // 写指令代码地址(E2) (Y9)
+  22          xdata unsigned char DWADD2 _at_ 0x3eff;   // 写显示数进地址(E2)
+  23          xdata unsigned char CRADD2 _at_ 0x3dff;   // 读状态字地址(E2)
+  24          xdata unsigned char DRADD2 _at_ 0x3fff;   // 读显示数据地址(E2)
+  25          
+  26          
+  27          // 1.写指令代码子程序(E1)
+  28          void WriteCommandE1()
+  29          {
+  30   1        while(CRADD1 & 0x80);
+  31   1        CWADD1 = Command;
+  32   1      }
+  33          
+  34          // 2.写显示数据子程序(E1)
+  35          void WriteDataE1()
+  36          {
+  37   1        while(CRADD1 & 0x80);
+  38   1        DWADD1 = LCDData;
+  39   1      }
+  40          
+  41          // 3.读显示数据子程序(E1)
+  42          void ReadDataE1()
+  43          {
+  44   1        while(CRADD1 & 0x80);
+  45   1        LCDData = DRADD1;
+  46   1      }
+  47          
+  48          // 4.写指令代码子程序(E2)
+  49          void WriteCommandE2()
+  50          {
+  51   1        while(CRADD2 & 0x80);
+  52   1        CWADD2 = Command;
+  53   1      }
+  54          
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 2   
+
+  55          // 5.写显示数据子程序(E2)
+  56          void WriteDataE2()
+  57          {
+  58   1        while(CRADD2 & 0x80);
+  59   1        DWADD2 = LCDData;
+  60   1      }
+  61          
+  62          // 6.读显示数据子程序(E2)
+  63          void ReadDataE2()
+  64          {
+  65   1        while(CRADD2 & 0x80);
+  66   1        LCDData = DRADD2;
+  67   1      }
+  68          
+  69          
+  70          void Init()  // ******初始化程序******
+  71          {
+  72   1        Command = 0xe2;      
+  73   1        WriteCommandE1();
+  74   1        WriteCommandE2();
+  75   1      
+  76   1        Command = 0xa4;
+  77   1        WriteCommandE1();
+  78   1        WriteCommandE2();
+  79   1      
+  80   1        Command = 0xa9;
+  81   1        WriteCommandE1();
+  82   1        WriteCommandE2();
+  83   1      
+  84   1        Command = 0xa0;
+  85   1        WriteCommandE1();
+  86   1        WriteCommandE2();
+  87   1      
+  88   1        Command = 0xc0;
+  89   1        WriteCommandE1();
+  90   1        WriteCommandE2();
+  91   1      
+  92   1        Command = 0xaf;
+  93   1        WriteCommandE1();
+  94   1        WriteCommandE2();
+  95   1      }
+  96          
+  97          
+  98          void Clear()  // *********清屏*********
+  99          {
+ 100   1        unsigned char i,j;
+ 101   1      
+ 102   1        i = 0;
+ 103   1        do {
+ 104   2      
+ 105   2          Command = (i + 0xb8); // 页地址设置
+ 106   2          WriteCommandE1();
+ 107   2          WriteCommandE2();
+ 108   2      
+ 109   2          Command = 0x00;      // 列地址设置为"0"
+ 110   2          WriteCommandE1();
+ 111   2          WriteCommandE2();
+ 112   2      
+ 113   2          j = 0x50;            // 一页清 80个字节
+ 114   2          do {
+ 115   3            LCDData = 0x00;    // 显示数据为"0"
+ 116   3            WriteDataE1();
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 3   
+
+ 117   3            WriteDataE2();
+ 118   3          }while(--j !=0);     // 页内字节清零循环
+ 119   2      
+ 120   2        }while(++i !=4);       // 页地址暂存器加一
+ 121   1                               // 显示区清零循环
+ 122   1      }
+ 123          
+ 124          // *******122x32显示子程序*******
+ 125          /*void WritePicture122x32()       //*********调用一次显示一个字*****
+ 126          {
+ 127            unsigned char i,j,k;
+ 128          
+ 129            i = 0;
+ 130            j = 0;
+ 131            //while(j<2) {
+ 132            while(j<4){ //用到4页就改为4*********************************************
+ 133              Command = ((Page_ + j) & 0x03) | 0xb8;   // 设置页地址
+ 134              WriteCommandE1();
+ 135              WriteCommandE2();
+ 136              k = Column;                   // 列地址值
+ 137              while(k < Column + 122){//*****122列******************************************
+ 138                if (k < PD1) {              // 为左半屏显示区域(E1)
+ 139                  Command = k;
+ 140                  WriteCommandE1();         // 设置列地址值
+ 141                  LCDData = CUGlogoTAB[Code_][i]; // 取汉字字模数据/**改数组****************
+ 142                  WriteDataE1();            // 写字模数据
+ 143                } else{                     // 为右半屏显示区域(E2)
+ 144                  Command = k-PD1;
+ 145                  WriteCommandE2();         // 设置列地址值
+ 146                  LCDData = CUGlogoTAB[Code_][i]; // 取汉字字模数据/**改数组****************
+ 147                  WriteDataE2();            // 写字模数据
+ 148                };
+ 149                i++;
+ 150                if( ++k >= PD1 * 2) break;  // 列地址是否超出显示范围
+ 151              } ;
+ 152              j++;
+ 153            };
+ 154          }*/
+ 155          
+ 156          
+ 157          
+ 158          // *******32x32显示子程序*******
+ 159          //void WritePicture32x32()       //*********调用一次显示一个字*****
+ 160          //{
+ 161          //  unsigned char i,j,k;
+ 162          
+ 163          //  i = 0;
+ 164          //  j = 0;
+ 165          //  //while(j<2) {
+ 166          //  while(j<4){ //用到4页就改为4*********************************************
+ 167          //    Command = ((Page_ + j) & 0x03) | 0xb8;   // 设置页地址
+ 168          //    WriteCommandE1();
+ 169          //    WriteCommandE2();
+ 170          //    k = Column;                   // 列地址值
+ 171          //    while(k < Column + 32){//*****32列******************************************
+ 172          //      if (k < PD1) {              // 为左半屏显示区域(E1)
+ 173          //        Command = k;
+ 174          //        WriteCommandE1();         // 设置列地址值
+ 175          //        LCDData = ArrowsTAB[Code_][i]; // 取汉字字模数据
+ 176          //        WriteDataE1();            // 写字模数据
+ 177          //      } else{                     // 为右半屏显示区域(E2)
+ 178          //        Command = k-PD1;
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 4   
+
+ 179          //        WriteCommandE2();         // 设置列地址值
+ 180          //        LCDData = ArrowsTAB[Code_][i]; // 取汉字字模数据
+ 181          //        WriteDataE2();            // 写字模数据
+ 182          //      };
+ 183          
+ 184          //      i++;
+ 185          //      if( ++k >= PD1 * 2) break;  // 列地址是否超出显示范围
+ 186          //    } ;
+ 187          //    j++;
+ 188          //  };
+ 189          //}
+ 190          
+ 191          
+ 192          
+ 193          // *******16×16显示子程序*******
+ 194          void WriteCHN16x16()       //*********调用一次显示一个字*****
+ 195          {
+ 196   1        unsigned char i,j,k;
+ 197   1      
+ 198   1        i = 0;
+ 199   1        j = 0;
+ 200   1        while(j<2) {
+ 201   2          Command = ((Page_ + j) & 0x03) | 0xb8;   // 设置页地址
+ 202   2          WriteCommandE1();
+ 203   2          WriteCommandE2();
+ 204   2          k = Column;                   // 列地址值
+ 205   2          while(k < Column + 16){
+ 206   3            if (k < PD1) {              // 为左半屏显示区域(E1)
+ 207   4              Command = k;
+ 208   4              WriteCommandE1();         // 设置列地址值
+ 209   4              LCDData = CCTAB[Code_][i]; // 取汉字字模数据
+ 210   4              WriteDataE1();            // 写字模数据
+ 211   4            } else{                     // 为右半屏显示区域(E2)
+ 212   4              Command = k-PD1;
+ 213   4              WriteCommandE2();         // 设置列地址值
+ 214   4              LCDData = CCTAB[Code_][i]; // 取汉字字模数据
+ 215   4              WriteDataE2();            // 写字模数据
+ 216   4            };
+ 217   3      
+ 218   3            i++;
+ 219   3            if( ++k >= PD1 * 2) break;  // 列地址是否超出显示范围
+ 220   3          } ;
+ 221   2          j++;
+ 222   2        };
+ 223   1      }
+ 224          
+ 225          // *******8×16字模显示子程序*******
+ 226          void WriteNUM8x16()       //*********调用一次显示一个字*****
+ 227          {
+ 228   1        unsigned char i,j,k;
+ 229   1        i = 0;
+ 230   1        j = 0;
+ 231   1        while(j<2) { //***********page的数量，16行对应2个page*********
+ 232   2          Command = ((Page_ + j) & 0x03) | 0xb8;   // 设置页地址
+ 233   2          WriteCommandE1();
+ 234   2          WriteCommandE2();
+ 235   2          k = Column;                   // 列地址值
+ 236   2          while(k < Column + 8){        //*******取模8x16，列变成8了*******
+ 237   3            if (k < PD1) {              // 为左半屏显示区域(E1)
+ 238   4              Command = k;
+ 239   4              WriteCommandE1();         // 设置列地址值
+ 240   4              LCDData = DIGTAB[Code_][i]; // 取数字字模数据
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 5   
+
+ 241   4              WriteDataE1();            // 写字模数据
+ 242   4            } else{                     // 为右半屏显示区域(E2)
+ 243   4              Command = k-PD1;
+ 244   4              WriteCommandE2();         // 设置列地址值
+ 245   4              LCDData = DIGTAB[Code_][i]; // 取数字字模数据
+ 246   4              WriteDataE2();            // 写字模数据
+ 247   4            };
+ 248   3            i++;
+ 249   3            if( ++k >= PD1 * 2) break;  // 列地址是否超出显示范围
+ 250   3          } ;
+ 251   2          j++;
+ 252   2        };
+ 253   1      }
+ 254          
+ 255          //void show_CUGlogo()
+ 256          //{
+ 257          //  Init();        //初始化  
+ 258          //  Clear();       //清屏
+ 259          //  
+ 260          //  Page_ = 0x02;     
+ 261          //  Column = 0x00;
+ 262          //  Code_ = 0x00;
+ 263          //  WritePicture122x32();   //“中国地质大学”
+ 264          //  
+ 265          //}
+ 266          
+ 267          //作者显示函数
+ 268          void show_author()
+ 269          {
+ 270   1        Init();        //初始化  
+ 271   1        Clear();       //清屏
+ 272   1        
+ 273   1        Page_ = 0x02; //（上排 ）    
+ 274   1        Column = 0x00;//列位置
+ 275   1        Code_ = 0x00;
+ 276   1        WriteCHN16x16();   //“作 ”
+ 277   1      
+ 278   1        Page_ = 0x02; 
+ 279   1        Column = 0x10;
+ 280   1        Code_ = 0x01;
+ 281   1        WriteCHN16x16();   //“者 ”
+ 282   1        
+ 283   1        Page_ = 0x02; 
+ 284   1        Column = 0x20;
+ 285   1        Code_ = 0x02;
+ 286   1        WriteCHN16x16();   //“: ” 
+ 287   1      
+ 288   1        Page_ = 0x00;   //下排
+ 289   1        Column = 0x10;
+ 290   1        Code_ = 0x03;
+ 291   1        WriteCHN16x16();   //“茁 ”
+ 292   1        
+ 293   1        Page_ = 0x00;   
+ 294   1        Column = 0x20;
+ 295   1        Code_ = 0x04;
+ 296   1        WriteCHN16x16();   //“壮 ”
+ 297   1      
+ 298   1        Page_ = 0x00;   
+ 299   1        Column = 0x30;
+ 300   1        Code_ = 0x05;
+ 301   1        WriteCHN16x16();   //“成· ”
+ 302   1      
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 6   
+
+ 303   1        Page_ = 0x00;   
+ 304   1        Column = 0x40;
+ 305   1        Code_ = 0x06;
+ 306   1        WriteCHN16x16();   //“长 ”
+ 307   1      
+ 308   1      
+ 309   1        Page_ = 0x00;   
+ 310   1        Column = 0x50;
+ 311   1        Code_ = 0x07;
+ 312   1        WriteCHN16x16();   //“小”
+ 313   1        
+ 314   1        Page_ = 0x00;   
+ 315   1        Column = 0x60;
+ 316   1        Code_ = 0x08;
+ 317   1        WriteCHN16x16();   //“队 ”
+ 318   1        
+ 319   1      }
+ 320          
+ 321          
+ 322          void show_menu()
+ 323          {
+ 324   1        Init();        //初始化  
+ 325   1        Clear();       //清屏
+ 326   1        
+ 327   1        Page_ = 0x02;     
+ 328   1        Column = 0x00;
+ 329   1        Code_ = 0x09;
+ 330   1        WriteCHN16x16();   //“选”
+ 331   1      
+ 332   1        Page_ = 0x02; 
+ 333   1        Column = 0x10;
+ 334   1        Code_ = 0x0a;
+ 335   1        WriteCHN16x16();   //“择”
+ 336   1        
+ 337   1        Page_ = 0x02; 
+ 338   1        Column = 0x20;
+ 339   1        Code_ = 0x0b;
+ 340   1        WriteCHN16x16();   //“操”
+ 341   1        
+ 342   1        Page_ = 0x02; 
+ 343   1        Column = 0x30;
+ 344   1        Code_ = 0x0c;
+ 345   1        WriteCHN16x16();   //“作”
+ 346   1      
+ 347   1        Page_ = 0x02; 
+ 348   1        Column = 0x40;
+ 349   1        Code_ = 0x02;
+ 350   1        WriteCHN16x16();   //“：”
+ 351   1      
+ 352   1        Page_ = 0x00;     
+ 353   1        Column = 0x07;
+ 354   1        Code_ = 0x0d;
+ 355   1        WriteCHN16x16();   //“①”
+ 356   1        
+ 357   1        Page_ = 0x00;     
+ 358   1        Column = 0x25;
+ 359   1        Code_ = 0x0e;
+ 360   1        WriteCHN16x16();   //“②”
+ 361   1        
+ 362   1        Page_ = 0x00;     
+ 363   1        Column = 0x43;
+ 364   1        Code_ = 0x0f;
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 7   
+
+ 365   1        WriteCHN16x16();   //“③”
+ 366   1        
+ 367   1        Page_ = 0x00;     
+ 368   1        Column = 0x61;
+ 369   1        Code_ = 0x10;
+ 370   1        WriteCHN16x16();   //“④”
+ 371   1        
+ 372   1      }
+ 373          
+ 374          void Display_1(void)  //显示手动
+ 375          {  
+ 376   1        Init();        //初始化  (移到主函数)
+ 377   1        Clear();       //清屏
+ 378   1        
+ 379   1        Page_ = 0x02;     
+ 380   1        Column = 0x00;
+ 381   1        Code_ = 0x0d;
+ 382   1        WriteCHN16x16();   //“①”
+ 383   1        
+ 384   1        Page_ = 0x02; 
+ 385   1        Code_ = 0x17;    
+ 386   1        Column = 0x10;
+ 387   1        WriteCHN16x16();   //“手”
+ 388   1        
+ 389   1        Page_ = 0x02;     
+ 390   1        Column = 0x20;
+ 391   1        Code_ = 0x18;
+ 392   1        WriteCHN16x16();   //“动” 
+ 393   1      }
+ 394          
+ 395          //void Display_1(int index) //显示手动
+ 396          //{  
+ 397          //  Init();        //初始化  (移到主函数)
+ 398          //  Clear();       //清屏
+ 399          //  
+ 400          //  Page_ = 0x02;     
+ 401          //  Column = 0x00;
+ 402          //  Code_ = 0x0d;
+ 403          //  WriteCHN16x16();   //“①”
+ 404          //  
+ 405          //  Page_ = 0x02;     
+ 406          //  Column = 0x10;
+ 407          //  Code_ = 0x17;
+ 408          //  WriteCHN16x16();   //“手”
+ 409          //  
+ 410          //  Page_ = 0x02;     
+ 411          //  Column = 0x20;
+ 412          //  Code_ = 0x18;
+ 413          //  WriteCHN16x16();   //“动” 
+ 414          //  
+ 415          //  Page_ = 0x02;     
+ 416          //  Column = 0x50;//*******图像右沿最多到62列，之后就输出不了**************
+ 417          //  switch(index)
+ 418          //  {
+ 419          //    case 0: {Code_ = 0;break;}//还没按下过
+ 420          //    case 2: {Code_ = 3;break;}//y-
+ 421          //    case 5: {Code_ = 2;break;}//x+
+ 422          //    case 7: {Code_ = 4;break;}//x-
+ 423          //    case 0x0a: {Code_ = 1;break;}//y+
+ 424          //    default: {Code_ = 0;break;}//按倒其他键显示无键按下图
+ 425          //  }
+ 426          //  WritePicture32x32();   //“无操作”
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 8   
+
+ 427          
+ 428          //}
+ 429          
+ 430          void Display_2(int indexX1,int indexX2,int indexX3,int indexY1,int indexY2,int indexY3) //画直线
+ 431          {  
+ 432   1        Init();        //初始化  (移到主函数)
+ 433   1        Clear();       //清屏
+ 434   1        
+ 435   1        Page_ = 0x02;     
+ 436   1        Column = 0x00;
+ 437   1        Code_ = 0x0e;
+ 438   1        WriteCHN16x16();   //“②”
+ 439   1          
+ 440   1        Page_ = 0x02;     
+ 441   1        Column = 0x10;
+ 442   1        Code_ = 0x11;
+ 443   1        WriteCHN16x16();   //“画”
+ 444   1        
+ 445   1        Page_ = 0x02;     
+ 446   1        Column = 0x20;
+ 447   1        Code_ = 0x12;
+ 448   1        WriteCHN16x16();   //“直”
+ 449   1        
+ 450   1        Page_ = 0x02;     
+ 451   1        Column = 0x30;
+ 452   1        Code_ = 0x13;
+ 453   1        WriteCHN16x16();   //“线”
+ 454   1        
+ 455   1        Page_ = 0x00;     
+ 456   1        Column = 0x00;
+ 457   1        Code_ = 0x0a;
+ 458   1        WriteNUM8x16();   //“X”
+ 459   1        
+ 460   1        Page_ = 0x00;     
+ 461   1        Column = 0x08;
+ 462   1        Code_ = 0x11;
+ 463   1        WriteNUM8x16();   //“=”
+ 464   1        
+ 465   1        Page_ = 0x00;     
+ 466   1        Column = 0x10;
+ 467   1        Code_ = indexX1;  //百位数字
+ 468   1        WriteNUM8x16();   //
+ 469   1        
+ 470   1        Page_ = 0x00;     
+ 471   1        Column = 0x18;
+ 472   1        Code_ = indexX2;  //十位数字
+ 473   1        WriteNUM8x16();   //
+ 474   1        
+ 475   1        Page_ = 0x00;     
+ 476   1        Column = 0x20;
+ 477   1        Code_ = indexX3;  //个位数字
+ 478   1        WriteNUM8x16();   //
+ 479   1        
+ 480   1        Page_ = 0x00;     
+ 481   1        Column = 0x3c;
+ 482   1        Code_ = 0x0b;
+ 483   1        WriteNUM8x16();   //“Y”
+ 484   1        
+ 485   1        Page_ = 0x00;     
+ 486   1        Column = 0x44;
+ 487   1        Code_ = 0x11;
+ 488   1        WriteNUM8x16();   //“=”
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 9   
+
+ 489   1      
+ 490   1        Page_ = 0x00;     
+ 491   1        Column = 0x4c;
+ 492   1        Code_ = indexY1;//百位数字
+ 493   1        WriteNUM8x16();   //
+ 494   1        //Code_ = 0xb5;//Code_>b4就全黑,b5=181；
+ 495   1        
+ 496   1        Page_ = 0x00;     
+ 497   1        Column = 0x54;
+ 498   1        Code_ = indexY2;  //十位数字
+ 499   1        WriteNUM8x16();   //
+ 500   1        
+ 501   1        Page_ = 0x00;     
+ 502   1        Column = 0x5c;
+ 503   1        Code_ = 0x03;
+ 504   1        Code_ = indexY3;  //个位数字
+ 505   1        WriteNUM8x16();   //
+ 506   1      }
+ 507          
+ 508          void Display_3(int index_x,int index_y)//画矩形
+ 509          {  
+ 510   1        Init();        //初始化  (移到主函数)
+ 511   1        Clear();       //清屏
+ 512   1        
+ 513   1        Page_ = 0x02;     
+ 514   1        Column = 0x00;
+ 515   1        Code_ = 0x0f;
+ 516   1        WriteCHN16x16();   //“③”
+ 517   1          
+ 518   1        Page_ = 0x02;     
+ 519   1        Column = 0x10;
+ 520   1        Code_ = 0x11;
+ 521   1        WriteCHN16x16();   //“画”
+ 522   1        
+ 523   1        Page_ = 0x02;     
+ 524   1        Column = 0x20;
+ 525   1        Code_ = 0x14;
+ 526   1        WriteCHN16x16();   //“矩”
+ 527   1        
+ 528   1        Page_ = 0x02;     
+ 529   1        Column = 0x30;
+ 530   1        Code_ = 0x15;
+ 531   1        WriteCHN16x16();   //“形”
+ 532   1        
+ 533   1        Page_ = 0x00;     
+ 534   1        Column = 0x00;
+ 535   1        Code_ = 0x0e;
+ 536   1        WriteNUM8x16();   //“a”
+ 537   1        
+ 538   1        Page_ = 0x00;     
+ 539   1        Column = 0x08;
+ 540   1        Code_ = 0x11;
+ 541   1        WriteNUM8x16();   //“=”
+ 542   1        
+ 543   1        Page_ = 0x00;     
+ 544   1        Column = 0x10;
+ 545   1        Code_ = index_x/100;//百位数字
+ 546   1        WriteNUM8x16();   //
+ 547   1        
+ 548   1        Page_ = 0x00;     
+ 549   1        Column = 0x18;
+ 550   1        Code_ = (index_x%100)/10; //十位数字
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 10  
+
+ 551   1        WriteNUM8x16();   //
+ 552   1        
+ 553   1        Page_ = 0x00;     
+ 554   1        Column = 0x20;
+ 555   1        Code_ = index_x%10; //个位数字
+ 556   1        WriteNUM8x16();   //
+ 557   1        
+ 558   1        Page_ = 0x00;     
+ 559   1        Column = 0x3c;
+ 560   1        Code_ = 0x0f;
+ 561   1        WriteNUM8x16();   //“b”
+ 562   1        
+ 563   1        Page_ = 0x00;     
+ 564   1        Column = 0x44;
+ 565   1        Code_ = 0x11;
+ 566   1        WriteNUM8x16();   //“=”
+ 567   1        
+ 568   1        Page_ = 0x00;     
+ 569   1        Column = 0x4c;
+ 570   1        Code_ = index_y/100;//百位数字
+ 571   1        WriteNUM8x16();   //
+ 572   1        //Code_ = 0xb5;//Code_>b4就全黑,b5=181；
+ 573   1        Page_ = 0x00;     
+ 574   1        Column = 0x54;
+ 575   1        Code_ = (index_y%100)/10; //十位数字
+ 576   1        WriteNUM8x16();   //
+ 577   1        
+ 578   1        Page_ = 0x00;     
+ 579   1        Column = 0x5c;
+ 580   1        Code_ = 0x03;
+ 581   1        Code_ = index_y%10; //个位数字
+ 582   1        WriteNUM8x16();   //
+ 583   1      
+ 584   1      }
+ 585          
+ 586          void Display_4(int index_r)//画圆
+ 587          {  
+ 588   1        Init();        //初始化  (移到主函数)
+ 589   1        Clear();       //清屏
+ 590   1        
+ 591   1        Page_ = 0x02;     
+ 592   1        Column = 0x00;
+ 593   1        Code_ = 0x10;
+ 594   1        WriteCHN16x16();   //“④”
+ 595   1          
+ 596   1        Page_ = 0x02;     
+ 597   1        Column = 0x10;
+ 598   1        Code_ = 0x11;
+ 599   1        WriteCHN16x16();   //“画”
+ 600   1        
+ 601   1        Page_ = 0x02;     
+ 602   1        Column = 0x20;
+ 603   1        Code_ = 0x16;
+ 604   1        WriteCHN16x16();   //“圆”
+ 605   1        
+ 606   1        Page_ = 0x00;     
+ 607   1        Column = 0x20;
+ 608   1        Code_ = 0x10;
+ 609   1        WriteNUM8x16();   //“R”
+ 610   1        
+ 611   1        Page_ = 0x00;     
+ 612   1        Column = 0x28;
+C51 COMPILER V9.59.0.0   LCD                                                               01/01/2022 21:37:07 PAGE 11  
+
+ 613   1        Code_ = 0x11;
+ 614   1        WriteNUM8x16();   //“=”
+ 615   1        
+ 616   1        Page_ = 0x00;     
+ 617   1        Column = 0x4c;
+ 618   1        Code_ = index_r/100;//百位数字
+ 619   1        WriteNUM8x16();   //
+ 620   1        //Code_ = 0xb5;//Code_>b4就全黑,b5=181；
+ 621   1        Page_ = 0x00;     
+ 622   1        Column = 0x54;
+ 623   1        Code_ = (index_r%100)/10; //十位数字
+ 624   1        WriteNUM8x16();   //
+ 625   1        
+ 626   1        Page_ = 0x00;     
+ 627   1        Column = 0x5c;
+ 628   1        Code_ = 0x03;
+ 629   1        Code_ = index_r%10; //个位数字
+ 630   1        WriteNUM8x16();   //
+ 631   1        //以后再加单位mm  
+ 632   1      
+ 633   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1639    ----
+   CONSTANT SIZE    =   1088    ----
+   XDATA SIZE       =      5      18
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

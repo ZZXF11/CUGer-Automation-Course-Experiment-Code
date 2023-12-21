@@ -1,0 +1,183 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              01/09/2022 19:20:26 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\Keil_5_install_here\C51\BIN\C51.EXE main.c LARGE ROM(COMPACT) OPTIMIZE(8,SPEED) BROWSE DEBUG OBJ
+                    -ECTEXTEND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <absacc.h>
+   3          #include "IOport.h"
+   4          #include "time.h"
+   5          #include "move.h"
+   6          //#include "support.h"
+   7          #include "lcd.c"
+   8          
+   9          xdata unsigned char CAddr _at_ 0x7c03;   // 控制字地址
+  10          
+  11          #define unsigned char uchar;//自定义变量类型
+  12          #define unsigned int uint; 
+*** WARNING C317 IN LINE 12 OF main.c: attempt to redefine macro 'unsigned'
+  13          #define pai 3.1415926
+  14          
+  15            
+  16            
+  17          #define mode 0x81;
+  18          
+  19            int R;      //半径
+  20            double x_st;  //x起始坐标
+  21            double y_st;  //y起始坐标
+  22            double x_end; //x终点坐标
+  23            double y_end; //y终点坐标
+  24            double coor = 0;  //坐标赋值变量
+  25            unsigned char dir = '+';    //正负号标志
+  26            unsigned char model;  //画圆还是画直线标志
+  27            unsigned char sym = 's';  //输入终点坐标还是起点坐标标志位
+  28          //  Cdt_struct Cdt_test={0.0,0.0,0.0,0.0};//直线坐标设置
+  29          //  Cdt_circle circle={0.0,0.0,0.0,0.0,0.0,0.0,0};//圆坐标设置
+  30            Cdt_oval oval={0,0,0,0,0,0,0,0};//tuo圆初始化
+  31            
+  32            int xs;
+  33            int ys;
+  34            int xend;
+  35            int yend;
+  36          
+  37            int x,y;
+  38            int keynum;
+  39            
+  40            int flag=0; //程序当前位置标志flag，0：主菜单。1，2，3，4：项目1~4
+  41            int flag0=0;//存放上一次改变前的flag值
+  42            int confirm_sign=0;//f键确定，确认键状态标志，confirm_sign=n 表示已经确认了n次
+  43            int retreat_sign=0;//b键后退，后退键状态标志，
+  44            int menuCiShu=80000;
+  45            int noTuiChu=1;
+  46          
+  47          //  int indexX1=0,indexX2=0,indexX3=0,indexY1=0,indexY2=0,indexY3=0;//全局变量存放XY坐标值
+  48          //  int indexR1=0,indexR2=0,indexR3=0;
+  49            int indexa1=0,indexa2=0,indexa3=0,indexb1=0,indexb2=0,indexb3=0;
+  50            unsigned int SDspeed=9;
+  51            
+  52            
+  53          
+C51 COMPILER V9.59.0.0   MAIN                                                              01/09/2022 19:20:26 PAGE 2   
+
+  54          void Moshi_1 (void)//moshi1，手动
+  55          {
+  56   1          Display_1(SDspeed);
+  57   1          delayms(100);
+  58   1          while(noTuiChu)
+  59   1          {
+  60   2            shoudong();
+*** WARNING C206 IN LINE 60 OF main.c: 'shoudong': missing function-prototype
+  61   2          }
+  62   1          show_menu();delayms(1000);noTuiChu=1;
+  63   1      }
+  64          
+  65          void Moshi_3 (void)//moshi3，画椭圆
+  66          {
+  67   1          Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);//画tuoyuan
+  68   1          delayms(100);
+  69   1          while(1)
+  70   1          {
+  71   2            if(TestKey())
+*** WARNING C206 IN LINE 71 OF main.c: 'TestKey': missing function-prototype
+  72   2            {
+  73   3              keynum=keyscan() & 0x0f;
+*** WARNING C206 IN LINE 73 OF main.c: 'keyscan': missing function-prototype
+  74   3                if((keynum>=0&&keynum<=9)||keynum==0x0b)
+  75   3                {
+  76   4                  switch (confirm_sign)
+  77   4                  {
+  78   5                    case 0:{ indexa1=keynum;confirm_sign=1;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);b
+             -reak;}
+  79   5                    case 1:{ indexa2=keynum;confirm_sign=2;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);b
+             -reak;}
+  80   5                    case 2:{ indexa3=keynum;confirm_sign=3;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);b
+             -reak;}
+  81   5                    case 3:{ indexb1=keynum;confirm_sign=4;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);b
+             -reak;}
+  82   5                    case 4:{ indexb2=keynum;confirm_sign=5;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);b
+             -reak;}
+  83   5                    case 5:
+  84   5                          { 
+  85   6                            indexb3=keynum;Display_3(indexa1,indexa2,indexa3,indexb1,indexb2,indexb3);
+  86   6                            confirm_sign=6;                 
+  87   6                            oval.a=indexa1*1+indexa2*0.1+indexa3*0.01;
+  88   6                            oval.b=indexb1*1+indexb2*0.1+indexb3*0.01;
+  89   6                            oval.x_s=oval.a;
+  90   6                            oval.y_s=0;
+  91   6                            oval.x_end=oval.a;
+  92   6                            oval.y_end=0;
+  93   6                            oval.x_center=0;
+  94   6                            oval.y_center=0;
+  95   6                            darw_oval(oval,20);                 
+  96   6                            break;
+  97   6                          }
+  98   5                    case 6: { if(keynum==0x0b){retreat_sign=1;confirm_sign=7;}break;}   
+  99   5                  }           
+ 100   4                }
+ 101   3            }
+ 102   2            if(retreat_sign==1) {retreat_sign=0;show_menu();delayms(500);break;}
+ 103   2          }
+ 104   1          indexa1=0,indexa2=0,indexa3=0,indexb1=0,indexb2=0,indexb3=0;
+ 105   1          confirm_sign=0;
+ 106   1      }
+ 107          
+C51 COMPILER V9.59.0.0   MAIN                                                              01/09/2022 19:20:26 PAGE 3   
+
+ 108          
+ 109          
+ 110          
+ 111          void main()
+ 112          {
+ 113   1        CAddr= mode;
+ 114   1      
+ 115   1        show_menu();  
+ 116   1        delayms(1000);
+ 117   1        
+ 118   1        while(1)
+ 119   1        {
+ 120   2          menuCiShu--;
+ 121   2          if(menuCiShu<0)
+ 122   2          {
+ 123   3            menuCiShu=80000;
+ 124   3            show_menu();
+ 125   3            delayms(10);
+ 126   3          }
+ 127   2          if(TestKey()==0)//没键按下
+ 128   2          {
+ 129   3            keynum=100;
+ 130   3          }
+ 131   2          else//有键按下
+ 132   2          {
+ 133   3            keynum=keyscan() & 0x0f;  
+ 134   3            switch (keynum)  //keynum就等于按键的数值
+ 135   3               {    
+ 136   4                     case 0x0f:  {Moshi_1();break;}  //
+ 137   4                     case 0x0e:  {break;} //  
+ 138   4                     case 0x0d:  {Moshi_3();break;}   //
+ 139   4                     case 0x0c:  {break;}   //        
+ 140   4               }        
+ 141   3          }
+ 142   2        }
+ 143   1        
+ 144   1        
+ 145   1        
+ 146   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2755    ----
+   CONSTANT SIZE    =   1088    ----
+   XDATA SIZE       =    103      32
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)

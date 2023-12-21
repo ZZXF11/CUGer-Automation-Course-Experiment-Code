@@ -1,0 +1,127 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.25.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 1, 1, LIC=TIVNB-2EFIX-Z96G9-4JYSM-5HIE8-JJ8FS
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.25.2.0
+Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.25.2.0
+Dialog DLL:      DARMSTM.DLL V1.68.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Dialog DLL:      TARMSTM.DLL V1.66.0.0
+ 
+<h2>Project:</h2>
+D:\E盘文件\学习文件\大三上\运控实习\运控代码\16\USER\LED.uvprojx
+Project File Date:  01/06/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'LED'
+compiling system_stm32f10x.c...
+compiling stm32f10x_it.c...
+compiling timer.c...
+..\HARDWARE\LED\led.h(43): warning:  #1295-D: Deprecated declaration draw_car - give arg types
+  void draw_car();
+..\HARDWARE\TIMER\timer.c: 1 warning, 0 errors
+compiling usart2.c...
+..\HARDWARE\USART2\usart2.h(15): warning:  #1295-D: Deprecated declaration HMI_Send_End - give arg types
+  void HMI_Send_End();
+..\HARDWARE\USART2\usart2.c: 1 warning, 0 errors
+compiling openmv.c...
+..\HARDWARE\USART2\usart2.h(15): warning:  #1295-D: Deprecated declaration HMI_Send_End - give arg types
+  void HMI_Send_End();
+..\HARDWARE\OPENMV\openmv.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\OPENMV\openmv.c: 2 warnings, 0 errors
+compiling main.c...
+..\HARDWARE\LED\led.h(43): warning:  #1295-D: Deprecated declaration draw_car - give arg types
+  void draw_car();
+..\HARDWARE\USART2\usart2.h(15): warning:  #1295-D: Deprecated declaration HMI_Send_End - give arg types
+  void HMI_Send_End();
+..\HARDWARE\OPENMV\openmv.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c(45): warning:  #177-D: variable "x1"  was declared but never referenced
+     double x1,y1,x2,y2;
+main.c(45): warning:  #177-D: variable "y1"  was declared but never referenced
+     double x1,y1,x2,y2;
+main.c(45): warning:  #177-D: variable "x2"  was declared but never referenced
+     double x1,y1,x2,y2;
+main.c(45): warning:  #177-D: variable "y2"  was declared but never referenced
+     double x1,y1,x2,y2;
+main.c(46): warning:  #177-D: variable "left"  was declared but never referenced
+  	 double left;
+main.c(47): warning:  #177-D: variable "right"  was declared but never referenced
+  	 double right;
+main.c(48): warning:  #177-D: variable "di"  was declared but never referenced
+  	 int di;
+main.c: 10 warnings, 0 errors
+compiling led.c...
+..\HARDWARE\LED\led.h(43): warning:  #1295-D: Deprecated declaration draw_car - give arg types
+  void draw_car();
+..\HARDWARE\LED\led.c(414): warning:  #940-D: missing return statement at end of non-void function "get_xiang" 
+  }
+..\HARDWARE\LED\led.c: 2 warnings, 0 errors
+assembling startup_stm32f10x_hd.s...
+compiling core_cm3.c...
+compiling delay.c...
+compiling usart.c...
+..\HARDWARE\LED\led.h(43): warning:  #1295-D: Deprecated declaration draw_car - give arg types
+  void draw_car();
+..\SYSTEM\usart\usart.c(151): warning:  #177-D: variable "temp_data"  was declared but never referenced
+  double temp_data ;
+..\SYSTEM\usart\usart.c: 2 warnings, 0 errors
+compiling sys.c...
+compiling stm32f10x_dbgmcu.c...
+compiling misc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_bkp.c...
+compiling stm32f10x_adc.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_cec.c...
+compiling stm32f10x_can.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_dac.c...
+compiling stm32f10x_exti.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_iwdg.c...
+compiling stm32f10x_flash.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_pwr.c...
+compiling stm32f10x_rtc.c...
+compiling stm32f10x_sdio.c...
+compiling stm32f10x_wwdg.c...
+compiling stm32f10x_spi.c...
+linking...
+Program Size: Code=17476 RO-data=644 RW-data=224 ZI-data=1872  
+FromELF: creating hex file...
+"..\OBJ\LED.axf" - 0 Error(s), 18 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
+                Keil.STM32F1xx_DFP.2.2.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_LED
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>
