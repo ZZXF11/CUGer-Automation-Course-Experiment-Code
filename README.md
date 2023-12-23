@@ -15,3 +15,5 @@
 如果有疑问，或有急需的资料 请联系**ZZXF_zyy@qq.com**，我会及时解答或更新资料
 
 本仓库由19级zyy和wjj共建
+
+The content of this repo is not complete, more content can be found in another outstanding [repo](https://github.com/ZhengYinan-AIR/Course-Experiment-Code).
