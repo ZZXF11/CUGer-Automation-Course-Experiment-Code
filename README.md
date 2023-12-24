@@ -1,4 +1,5 @@
-# CUGer_Automation_repo
+# CUGer-Automation-Course-Experiment-Code
+
 <div>
     <a href="https://space.bilibili.com/26375083?spm_id_from=333.1007.0.0"><img src="https://img.shields.io/badge/- 🗒️bilibili-blue" alt="results_str"></a>
     <a href="https://v.douyin.com/idncnTdy/ 9@5.com"><img src="https://img.shields.io/badge/- 🗒️抖音-blue" alt="results_str"></a>
