@@ -1,0 +1,5 @@
+﻿  test2.cpp
+D:\E盘文件\学习文件\大三上\人工智能\实验一\test2\test2\test2.cpp(260,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\E盘文件\学习文件\大三上\人工智能\实验一\test2\test2\test2.cpp(342,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\E盘文件\学习文件\大三上\人工智能\实验一\test2\test2\test2.cpp(333): warning C4715: “z_inference”: 不是所有的控件路径都返回值
+  test2.vcxproj -> D:\E盘文件\学习文件\大三上\人工智能\实验一\test2\Debug\test2.exe
